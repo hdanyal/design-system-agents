@@ -1,0 +1,22 @@
+# Placeholder teams until GitHub org slugs exist.
+# Fallback maintainers: replace with named humans.
+
+* @org/carina-ds-eng
+
+/components/carina/ @org/carina-ds-eng @org/carina-ds-design
+/registry/ @org/carina-ds-eng
+/registry.json @org/carina-ds-eng
+/tokens.json @org/carina-ds-eng @org/carina-ds-design
+/app/tokens.generated.css @org/carina-ds-eng @org/carina-ds-design
+/design-language.json @org/carina-ds-eng @org/carina-ds-design
+/upstream-patches.json @org/carina-ds-eng
+/components/ui/ @org/carina-ds-eng
+/agent-tooling.json @org/carina-ds-eng
+/agent-tooling.lock.json @org/carina-ds-eng
+/.agents/ @org/carina-ds-eng
+/.cursor/ @org/carina-ds-eng
+/CONTRIBUTING.md @org/carina-ds-eng
+/AGENTS.md @org/carina-ds-eng
+/SECURITY.md @org/carina-ds-eng
+/docs/ @org/carina-ds-eng
+/.github/ @org/carina-ds-eng

@@ -1,0 +1,6 @@
+---
+description: Prototype sandbox
+globs: prototypes/**,app/playground/**
+---
+
+Compose stock + Carina UI. Require `USAGE.md`. Extract catalog gaps to `components/carina` with rationale. Follow `carina-prototype` then `carina-compose`.

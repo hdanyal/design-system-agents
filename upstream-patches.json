@@ -1,0 +1,13 @@
+{
+  "shadcnCli": "4.18.0",
+  "preset": "b3m6Yzw0W",
+  "patches": [
+    {
+      "component": "combobox",
+      "reason": "Accessibility fix: ComboboxTrigger and ComboboxClear rendered bare icons with no accessible name, failing axe button-name. Adds aria-label to both controls and aria-hidden to their decorative icons. No visual or API change.",
+      "owner": "carina-ds-eng",
+      "baselineHash": "a950f6314abce24813503b0a6a686d7a280270b4718bbad9c6ccc875801a1362",
+      "removalCondition": "Remove once upstream shadcn ships accessible names on the combobox trigger and clear controls."
+    }
+  ]
+}

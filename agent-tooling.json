@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "shadcn": {
+      "command": "pnpm",
+      "args": ["dlx", "shadcn@4.18.0", "mcp"],
+      "allowedRegistries": ["@shadcn", "@carina"],
+      "defaultMode": "browse"
+    }
+  },
+  "permissions": {
+    "writes": "explicit-task-only",
+    "untrustedInputs": ["mcp", "registry-descriptions", "figma-annotations"]
+  }
+}

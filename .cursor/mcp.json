@@ -1,0 +1,13 @@
+/* GENERATED from agent-tooling.json. Do not hand-edit. Run `pnpm agents:sync`. */
+{
+  "mcpServers": {
+    "shadcn": {
+      "command": "pnpm",
+      "args": [
+        "dlx",
+        "shadcn@4.18.0",
+        "mcp"
+      ]
+    }
+  }
+}

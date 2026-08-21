@@ -1,0 +1,22 @@
+{
+  "utterances": [
+    { "text": "Bootstrap this design system and list gaps", "owner": "ds-release" },
+    { "text": "Scan this repo and install the agent kit", "owner": "ds-release" },
+    { "text": "Upgrade the kit on this host", "owner": "ds-release" },
+    { "text": "Explore a settings page in the sandbox", "owner": "ds-prototype" },
+    { "text": "Show me this composition in Storybook", "owner": "ds-prototype" },
+    { "text": "Do we already have a page header?", "owner": "ds-architect" },
+    { "text": "Is this a duplicate of an existing primitive?", "owner": "ds-architect" },
+    { "text": "Implement the approved heading-group rationale", "owner": "ds-coding" },
+    { "text": "Wire stories and tests for the approved change", "owner": "ds-coding" },
+    { "text": "Write USAGE for heading-group from the implementation", "owner": "ds-docs" },
+    { "text": "Propose a token change so muted text meets WCAG AA", "owner": "ds-language" },
+    { "text": "Run a11y on the new stories", "owner": "ds-a11y" },
+    { "text": "Review branch changes for bugs against main", "owner": "ds-bugbot" },
+    { "text": "Security-review uncommitted changes in this repo", "owner": "ds-security" },
+    { "text": "Open an incident rollback", "owner": "ds-release" },
+    { "text": "What's next on the board?", "owner": "ds-manager" },
+    { "text": "Flag gaps and organize the task board", "owner": "ds-manager" },
+    { "text": "Seed the first board after bootstrap", "owner": "ds-manager" }
+  ]
+}

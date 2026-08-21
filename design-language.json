@@ -1,0 +1,43 @@
+{
+  "preset": "b3m6Yzw0W",
+  "shadcnCli": "4.18.0",
+  "storybook": "10.5.8",
+  "wcag": "2.2 AA",
+  "framework": "next-app",
+  "frameworkVersion": "16.2.6",
+  "react": "19.2.4",
+  "tailwind": "4",
+  "base": "base",
+  "style": "base-sera",
+  "rsc": true,
+  "typescript": true,
+  "srcDirectory": false,
+  "iconLibrary": "lucide",
+  "font": "inter",
+  "fontHeading": "inherit",
+  "radius": "default",
+  "theme": "orange",
+  "baseColor": "neutral",
+  "chartColor": "orange",
+  "menuColor": "default",
+  "menuAccent": "subtle",
+  "rtl": false,
+  "aliases": {
+    "components": "@/components",
+    "utils": "@/lib/utils",
+    "ui": "@/components/ui",
+    "lib": "@/lib",
+    "hooks": "@/hooks"
+  },
+  "figmaFileKey": "4rMUl36kQlaVzUxy4xoz4Y",
+  "figmaFileUrl": "https://www.figma.com/design/4rMUl36kQlaVzUxy4xoz4Y",
+  "apply": "pnpm dlx shadcn@4.18.0 apply --preset b3m6Yzw0W",
+  "applyThemeOnly": "pnpm dlx shadcn@4.18.0 apply --preset b3m6Yzw0W --only theme",
+  "applyFontOnly": "pnpm dlx shadcn@4.18.0 apply --preset b3m6Yzw0W --only font",
+  "registry": {
+    "namespace": "@carina",
+    "devUrl": "http://localhost:3000/r/dev/{name}.json",
+    "authReadyUrl": "https://<host>/r/v{version}/{name}.json",
+    "authHeader": "Authorization: Bearer ${CARINA_REGISTRY_TOKEN}"
+  }
+}

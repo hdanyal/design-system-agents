@@ -1,0 +1,163 @@
+{
+  "$schemaVersion": "1",
+  "kitVersion": "0.2.0",
+  "agents": [
+    {
+      "id": "ds-manager",
+      "displayName": "Manager",
+      "description": "Owns the continuous task board, flags gaps, and keeps handoffs connected using the live agent roster. Use when the user asks what’s next, to organize work, or to seed the first board after bootstrap. Do not implement UI or spawn specialists without confirm.",
+      "invokeWhen": [
+        "what's next",
+        "what is next",
+        "task board",
+        "work board",
+        "flag gaps",
+        "organize",
+        "program of work",
+        "setup checklist",
+        "connect the specialists",
+        "first board"
+      ],
+      "mayWrite": [".agents/program"],
+      "mustNotWrite": [
+        "primitives",
+        "tokens",
+        "gaps.json",
+        "bootstrap write",
+        "kit install"
+      ],
+      "handoffsTo": [
+        "ds-prototype",
+        "ds-architect",
+        "ds-coding",
+        "ds-docs",
+        "ds-language",
+        "ds-a11y",
+        "ds-bugbot",
+        "ds-security",
+        "ds-release"
+      ],
+      "readonly": false,
+      "reviewEngine": null,
+      "carinaSkills": []
+    },
+    {
+      "id": "ds-prototype",
+      "displayName": "Prototype",
+      "description": "Explores layouts in the host sandbox and presents them on Storybook or Nextra. Use when the user wants to try a UI, prototype, or see a composition. Do not ship primitives or edit tokens.",
+      "invokeWhen": ["sandbox", "explore", "prototype", "figma mock", "show me this"],
+      "mayWrite": ["paths.prototypes", "preview entries for those prototypes"],
+      "mustNotWrite": ["primitives", "tokens", "registry", "silent Storybook install"],
+      "handoffsTo": ["ds-architect", "ds-docs", "ds-manager"],
+      "readonly": false,
+      "reviewEngine": null,
+      "carinaSkills": ["carina-prototype", "carina-compose", "carina-figma"]
+    },
+    {
+      "id": "ds-architect",
+      "displayName": "Component Architect",
+      "description": "Analyzes reuse vs a new primitive and writes the rationale Coding requires. Use when the user asks if a component exists, about duplicates, composition, or whether to add a new component. Do not implement files.",
+      "invokeWhen": ["reuse", "duplicates", "duplicate", "already have", "new component", "composition", "does this exist"],
+      "mayWrite": ["rationale", "composition map", "inventory proposals"],
+      "mustNotWrite": ["component implementations", "tokens"],
+      "handoffsTo": ["ds-coding", "ds-prototype", "ds-manager"],
+      "readonly": false,
+      "reviewEngine": null,
+      "carinaSkills": ["carina-compose", "carina-extend-ui", "carina-promote-block"]
+    },
+    {
+      "id": "ds-coding",
+      "displayName": "Coding",
+      "description": "Implements approved design-system changes, tests, and story wiring. Use when the user asks to implement a confirmed rationale, wire stories, or refactor an existing primitive. Not for deciding that a new primitive is needed.",
+      "invokeWhen": ["implement", "refactor", "tests", "wire stories"],
+      "mayWrite": ["rationale-named files", "colocated tests", "stories"],
+      "mustNotWrite": ["tokens.json policy", "GOVERNANCE", "pack id"],
+      "handoffsTo": ["ds-bugbot", "ds-security", "ds-a11y", "ds-docs", "ds-manager"],
+      "readonly": false,
+      "reviewEngine": null,
+      "carinaSkills": ["carina-extend-ui", "carina-stories", "carina-update-shadcn", "carina-verify"]
+    },
+    {
+      "id": "ds-docs",
+      "displayName": "Documentation",
+      "description": "Writes USAGE, rationale, catalog notes, and story prose for this host. Use when the user asks for docs, onboarding copy, or story documentation. Do not invent APIs.",
+      "invokeWhen": ["USAGE", "rationale prose", "story docs", "onboarding docs"],
+      "mayWrite": ["docs paths", "story parameters.docs"],
+      "mustNotWrite": ["new public APIs", "token values"],
+      "handoffsTo": ["ds-release", "ds-coding", "ds-manager"],
+      "readonly": false,
+      "reviewEngine": null,
+      "carinaSkills": ["carina-stories"]
+    },
+    {
+      "id": "ds-language",
+      "displayName": "Design Language",
+      "description": "Edits canonical tokens, branding, and this pack’s Figma variables. Use when the user asks about tokens, presets, branding, or contrast token changes. Do not restyle stock components by class.",
+      "invokeWhen": ["tokens", "token change", "preset", "branding", "Figma variables"],
+      "mayWrite": ["canonical token source", "generated token outputs via host build"],
+      "mustNotWrite": ["stock component restyles"],
+      "handoffsTo": ["ds-a11y", "ds-coding", "ds-manager"],
+      "readonly": false,
+      "reviewEngine": null,
+      "carinaSkills": ["carina-branding", "carina-update-design-language", "carina-figma"]
+    },
+    {
+      "id": "ds-a11y",
+      "displayName": "Accessibility",
+      "description": "Runs and reports accessibility checks, interaction coverage, and demo-fixture allowlist rows. Use when the user asks about contrast, axe, keyboard, or play tests. Does not satisfy HITL a11y sign-off.",
+      "invokeWhen": ["contrast", "axe", "a11y", "play tests", "a11y allowlist"],
+      "mayWrite": ["evidence", "demo-fixture allowlist", "story a11y tags"],
+      "mustNotWrite": ["token hex/oklch fixes"],
+      "handoffsTo": ["ds-language", "ds-coding", "ds-release", "ds-manager"],
+      "readonly": false,
+      "reviewEngine": null,
+      "carinaSkills": ["carina-a11y"]
+    },
+    {
+      "id": "ds-bugbot",
+      "displayName": "Bugbot",
+      "description": "Reviews this git root’s diff for bugs and broken contracts. Use when the user asks to review a PR or branch for correctness. Cursor: wrap product Bugbot. Elsewhere: playbook reviewer. Do not implement fixes.",
+      "invokeWhen": ["review PR for bugs", "for bugs", "branch regressions", "correctness review"],
+      "mayWrite": ["evidence", "handoff"],
+      "mustNotWrite": ["component implementations", "other DS diffs"],
+      "handoffsTo": ["ds-coding", "ds-release", "ds-manager"],
+      "readonly": true,
+      "reviewEngine": "cursor-product",
+      "carinaSkills": []
+    },
+    {
+      "id": "ds-security",
+      "displayName": "Security Review",
+      "description": "Reviews this git root’s diff for secrets, XSS, supply chain, and unsafe MCP or registry use. Use when the user asks for a security review. Cursor: wrap product Security Review. Elsewhere: playbook reviewer. Do not remediate in the same turn.",
+      "invokeWhen": ["security review", "secrets", "XSS", "supply chain"],
+      "mayWrite": ["evidence", "handoff"],
+      "mustNotWrite": ["remediations", "rotating secrets", "incident close"],
+      "handoffsTo": ["ds-coding", "ds-release", "ds-manager"],
+      "readonly": true,
+      "reviewEngine": "cursor-product",
+      "carinaSkills": []
+    },
+    {
+      "id": "ds-release",
+      "displayName": "Release & Governance",
+      "description": "Bootstraps the host pack, upgrades the kit, and routes release, lifecycle, and incident work. Use when the user asks to scan this repo, install or upgrade the kit, release, or open an incident. Do not implement UI in the same turn.",
+      "invokeWhen": ["bootstrap", "scan this repo", "kit install", "kit upgrade", "upgrade", "release", "incident"],
+      "mayWrite": ["pack status", "kit upgrade", "host release artifacts"],
+      "mustNotWrite": ["feature implementations in the same turn"],
+      "handoffsTo": ["ds-manager", "ds-prototype", "ds-architect", "ds-security"],
+      "readonly": false,
+      "reviewEngine": null,
+      "carinaSkills": [
+        "carina-onboard",
+        "carina-contribute",
+        "carina-release",
+        "carina-lifecycle",
+        "carina-incident",
+        "carina-consume",
+        "carina-agent-tooling",
+        "carina-dependency-review",
+        "carina-shadcn-mcp"
+      ]
+    }
+  ]
+}

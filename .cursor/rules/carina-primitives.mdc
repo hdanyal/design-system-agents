@@ -1,0 +1,6 @@
+---
+description: Carina primitives
+globs: components/carina/**
+---
+
+New files require `RATIONALE.md`, stories, a11y `error`, and `meta.json`. Wrap stock; do not copy it. Follow `carina-extend-ui`.

@@ -1,0 +1,18 @@
+{
+  "shadcnCli": {
+    "name": "shadcn",
+    "version": "4.18.0"
+  },
+  "storybook": {
+    "name": "storybook",
+    "version": "10.5.8"
+  },
+  "officialSkills": {
+    "shadcn/ui": {
+      "source": "skills.sh/shadcn/ui",
+      "path": ".agents/skills/shadcn/SKILL.md",
+      "revision": "2026-08-17",
+      "checksum": "deba6c5152d9835892fa7dffeb1fedbb689ddac7e59e14e57ec5eaf9463309e4"
+    }
+  }
+}

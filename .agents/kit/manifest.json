@@ -1,0 +1,25 @@
+{
+  "$schemaVersion": "1",
+  "kitVersion": "0.2.0",
+  "name": "ds-agent-kit",
+  "protectedHostPaths": [
+    ".agents/context.json",
+    ".agents/inventory",
+    ".agents/memory",
+    "agent-tooling.json",
+    ".agents/program",
+    ".agents/handoffs"
+  ],
+  "paths": [
+    ".agents/kit/manifest.json",
+    ".agents/kit/intent-eval.json",
+    ".agents/agents",
+    "scripts/kit",
+    "docs/AGENT-KIT.md",
+    "docs/AGENT-MEMORY.md",
+    ".cursor/agents",
+    ".cursor/rules/ds-kit.mdc",
+    ".claude/agents",
+    ".codex/agents"
+  ]
+}

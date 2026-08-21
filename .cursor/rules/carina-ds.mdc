@@ -1,0 +1,6 @@
+---
+description: Carina DS always-on invariants
+alwaysApply: true
+---
+
+Load pack `id` from `.agents/context.json`. If `id === "carina"`, also follow this file: tokens not hex; never duplicate primitives or public APIs; stock edits require `upstream-patches.json`. Load Carina skills only for this pack. Isolation and one-owner routing live in `ds-kit.mdc`. If bootstrap is not complete, follow `ds-release` rather than auto-selecting `carina-onboard`. If bootstrap is complete and the user is organizing work or `.agents/program/` is missing, follow `ds-manager`.

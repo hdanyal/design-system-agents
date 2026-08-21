@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "hooks": {
+    "sessionStart": [
+      {
+        "command": "node",
+        "args": ["scripts/hooks/session-start.mjs"]
+      }
+    ],
+    "stop": [
+      {
+        "command": "node",
+        "args": ["scripts/hooks/stop.mjs"]
+      }
+    ],
+    "beforeShellExecution": [
+      {
+        "command": "node",
+        "args": ["scripts/hooks/before-shell.mjs"]
+      }
+    ]
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "items": [
+    {
+      "name": "heading-group",
+      "type": "registry:ui",
+      "title": "Heading Group",
+      "description": "Reusable title, eyebrow, and description cluster for page and section intros.",
+      "files": [
+        {
+          "path": "../../components/carina/heading-group/heading-group.tsx",
+          "type": "registry:ui",
+          "target": "components/carina/heading-group/heading-group.tsx"
+        }
+      ],
+      "meta": {
+        "status": "experimental",
+        "owner": "carina-ds-eng",
+        "a11yStatus": "error",
+        "introducedIn": "0.1.0"
+      }
+    }
+  ]
+}

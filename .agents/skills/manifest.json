@@ -1,0 +1,226 @@
+{
+  "version": "0.1.0",
+  "lastReviewed": "2026-08-17",
+  "skills": [
+    {
+      "name": "carina-onboard",
+      "form": "thin",
+      "invocation": "contextual",
+      "audience": "contributor",
+      "owner": "carina-ds-eng",
+      "maturity": "experimental",
+      "boundary": "Pointer to pack bootstrap (ds-release) then Manager for the board; not a second cold start",
+      "dependencies": [],
+      "approvals": []
+    },
+    {
+      "name": "carina-branding",
+      "form": "thin",
+      "invocation": "auto-select",
+      "audience": "contributor",
+      "owner": "carina-ds-design",
+      "maturity": "experimental",
+      "boundary": "Canonical-token/reference checks; no token policy duplication",
+      "dependencies": [],
+      "approvals": []
+    },
+    {
+      "name": "carina-compose",
+      "form": "full",
+      "invocation": "auto-select",
+      "audience": "contributor",
+      "owner": "carina-ds-eng",
+      "maturity": "experimental",
+      "boundary": "Inventory, reuse, composition map, and extraction routing",
+      "dependencies": ["carina-branding"],
+      "approvals": []
+    },
+    {
+      "name": "carina-a11y",
+      "form": "full",
+      "invocation": "auto-select",
+      "audience": "contributor",
+      "owner": "carina-ds-eng",
+      "maturity": "experimental",
+      "boundary": "Automated/manual accessibility workflow and evidence",
+      "dependencies": [],
+      "approvals": ["a11y"]
+    },
+    {
+      "name": "carina-contribute",
+      "form": "full",
+      "invocation": "auto-select",
+      "audience": "contributor",
+      "owner": "carina-ds-eng",
+      "maturity": "experimental",
+      "boundary": "Execute CONTRIBUTING process without restating it",
+      "dependencies": [],
+      "approvals": []
+    },
+    {
+      "name": "carina-prototype",
+      "form": "thin",
+      "invocation": "contextual",
+      "audience": "contributor",
+      "owner": "carina-ds-eng",
+      "maturity": "experimental",
+      "boundary": "Route safe-sandbox work through compose",
+      "dependencies": ["carina-compose"],
+      "approvals": []
+    },
+    {
+      "name": "carina-extend-ui",
+      "form": "full",
+      "invocation": "contextual",
+      "audience": "maintainer",
+      "owner": "carina-ds-eng",
+      "maturity": "experimental",
+      "boundary": "Propose and build approved reusable Carina primitives",
+      "dependencies": ["carina-compose", "carina-a11y", "carina-stories"],
+      "approvals": ["design", "engineering"]
+    },
+    {
+      "name": "carina-promote-block",
+      "form": "full",
+      "invocation": "contextual",
+      "audience": "maintainer",
+      "owner": "carina-ds-eng",
+      "maturity": "experimental",
+      "boundary": "Experimental block promotion with HITL and evidence",
+      "dependencies": ["carina-compose", "carina-a11y", "carina-stories"],
+      "approvals": ["engineering", "a11y"]
+    },
+    {
+      "name": "carina-update-design-language",
+      "form": "full",
+      "invocation": "contextual",
+      "audience": "maintainer",
+      "owner": "carina-ds-design",
+      "maturity": "experimental",
+      "boundary": "Preset candidate or canonical token change workflow",
+      "dependencies": ["carina-branding"],
+      "approvals": ["design", "engineering"]
+    },
+    {
+      "name": "carina-update-shadcn",
+      "form": "full",
+      "invocation": "contextual",
+      "audience": "maintainer",
+      "owner": "carina-ds-eng",
+      "maturity": "experimental",
+      "boundary": "Pinned upstream refresh and patch-ledger rebase",
+      "dependencies": [],
+      "approvals": ["engineering"]
+    },
+    {
+      "name": "carina-figma",
+      "form": "full",
+      "invocation": "contextual",
+      "audience": "contributor",
+      "owner": "carina-ds-design",
+      "maturity": "experimental",
+      "boundary": "Bridge official Figma workflows to Carina policy",
+      "dependencies": ["carina-compose"],
+      "approvals": []
+    },
+    {
+      "name": "carina-shadcn-mcp",
+      "form": "thin",
+      "invocation": "contextual",
+      "audience": "contributor",
+      "owner": "carina-ds-eng",
+      "maturity": "experimental",
+      "boundary": "Browse/view/install routing and registry-origin checks",
+      "dependencies": [],
+      "approvals": []
+    },
+    {
+      "name": "carina-stories",
+      "form": "full",
+      "invocation": "contextual",
+      "audience": "contributor",
+      "owner": "carina-ds-eng",
+      "maturity": "experimental",
+      "boundary": "Story coverage, interaction tests, tags, and docs",
+      "dependencies": ["carina-a11y"],
+      "approvals": []
+    },
+    {
+      "name": "carina-verify",
+      "form": "thin",
+      "invocation": "contextual",
+      "audience": "contributor",
+      "owner": "carina-ds-eng",
+      "maturity": "experimental",
+      "boundary": "Select and report deterministic checks",
+      "dependencies": [],
+      "approvals": []
+    },
+    {
+      "name": "carina-consume",
+      "form": "full",
+      "invocation": "contextual",
+      "audience": "consumer",
+      "owner": "carina-ds-eng",
+      "maturity": "experimental",
+      "boundary": "Immutable install/update/drift flow under ADOPTION",
+      "dependencies": [],
+      "approvals": []
+    },
+    {
+      "name": "carina-release",
+      "form": "full",
+      "invocation": "explicit-only",
+      "audience": "maintainer",
+      "owner": "carina-ds-eng",
+      "maturity": "experimental",
+      "boundary": "Version PR, immutable release, attestations, and HITL",
+      "dependencies": ["carina-verify"],
+      "approvals": ["release"]
+    },
+    {
+      "name": "carina-lifecycle",
+      "form": "full",
+      "invocation": "explicit-only",
+      "audience": "maintainer",
+      "owner": "carina-ds-eng",
+      "maturity": "experimental",
+      "boundary": "Stable/deprecate/replace/remove entity lifecycle",
+      "dependencies": ["carina-release"],
+      "approvals": ["engineering"]
+    },
+    {
+      "name": "carina-incident",
+      "form": "full",
+      "invocation": "explicit-only",
+      "audience": "maintainer",
+      "owner": "carina-ds-eng",
+      "maturity": "experimental",
+      "boundary": "INCIDENTS rollback/revocation workflow",
+      "dependencies": [],
+      "approvals": ["incident-owner"]
+    },
+    {
+      "name": "carina-dependency-review",
+      "form": "thin",
+      "invocation": "explicit-only",
+      "audience": "maintainer",
+      "owner": "carina-ds-eng",
+      "maturity": "experimental",
+      "boundary": "SECURITY intake evidence and approval routing",
+      "dependencies": [],
+      "approvals": ["engineering"]
+    },
+    {
+      "name": "carina-agent-tooling",
+      "form": "full",
+      "invocation": "explicit-only",
+      "audience": "maintainer",
+      "owner": "carina-ds-eng",
+      "maturity": "experimental",
+      "boundary": "Skills, rules, hooks, MCP, adapters, and vendor locks",
+      "dependencies": ["carina-verify"],
+      "approvals": ["engineering"]
+    }
+  ]
+}

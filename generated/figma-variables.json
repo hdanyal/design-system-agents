@@ -1,0 +1,474 @@
+{
+  "generatedFrom": "tokens.json",
+  "modes": [
+    "light",
+    "dark"
+  ],
+  "variables": [
+    {
+      "name": "background",
+      "description": "Page and surface canvas",
+      "scopes": [
+        "ALL_FILLS",
+        "STROKE_COLOR"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--background)"
+      },
+      "values": {
+        "light": "oklch(1 0 0)",
+        "dark": "oklch(0.145 0 0)"
+      }
+    },
+    {
+      "name": "foreground",
+      "description": "Primary text",
+      "scopes": [
+        "ALL_FILLS",
+        "STROKE_COLOR"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--foreground)"
+      },
+      "values": {
+        "light": "oklch(0.145 0 0)",
+        "dark": "oklch(0.985 0 0)"
+      }
+    },
+    {
+      "name": "card",
+      "description": "Card surface",
+      "scopes": [
+        "ALL_FILLS",
+        "STROKE_COLOR"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--card)"
+      },
+      "values": {
+        "light": "oklch(1 0 0)",
+        "dark": "oklch(0.205 0 0)"
+      }
+    },
+    {
+      "name": "card-foreground",
+      "description": "Card text",
+      "scopes": [
+        "ALL_FILLS",
+        "STROKE_COLOR"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--card-foreground)"
+      },
+      "values": {
+        "light": "oklch(0.145 0 0)",
+        "dark": "oklch(0.985 0 0)"
+      }
+    },
+    {
+      "name": "popover",
+      "description": "Popover surface",
+      "scopes": [
+        "ALL_FILLS",
+        "STROKE_COLOR"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--popover)"
+      },
+      "values": {
+        "light": "oklch(1 0 0)",
+        "dark": "oklch(0.205 0 0)"
+      }
+    },
+    {
+      "name": "popover-foreground",
+      "description": "Popover text",
+      "scopes": [
+        "ALL_FILLS",
+        "STROKE_COLOR"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--popover-foreground)"
+      },
+      "values": {
+        "light": "oklch(0.145 0 0)",
+        "dark": "oklch(0.985 0 0)"
+      }
+    },
+    {
+      "name": "primary",
+      "description": "Brand primary (orange)",
+      "scopes": [
+        "ALL_FILLS",
+        "STROKE_COLOR"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--primary)"
+      },
+      "values": {
+        "light": "oklch(0.553 0.195 38.402)",
+        "dark": "oklch(0.47 0.157 37.304)"
+      }
+    },
+    {
+      "name": "primary-foreground",
+      "description": "Text on primary",
+      "scopes": [
+        "ALL_FILLS",
+        "STROKE_COLOR"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--primary-foreground)"
+      },
+      "values": {
+        "light": "oklch(0.98 0.016 73.684)",
+        "dark": "oklch(0.98 0.016 73.684)"
+      }
+    },
+    {
+      "name": "secondary",
+      "description": "Secondary surface",
+      "scopes": [
+        "ALL_FILLS",
+        "STROKE_COLOR"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--secondary)"
+      },
+      "values": {
+        "light": "oklch(0.967 0.001 286.375)",
+        "dark": "oklch(0.274 0.006 286.033)"
+      }
+    },
+    {
+      "name": "secondary-foreground",
+      "description": "Text on secondary",
+      "scopes": [
+        "ALL_FILLS",
+        "STROKE_COLOR"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--secondary-foreground)"
+      },
+      "values": {
+        "light": "oklch(0.21 0.006 285.885)",
+        "dark": "oklch(0.985 0 0)"
+      }
+    },
+    {
+      "name": "muted",
+      "description": "Muted surface",
+      "scopes": [
+        "ALL_FILLS",
+        "STROKE_COLOR"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--muted)"
+      },
+      "values": {
+        "light": "oklch(0.97 0 0)",
+        "dark": "oklch(0.269 0 0)"
+      }
+    },
+    {
+      "name": "muted-foreground",
+      "description": "Muted text. Light value darkened from the preset default so muted text clears WCAG AA on the muted surface.",
+      "scopes": [
+        "ALL_FILLS",
+        "STROKE_COLOR"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--muted-foreground)"
+      },
+      "values": {
+        "light": "oklch(0.54 0 0)",
+        "dark": "oklch(0.708 0 0)"
+      }
+    },
+    {
+      "name": "accent",
+      "description": "Accent surface",
+      "scopes": [
+        "ALL_FILLS",
+        "STROKE_COLOR"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--accent)"
+      },
+      "values": {
+        "light": "oklch(0.97 0 0)",
+        "dark": "oklch(0.269 0 0)"
+      }
+    },
+    {
+      "name": "accent-foreground",
+      "description": "Text on accent",
+      "scopes": [
+        "ALL_FILLS",
+        "STROKE_COLOR"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--accent-foreground)"
+      },
+      "values": {
+        "light": "oklch(0.205 0 0)",
+        "dark": "oklch(0.985 0 0)"
+      }
+    },
+    {
+      "name": "destructive",
+      "description": "Danger / destructive. Light value darkened from the preset default so destructive text clears WCAG AA on both the plain background and the 10% destructive tint.",
+      "scopes": [
+        "ALL_FILLS",
+        "STROKE_COLOR"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--destructive)"
+      },
+      "values": {
+        "light": "oklch(0.52 0.245 27.325)",
+        "dark": "oklch(0.704 0.191 22.216)"
+      }
+    },
+    {
+      "name": "border",
+      "description": "Default border",
+      "scopes": [
+        "ALL_FILLS",
+        "STROKE_COLOR"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--border)"
+      },
+      "values": {
+        "light": "oklch(0.922 0 0)",
+        "dark": "oklch(1 0 0 / 10%)"
+      }
+    },
+    {
+      "name": "input",
+      "description": "Input border/background",
+      "scopes": [
+        "ALL_FILLS",
+        "STROKE_COLOR"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--input)"
+      },
+      "values": {
+        "light": "oklch(0.922 0 0)",
+        "dark": "oklch(1 0 0 / 15%)"
+      }
+    },
+    {
+      "name": "ring",
+      "description": "Focus ring",
+      "scopes": [
+        "ALL_FILLS",
+        "STROKE_COLOR"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--ring)"
+      },
+      "values": {
+        "light": "oklch(0.708 0 0)",
+        "dark": "oklch(0.556 0 0)"
+      }
+    },
+    {
+      "name": "chart-1",
+      "description": "Chart series 1",
+      "scopes": [
+        "ALL_FILLS",
+        "STROKE_COLOR"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--chart-1)"
+      },
+      "values": {
+        "light": "oklch(0.837 0.128 66.29)",
+        "dark": "oklch(0.837 0.128 66.29)"
+      }
+    },
+    {
+      "name": "chart-2",
+      "description": "Chart series 2",
+      "scopes": [
+        "ALL_FILLS",
+        "STROKE_COLOR"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--chart-2)"
+      },
+      "values": {
+        "light": "oklch(0.705 0.213 47.604)",
+        "dark": "oklch(0.705 0.213 47.604)"
+      }
+    },
+    {
+      "name": "chart-3",
+      "description": "Chart series 3",
+      "scopes": [
+        "ALL_FILLS",
+        "STROKE_COLOR"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--chart-3)"
+      },
+      "values": {
+        "light": "oklch(0.646 0.222 41.116)",
+        "dark": "oklch(0.646 0.222 41.116)"
+      }
+    },
+    {
+      "name": "chart-4",
+      "description": "Chart series 4",
+      "scopes": [
+        "ALL_FILLS",
+        "STROKE_COLOR"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--chart-4)"
+      },
+      "values": {
+        "light": "oklch(0.553 0.195 38.402)",
+        "dark": "oklch(0.553 0.195 38.402)"
+      }
+    },
+    {
+      "name": "chart-5",
+      "description": "Chart series 5",
+      "scopes": [
+        "ALL_FILLS",
+        "STROKE_COLOR"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--chart-5)"
+      },
+      "values": {
+        "light": "oklch(0.47 0.157 37.304)",
+        "dark": "oklch(0.47 0.157 37.304)"
+      }
+    },
+    {
+      "name": "sidebar",
+      "description": "Sidebar surface",
+      "scopes": [
+        "ALL_FILLS",
+        "STROKE_COLOR"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--sidebar)"
+      },
+      "values": {
+        "light": "oklch(0.985 0 0)",
+        "dark": "oklch(0.205 0 0)"
+      }
+    },
+    {
+      "name": "sidebar-foreground",
+      "description": "Sidebar text",
+      "scopes": [
+        "ALL_FILLS",
+        "STROKE_COLOR"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--sidebar-foreground)"
+      },
+      "values": {
+        "light": "oklch(0.145 0 0)",
+        "dark": "oklch(0.985 0 0)"
+      }
+    },
+    {
+      "name": "sidebar-primary",
+      "description": "Sidebar primary",
+      "scopes": [
+        "ALL_FILLS",
+        "STROKE_COLOR"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--sidebar-primary)"
+      },
+      "values": {
+        "light": "oklch(0.646 0.222 41.116)",
+        "dark": "oklch(0.705 0.213 47.604)"
+      }
+    },
+    {
+      "name": "sidebar-primary-foreground",
+      "description": "Text on sidebar primary",
+      "scopes": [
+        "ALL_FILLS",
+        "STROKE_COLOR"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--sidebar-primary-foreground)"
+      },
+      "values": {
+        "light": "oklch(0.98 0.016 73.684)",
+        "dark": "oklch(0.98 0.016 73.684)"
+      }
+    },
+    {
+      "name": "sidebar-accent",
+      "description": "Sidebar accent",
+      "scopes": [
+        "ALL_FILLS",
+        "STROKE_COLOR"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--sidebar-accent)"
+      },
+      "values": {
+        "light": "oklch(0.97 0 0)",
+        "dark": "oklch(0.269 0 0)"
+      }
+    },
+    {
+      "name": "sidebar-accent-foreground",
+      "description": "Text on sidebar accent",
+      "scopes": [
+        "ALL_FILLS",
+        "STROKE_COLOR"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--sidebar-accent-foreground)"
+      },
+      "values": {
+        "light": "oklch(0.205 0 0)",
+        "dark": "oklch(0.985 0 0)"
+      }
+    },
+    {
+      "name": "sidebar-border",
+      "description": "Sidebar border",
+      "scopes": [
+        "ALL_FILLS",
+        "STROKE_COLOR"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--sidebar-border)"
+      },
+      "values": {
+        "light": "oklch(0.922 0 0)",
+        "dark": "oklch(1 0 0 / 10%)"
+      }
+    },
+    {
+      "name": "sidebar-ring",
+      "description": "Sidebar focus ring",
+      "scopes": [
+        "ALL_FILLS",
+        "STROKE_COLOR"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--sidebar-ring)"
+      },
+      "values": {
+        "light": "oklch(0.708 0 0)",
+        "dark": "oklch(0.556 0 0)"
+      }
+    }
+  ]
+}

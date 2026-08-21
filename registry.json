@@ -1,0 +1,64 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "carina",
+  "homepage": "https://internal.carina.design",
+  "items": [
+    {
+      "name": "heading-group",
+      "type": "registry:ui",
+      "title": "Heading Group",
+      "description": "Reusable title, eyebrow, and description cluster for page and section intros.",
+      "files": [
+        {
+          "path": "components/carina/heading-group/heading-group.tsx",
+          "type": "registry:ui",
+          "target": "components/carina/heading-group/heading-group.tsx"
+        }
+      ],
+      "meta": {
+        "status": "experimental",
+        "owner": "carina-ds-eng",
+        "a11yStatus": "error",
+        "introducedIn": "0.1.0"
+      }
+    },
+    {
+      "name": "page-header",
+      "type": "registry:block",
+      "title": "Page Header",
+      "description": "Page title cluster with optional actions and a separator, composed from heading-group and stock separator.",
+      "registryDependencies": ["@carina/heading-group", "separator"],
+      "files": [
+        {
+          "path": "registry/blocks/page-header/page-header.tsx",
+          "type": "registry:block",
+          "target": "components/carina/blocks/page-header.tsx"
+        }
+      ],
+      "meta": {
+        "status": "experimental",
+        "owner": "carina-ds-eng",
+        "a11yStatus": "error",
+        "introducedIn": "0.1.0"
+      }
+    },
+    {
+      "name": "agent-guidance",
+      "type": "registry:file",
+      "title": "Carina consumer agent guidance",
+      "description": "Consumer-facing compose-don't-fork and adoption instructions. No maintainer secrets or hooks.",
+      "files": [
+        {
+          "path": "registry/guidance/agent-guidance.md",
+          "type": "registry:file",
+          "target": "docs/carina-agent-guidance.md"
+        }
+      ],
+      "meta": {
+        "status": "experimental",
+        "owner": "carina-ds-eng",
+        "audience": "consumer"
+      }
+    }
+  ]
+}

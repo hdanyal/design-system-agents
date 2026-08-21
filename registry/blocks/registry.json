@@ -1,0 +1,25 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "items": [
+    {
+      "name": "page-header",
+      "type": "registry:block",
+      "title": "Page Header",
+      "description": "Page title cluster with optional actions and a separator, composed from heading-group and stock separator.",
+      "registryDependencies": ["@carina/heading-group", "separator"],
+      "files": [
+        {
+          "path": "page-header/page-header.tsx",
+          "type": "registry:block",
+          "target": "components/carina/blocks/page-header.tsx"
+        }
+      ],
+      "meta": {
+        "status": "experimental",
+        "owner": "carina-ds-eng",
+        "a11yStatus": "error",
+        "introducedIn": "0.1.0"
+      }
+    }
+  ]
+}

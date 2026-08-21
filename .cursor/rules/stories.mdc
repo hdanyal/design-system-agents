@@ -1,0 +1,6 @@
+---
+description: Storybook stories
+globs: "**/*.stories.tsx"
+---
+
+Follow `carina-stories`. Foundations must use `var(--*)`.

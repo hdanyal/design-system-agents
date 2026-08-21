@@ -1,0 +1,233 @@
+{
+  "generatedFrom": "tokens.json",
+  "colors": [
+    {
+      "name": "background",
+      "cssVar": "var(--background)",
+      "description": "Page and surface canvas",
+      "light": "oklch(1 0 0)",
+      "dark": "oklch(0.145 0 0)"
+    },
+    {
+      "name": "foreground",
+      "cssVar": "var(--foreground)",
+      "description": "Primary text",
+      "light": "oklch(0.145 0 0)",
+      "dark": "oklch(0.985 0 0)"
+    },
+    {
+      "name": "card",
+      "cssVar": "var(--card)",
+      "description": "Card surface",
+      "light": "oklch(1 0 0)",
+      "dark": "oklch(0.205 0 0)"
+    },
+    {
+      "name": "card-foreground",
+      "cssVar": "var(--card-foreground)",
+      "description": "Card text",
+      "light": "oklch(0.145 0 0)",
+      "dark": "oklch(0.985 0 0)"
+    },
+    {
+      "name": "popover",
+      "cssVar": "var(--popover)",
+      "description": "Popover surface",
+      "light": "oklch(1 0 0)",
+      "dark": "oklch(0.205 0 0)"
+    },
+    {
+      "name": "popover-foreground",
+      "cssVar": "var(--popover-foreground)",
+      "description": "Popover text",
+      "light": "oklch(0.145 0 0)",
+      "dark": "oklch(0.985 0 0)"
+    },
+    {
+      "name": "primary",
+      "cssVar": "var(--primary)",
+      "description": "Brand primary (orange)",
+      "light": "oklch(0.553 0.195 38.402)",
+      "dark": "oklch(0.47 0.157 37.304)"
+    },
+    {
+      "name": "primary-foreground",
+      "cssVar": "var(--primary-foreground)",
+      "description": "Text on primary",
+      "light": "oklch(0.98 0.016 73.684)",
+      "dark": "oklch(0.98 0.016 73.684)"
+    },
+    {
+      "name": "secondary",
+      "cssVar": "var(--secondary)",
+      "description": "Secondary surface",
+      "light": "oklch(0.967 0.001 286.375)",
+      "dark": "oklch(0.274 0.006 286.033)"
+    },
+    {
+      "name": "secondary-foreground",
+      "cssVar": "var(--secondary-foreground)",
+      "description": "Text on secondary",
+      "light": "oklch(0.21 0.006 285.885)",
+      "dark": "oklch(0.985 0 0)"
+    },
+    {
+      "name": "muted",
+      "cssVar": "var(--muted)",
+      "description": "Muted surface",
+      "light": "oklch(0.97 0 0)",
+      "dark": "oklch(0.269 0 0)"
+    },
+    {
+      "name": "muted-foreground",
+      "cssVar": "var(--muted-foreground)",
+      "description": "Muted text. Light value darkened from the preset default so muted text clears WCAG AA on the muted surface.",
+      "light": "oklch(0.54 0 0)",
+      "dark": "oklch(0.708 0 0)"
+    },
+    {
+      "name": "accent",
+      "cssVar": "var(--accent)",
+      "description": "Accent surface",
+      "light": "oklch(0.97 0 0)",
+      "dark": "oklch(0.269 0 0)"
+    },
+    {
+      "name": "accent-foreground",
+      "cssVar": "var(--accent-foreground)",
+      "description": "Text on accent",
+      "light": "oklch(0.205 0 0)",
+      "dark": "oklch(0.985 0 0)"
+    },
+    {
+      "name": "destructive",
+      "cssVar": "var(--destructive)",
+      "description": "Danger / destructive. Light value darkened from the preset default so destructive text clears WCAG AA on both the plain background and the 10% destructive tint.",
+      "light": "oklch(0.52 0.245 27.325)",
+      "dark": "oklch(0.704 0.191 22.216)"
+    },
+    {
+      "name": "border",
+      "cssVar": "var(--border)",
+      "description": "Default border",
+      "light": "oklch(0.922 0 0)",
+      "dark": "oklch(1 0 0 / 10%)"
+    },
+    {
+      "name": "input",
+      "cssVar": "var(--input)",
+      "description": "Input border/background",
+      "light": "oklch(0.922 0 0)",
+      "dark": "oklch(1 0 0 / 15%)"
+    },
+    {
+      "name": "ring",
+      "cssVar": "var(--ring)",
+      "description": "Focus ring",
+      "light": "oklch(0.708 0 0)",
+      "dark": "oklch(0.556 0 0)"
+    },
+    {
+      "name": "chart-1",
+      "cssVar": "var(--chart-1)",
+      "description": "Chart series 1",
+      "light": "oklch(0.837 0.128 66.29)",
+      "dark": "oklch(0.837 0.128 66.29)"
+    },
+    {
+      "name": "chart-2",
+      "cssVar": "var(--chart-2)",
+      "description": "Chart series 2",
+      "light": "oklch(0.705 0.213 47.604)",
+      "dark": "oklch(0.705 0.213 47.604)"
+    },
+    {
+      "name": "chart-3",
+      "cssVar": "var(--chart-3)",
+      "description": "Chart series 3",
+      "light": "oklch(0.646 0.222 41.116)",
+      "dark": "oklch(0.646 0.222 41.116)"
+    },
+    {
+      "name": "chart-4",
+      "cssVar": "var(--chart-4)",
+      "description": "Chart series 4",
+      "light": "oklch(0.553 0.195 38.402)",
+      "dark": "oklch(0.553 0.195 38.402)"
+    },
+    {
+      "name": "chart-5",
+      "cssVar": "var(--chart-5)",
+      "description": "Chart series 5",
+      "light": "oklch(0.47 0.157 37.304)",
+      "dark": "oklch(0.47 0.157 37.304)"
+    },
+    {
+      "name": "sidebar",
+      "cssVar": "var(--sidebar)",
+      "description": "Sidebar surface",
+      "light": "oklch(0.985 0 0)",
+      "dark": "oklch(0.205 0 0)"
+    },
+    {
+      "name": "sidebar-foreground",
+      "cssVar": "var(--sidebar-foreground)",
+      "description": "Sidebar text",
+      "light": "oklch(0.145 0 0)",
+      "dark": "oklch(0.985 0 0)"
+    },
+    {
+      "name": "sidebar-primary",
+      "cssVar": "var(--sidebar-primary)",
+      "description": "Sidebar primary",
+      "light": "oklch(0.646 0.222 41.116)",
+      "dark": "oklch(0.705 0.213 47.604)"
+    },
+    {
+      "name": "sidebar-primary-foreground",
+      "cssVar": "var(--sidebar-primary-foreground)",
+      "description": "Text on sidebar primary",
+      "light": "oklch(0.98 0.016 73.684)",
+      "dark": "oklch(0.98 0.016 73.684)"
+    },
+    {
+      "name": "sidebar-accent",
+      "cssVar": "var(--sidebar-accent)",
+      "description": "Sidebar accent",
+      "light": "oklch(0.97 0 0)",
+      "dark": "oklch(0.269 0 0)"
+    },
+    {
+      "name": "sidebar-accent-foreground",
+      "cssVar": "var(--sidebar-accent-foreground)",
+      "description": "Text on sidebar accent",
+      "light": "oklch(0.205 0 0)",
+      "dark": "oklch(0.985 0 0)"
+    },
+    {
+      "name": "sidebar-border",
+      "cssVar": "var(--sidebar-border)",
+      "description": "Sidebar border",
+      "light": "oklch(0.922 0 0)",
+      "dark": "oklch(1 0 0 / 10%)"
+    },
+    {
+      "name": "sidebar-ring",
+      "cssVar": "var(--sidebar-ring)",
+      "description": "Sidebar focus ring",
+      "light": "oklch(0.708 0 0)",
+      "dark": "oklch(0.556 0 0)"
+    }
+  ],
+  "radius": {
+    "name": "radius",
+    "cssVar": "var(--radius)",
+    "value": "0.625rem"
+  },
+  "font": {
+    "sans": "var(--font-sans)",
+    "heading": "var(--font-heading)",
+    "mono": "var(--font-mono)"
+  },
+  "iconLibrary": "lucide"
+}

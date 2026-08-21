@@ -1,0 +1,535 @@
+{
+  "$schemaVersion": "1",
+  "designSystemId": "carina",
+  "generatedAt": "2026-08-21T13:09:56.305Z",
+  "entities": [
+    {
+      "name": "accordion",
+      "layer": "ui",
+      "path": "components/ui/accordion.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "alert-dialog",
+      "layer": "ui",
+      "path": "components/ui/alert-dialog.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "alert",
+      "layer": "ui",
+      "path": "components/ui/alert.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "aspect-ratio",
+      "layer": "ui",
+      "path": "components/ui/aspect-ratio.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "attachment",
+      "layer": "ui",
+      "path": "components/ui/attachment.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "avatar",
+      "layer": "ui",
+      "path": "components/ui/avatar.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "badge",
+      "layer": "ui",
+      "path": "components/ui/badge.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "breadcrumb",
+      "layer": "ui",
+      "path": "components/ui/breadcrumb.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "bubble",
+      "layer": "ui",
+      "path": "components/ui/bubble.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "button-group",
+      "layer": "ui",
+      "path": "components/ui/button-group.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "button",
+      "layer": "ui",
+      "path": "components/ui/button.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "calendar",
+      "layer": "ui",
+      "path": "components/ui/calendar.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "card",
+      "layer": "ui",
+      "path": "components/ui/card.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "carousel",
+      "layer": "ui",
+      "path": "components/ui/carousel.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "chart",
+      "layer": "ui",
+      "path": "components/ui/chart.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "checkbox",
+      "layer": "ui",
+      "path": "components/ui/checkbox.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "collapsible",
+      "layer": "ui",
+      "path": "components/ui/collapsible.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "combobox",
+      "layer": "ui",
+      "path": "components/ui/combobox.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "command",
+      "layer": "ui",
+      "path": "components/ui/command.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "context-menu",
+      "layer": "ui",
+      "path": "components/ui/context-menu.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "dialog",
+      "layer": "ui",
+      "path": "components/ui/dialog.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "direction",
+      "layer": "ui",
+      "path": "components/ui/direction.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "drawer",
+      "layer": "ui",
+      "path": "components/ui/drawer.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "dropdown-menu",
+      "layer": "ui",
+      "path": "components/ui/dropdown-menu.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "empty",
+      "layer": "ui",
+      "path": "components/ui/empty.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "field",
+      "layer": "ui",
+      "path": "components/ui/field.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "hover-card",
+      "layer": "ui",
+      "path": "components/ui/hover-card.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "input-group",
+      "layer": "ui",
+      "path": "components/ui/input-group.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "input-otp",
+      "layer": "ui",
+      "path": "components/ui/input-otp.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "input",
+      "layer": "ui",
+      "path": "components/ui/input.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "item",
+      "layer": "ui",
+      "path": "components/ui/item.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "kbd",
+      "layer": "ui",
+      "path": "components/ui/kbd.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "label",
+      "layer": "ui",
+      "path": "components/ui/label.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "marker",
+      "layer": "ui",
+      "path": "components/ui/marker.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "menubar",
+      "layer": "ui",
+      "path": "components/ui/menubar.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "message-scroller",
+      "layer": "ui",
+      "path": "components/ui/message-scroller.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "message",
+      "layer": "ui",
+      "path": "components/ui/message.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "native-select",
+      "layer": "ui",
+      "path": "components/ui/native-select.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "navigation-menu",
+      "layer": "ui",
+      "path": "components/ui/navigation-menu.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "pagination",
+      "layer": "ui",
+      "path": "components/ui/pagination.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "popover",
+      "layer": "ui",
+      "path": "components/ui/popover.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "progress",
+      "layer": "ui",
+      "path": "components/ui/progress.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "questionnaire",
+      "layer": "ui",
+      "path": "components/ui/questionnaire.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "radio-group",
+      "layer": "ui",
+      "path": "components/ui/radio-group.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "resizable",
+      "layer": "ui",
+      "path": "components/ui/resizable.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "scroll-area",
+      "layer": "ui",
+      "path": "components/ui/scroll-area.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "select",
+      "layer": "ui",
+      "path": "components/ui/select.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "separator",
+      "layer": "ui",
+      "path": "components/ui/separator.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "sheet",
+      "layer": "ui",
+      "path": "components/ui/sheet.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "sidebar",
+      "layer": "ui",
+      "path": "components/ui/sidebar.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "skeleton",
+      "layer": "ui",
+      "path": "components/ui/skeleton.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "slider",
+      "layer": "ui",
+      "path": "components/ui/slider.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "spinner",
+      "layer": "ui",
+      "path": "components/ui/spinner.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "switch",
+      "layer": "ui",
+      "path": "components/ui/switch.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "table",
+      "layer": "ui",
+      "path": "components/ui/table.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "tabs",
+      "layer": "ui",
+      "path": "components/ui/tabs.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "textarea",
+      "layer": "ui",
+      "path": "components/ui/textarea.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "toast",
+      "layer": "ui",
+      "path": "components/ui/toast.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "toggle-group",
+      "layer": "ui",
+      "path": "components/ui/toggle-group.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "toggle",
+      "layer": "ui",
+      "path": "components/ui/toggle.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "tooltip",
+      "layer": "ui",
+      "path": "components/ui/tooltip.tsx",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "_template",
+      "layer": "primitive",
+      "path": "components/carina/_template",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "heading-group",
+      "layer": "primitive",
+      "path": "components/carina/heading-group",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "page-header",
+      "layer": "block",
+      "path": "registry/blocks/page-header",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "_template",
+      "layer": "unknown",
+      "path": "prototypes/_template",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    },
+    {
+      "name": "invoices-workspace",
+      "layer": "unknown",
+      "path": "prototypes/invoices-workspace",
+      "exported": true,
+      "stories": [],
+      "duplicateOf": null
+    }
+  ]
+}

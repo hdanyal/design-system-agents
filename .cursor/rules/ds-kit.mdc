@@ -1,0 +1,12 @@
+---
+description: Portable design-system kit isolation
+alwaysApply: true
+---
+
+Load `.agents/context.json`. One owning `ds-*` agent per request. Named invoke wins.
+Never mix another design system's chats, memory, tokens, catalog, or Figma file.
+No second specialist without a confirmed handoff. Confirm before protected writes.
+If bootstrap is not complete, route to Release (`ds-release`) for scan/gaps.
+If bootstrap is complete and `.agents/program/` is missing, route to Manager (`ds-manager`) for the board.
+Do not print a host brand name that is not this pack's id.
+See docs/AGENT-KIT.md.

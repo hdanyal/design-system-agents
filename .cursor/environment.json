@@ -1,0 +1,9 @@
+{
+  "name": "carina-ds",
+  "install": "pnpm install --frozen-lockfile",
+  "start": "pnpm storybook",
+  "verify": "pnpm verify:fast",
+  "node": "22",
+  "packageManager": "pnpm@10.33.0",
+  "secrets": []
+}

@@ -1,0 +1,13 @@
+{
+  "name": "heading-group",
+  "title": "Heading Group",
+  "type": "registry:ui",
+  "status": "experimental",
+  "owner": "carina-ds-eng",
+  "a11yStatus": "error",
+  "introducedIn": "0.1.0",
+  "lastReviewed": "2026-08-17",
+  "figmaNode": "https://www.figma.com/design/4rMUl36kQlaVzUxy4xoz4Y?node-id=1-27",
+  "codeConnect": "deferred-until-kit",
+  "reuseContexts": ["page-header block", "empty or marketing section intros"]
+}
