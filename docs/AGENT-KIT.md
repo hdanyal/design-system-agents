@@ -10,7 +10,7 @@ Portable specialists (`ds-*`) for a design-system git root. Cursor, Claude Code,
 4. Open **one** product on the host git root. Invoke **Release** (`ds-release`): bootstrap this design system.
 5. Run `node scripts/kit/bootstrap.mjs --dir .` (scan). After you confirm: `--write --confirm-write`.
 6. Review pack `id` (not `carina` unless it is Carina), paths, Figma key, gaps. Then `bootstrapStatus: complete`.
-7. Invoke **Manager** (`ds-manager`) to seed `.agents/program/` (or explicitly defer the board).
+7. Invoke **Manager** (`ds-manager`) to seed `.agents/program/` (or explicitly defer the board). On the first board after bootstrap, and whenever the board is missing, Manager must task any generated-brand-identity gap: the branding reference needs Overview plus Do's and Don'ts. Manager records the gap/task only and never writes the identity file.
 
 Upgrade later: `node scripts/kit/upgrade.mjs --dir <host-root>`. It must not clobber pack, inventory, memory, or program. Kit-minimal check: `node scripts/kit/check.mjs --dir <host-root>`.
 
@@ -25,6 +25,8 @@ Upgrade later: `node scripts/kit/upgrade.mjs --dir <host-root>`. It must not clo
 
 Choose Cursor for product reviewers and confirm cards. Choose Claude Code for named subagents without Cursor. Choose Codex for CLI/`AGENTS.md`. Do not run the same write in two products on one branch. Handoffs are portable.
 
+`pnpm agents:sync` regenerates all three harnesses from canonical `.agents/agents/*.md`: `.cursor/agents`, `.claude/agents`, and `.codex/agents`. Never hand-edit those adapters.
+
 ## Agents
 
 Named invoke wins. Default chat picks one owner. Ambiguous “review” → ask Bugbot vs Security vs Accessibility vs Coding. Unqualified “set up the repo” → ask Manager vs Release.
@@ -35,9 +37,9 @@ Manager assigns task owners from the **live** `.agents/agents/manifest.json` (`i
 | --- | --- | --- |
 | `ds-manager` | Task board, what’s next, flag/organize gaps | What’s next on the board? Flag gaps and organize tasks. |
 | `ds-release` | Bootstrap, kit, release, incident | Bootstrap this design system and list gaps I must answer. |
-| `ds-prototype` | Sandbox, show me this | Explore a settings page in the sandbox, then show it in Storybook. |
-| `ds-architect` | Reuse, new component? | Do we already have a page header? |
-| `ds-coding` | Implement approved change | Implement the approved rationale; do not add extra APIs. |
+| `ds-prototype` | Sandbox, show me this | Explore this named view in the sandbox and show it in Storybook. |
+| `ds-architect` | Reuse, enhance, or new component? | Resolve this view's harvest batch without creating twins. |
+| `ds-coding` | Implement approved change | Enhance the named API, rewire the sandbox, and present it live. |
 | `ds-docs` | USAGE / story prose | Write USAGE from the implementation, no new props. |
 | `ds-language` | Tokens | Propose a token change so muted text meets WCAG AA. |
 | `ds-a11y` | axe / contrast | Run a11y on the new stories. |
@@ -49,6 +51,14 @@ Manager assigns task owners from the **live** `.agents/agents/manifest.json` (`i
 Program path: `.agents/program/` (`board.md`, `tasks.md`, `gaps.md`, `connections.md`). Specialists read it; only Manager writes it. `designSystemId` in the board must match pack `id`.
 
 Pipeline (confirm each hop): Architect → Coding → Bugbot + Security → Accessibility + Documentation → Release.
+
+## Open-ended view pipeline
+
+Prototype accepts any human-named view; no screen allowlist defines the work. Each prototype keeps `USAGE.md` and a CSF story, reads the generated branding reference, and maintains living harvest flags while building. After every material sandbox or story write, it presents the live Storybook companion and keeps the preview available for visual HITL; chat JSX and Cursor Canvas are not the gallery.
+
+Harvest decisions follow one order: reuse → enhance-existing → extract-new primitive/block → keep local. Prototype batches all regions from a view into one Architect hop using `.agents/inventory/proposals/_template-harvest-map.md`. Architect may approve a family extract, but prefers enhancing a named API over a twin. Coding implements the approved new or enhanced entity, rewires prototype imports, and presents the live companion again.
+
+Experimental block slices may be harvested from one view over time. Each slice remains experimental, keeps `registryDependencies` aligned with imports, and requires HITL. After HITL, the specialist who shipped it may propose a shared catalog-memory fact; memory is written only in a later acknowledged turn. Handoffs are not memory.
 
 ## Isolation
 

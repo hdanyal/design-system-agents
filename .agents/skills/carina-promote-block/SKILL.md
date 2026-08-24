@@ -1,6 +1,6 @@
 ---
 name: carina-promote-block
-description: Experimental block promotion with HITL and evidence
+description: Experimental multi-slice block promotion with HITL; propose memory after ack, not same turn
 ---
 
 # carina-promote-block
@@ -28,7 +28,8 @@ Forbidden: stock restyles, secret commits, main pushes, unreviewed registries, a
 - Incidents: docs/INCIDENTS.md
 
 ## Workflow
-1. Require USAGE.md matching imports/registryDependencies.
-2. Move approved prototype to registry/blocks/<name>.
-3. Mark experimental, add stories, Changeset, and CI evidence.
-4. Stop for HITL. Do not mark stable and do not commit public/r.
+1. A view may yield multiple experimental slices over time; review and name each slice independently.
+2. Require USAGE.md matching imports and registryDependencies matching every registry import.
+3. Move only the approved slice to `registry/blocks/<name>`; mark experimental and add stories, Changeset, and CI evidence.
+4. Stop for HITL. After HITL, propose a catalog memory record; do not write memory in the same turn as promotion.
+Do not mark stable, promote unrelated view chrome, or commit `public/r`.

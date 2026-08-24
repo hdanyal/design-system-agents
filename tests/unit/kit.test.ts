@@ -9,6 +9,7 @@ import {
   scanProgramInputs,
   validateMemoryRecord,
   validatePack,
+  validateProgram,
 } from "../../scripts/kit/lib.mjs"
 
 const root = process.cwd()
@@ -56,6 +57,53 @@ describe("portable agent kit", () => {
     }
     expect(inventory.entities.every((entity) => entity.stories.length === 0)).toBe(true)
     expect(inputs.storyCoverage.primitives.n).toBeGreaterThanOrEqual(0)
+  })
+
+  it("reads a second tasks table without treating its header as a task row", () => {
+    const tmp = mkdtempSync(path.join(os.tmpdir(), "ds-program-"))
+    try {
+      const programDir = path.join(tmp, ".agents/program")
+      mkdirSync(programDir, { recursive: true })
+      writeFileSync(path.join(programDir, "board.md"), "---\ndesignSystemId: carina\n---\n")
+      writeFileSync(
+        path.join(programDir, "tasks.md"),
+        [
+          "# Tasks",
+          "",
+          "| id | title | owner | status |",
+          "| --- | --- | --- | --- |",
+          "| T-01 | Live task | ds-coding | open |",
+          "",
+          "## Archived",
+          "",
+          "| id | title | owner | status |",
+          "| --- | --- | --- | --- |",
+          "| T-00 | Archived task | ds-prototype | cancelled |",
+          "",
+        ].join("\n")
+      )
+      expect(validateProgram(tmp, "carina", ["ds-coding", "ds-prototype"])).toEqual([])
+      expect(scanProgramInputs(tmp).program.taskIds).toEqual(["T-01", "T-00"])
+    } finally {
+      rmSync(tmp, { recursive: true, force: true })
+    }
+  })
+
+  it("keeps this host's program table owners valid", () => {
+    const tasksPath = ".agents/program/tasks.md"
+    if (!existsSync(tasksPath)) return
+    const manifest = JSON.parse(readFileSync(".agents/agents/manifest.json", "utf8")) as {
+      agents: Array<{ id: string }>
+    }
+    expect(readFileSync(tasksPath, "utf8").match(/^\|\s*id\s*\|/gm)?.length ?? 0).toBeGreaterThan(1)
+    const pack = JSON.parse(readFileSync(".agents/context.json", "utf8"))
+    expect(
+      validateProgram(
+        root,
+        pack.id,
+        manifest.agents.map((agent) => agent.id)
+      )
+    ).toEqual([])
   })
 
   it("records Storybook when present", () => {

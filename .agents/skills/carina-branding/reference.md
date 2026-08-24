@@ -1,6 +1,7 @@
 # Carina branding reference
 
-GENERATED from `tokens.json` and `design-language.json`. Do not hand-copy hex or oklch into components or stories.
+> **GENERATED from `tokens.json` and `design-language.json`. Do not hand-edit.**
+> Run `pnpm tokens:build`. Do not hand-copy hex or oklch into components or stories.
 
 - Preset: `b3m6Yzw0W`
 - shadcn CLI: `4.18.0`
@@ -8,7 +9,13 @@ GENERATED from `tokens.json` and `design-language.json`. Do not hand-copy hex or
 - Font: `inter`
 - Radius: `0.625rem`
 
-Use CSS variables only: `bg-primary`, `text-foreground`, `var(--ring)`.
+## Overview
+
+Carina's visual identity is expressed through canonical tokens, CSS variables, the Inter type stack, and lucide icons. Treat this reference as identity guidance, not a second palette: compose existing catalog entities and preserve their established contracts.
+
+## Token context (CSS vars)
+
+Use CSS variables only: `bg-primary`, `text-foreground`, `var(--ring)`. Never paste resolved hex or oklch values into JSX, stories, or component classes.
 
 | Token | Description | Light | Dark |
 | --- | --- | --- | --- |
@@ -43,3 +50,19 @@ Use CSS variables only: `bg-primary`, `text-foreground`, `var(--ring)`.
 | `--sidebar-accent-foreground` | Text on sidebar accent | `oklch(0.205 0 0)` | `oklch(0.985 0 0)` |
 | `--sidebar-border` | Sidebar border | `oklch(0.922 0 0)` | `oklch(1 0 0 / 10%)` |
 | `--sidebar-ring` | Sidebar focus ring | `oklch(0.708 0 0)` | `oklch(0.556 0 0)` |
+
+## Do's and Don'ts
+
+**Do**
+- Use semantic CSS variables and token-backed utility classes.
+- Reuse stock UI, Carina primitives, and registered blocks before extracting.
+- Keep generated outputs synchronized with `pnpm tokens:build`.
+
+**Don't**
+- Restyle stock components outside the upstream patch workflow.
+- Create twin primitives or duplicate public APIs when an existing entity can be enhanced.
+- Hand-edit generated token outputs or invent identity colors in components and stories.
+
+## Catalog component intent
+
+Use `.agents/inventory/components.json` and Storybook as the source for what exists and how it behaves. Prefer reuse, then enhance an existing entity; extract a new primitive or block only after Architect confirms the catalog gap and rationale.

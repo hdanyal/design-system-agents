@@ -5,13 +5,13 @@ GENERATED from `.agents/skills/manifest.json`. Canonical instructions live in ea
 | Skill | Form | Invocation | Boundary |
 | --- | --- | --- | --- |
 | `carina-onboard` | thin | contextual | Pointer to pack bootstrap (ds-release) then Manager for the board; not a second cold start |
-| `carina-branding` | thin | auto-select | Canonical-token/reference checks; no token policy duplication |
-| `carina-compose` | full | auto-select | Inventory, reuse, composition map, and extraction routing |
+| `carina-branding` | thin | auto-select | Generated branding identity (Overview, CSS vars, Do's and Don'ts); no hex in JSX; no token policy duplication |
+| `carina-compose` | full | auto-select | Inventory, harvest-while-building, enhance-existing over twins, composition map, extraction routing |
 | `carina-a11y` | full | auto-select | Automated/manual accessibility workflow and evidence |
 | `carina-contribute` | full | auto-select | Execute CONTRIBUTING process without restating it |
-| `carina-prototype` | thin | contextual | Route safe-sandbox work through compose |
-| `carina-extend-ui` | full | contextual | Propose and build approved reusable Carina primitives |
-| `carina-promote-block` | full | contextual | Experimental block promotion with HITL and evidence |
+| `carina-prototype` | thin | contextual | Any human-named view in prototypes with live Storybook present and harvest flags; never promote |
+| `carina-extend-ui` | full | contextual | Propose/build new or enhance named Carina primitives; rewire sandboxes after extract |
+| `carina-promote-block` | full | contextual | Experimental multi-slice block promotion with HITL; propose memory after ack, not same turn |
 | `carina-update-design-language` | full | contextual | Preset candidate or canonical token change workflow |
 | `carina-update-shadcn` | full | contextual | Pinned upstream refresh and patch-ledger rebase |
 | `carina-figma` | full | contextual | Bridge official Figma workflows to Carina policy |

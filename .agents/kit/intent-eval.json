@@ -17,6 +17,27 @@
     { "text": "Open an incident rollback", "owner": "ds-release" },
     { "text": "What's next on the board?", "owner": "ds-manager" },
     { "text": "Flag gaps and organize the task board", "owner": "ds-manager" },
-    { "text": "Seed the first board after bootstrap", "owner": "ds-manager" }
+    { "text": "Seed the first board after bootstrap", "owner": "ds-manager" },
+    { "text": "Explore this view in the sandbox and show it in Storybook", "owner": "ds-prototype" },
+    { "text": "Prototype this named view and keep the harvest flags live", "owner": "ds-prototype" },
+    {
+      "text": "Should this region reuse an existing primitive or become a new component?",
+      "owner": "ds-architect"
+    },
+    { "text": "Enhance an existing primitive rather than adding a duplicate", "owner": "ds-architect" },
+    { "text": "Promote this composition to an experimental block", "owner": "ds-architect" },
+    {
+      "text": "Implement the approved enhancement to the named existing API",
+      "owner": "ds-coding"
+    },
+    {
+      "text": "Rewire the sandbox to import the approved primitive and wire stories",
+      "owner": "ds-coding"
+    },
+    {
+      "text": "Write USAGE and record this catalog change in memory after HITL",
+      "owner": "ds-docs"
+    },
+    { "text": "Flag agent identity on the first board after bootstrap", "owner": "ds-manager" }
   ]
 }

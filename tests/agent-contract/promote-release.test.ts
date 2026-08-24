@@ -12,6 +12,15 @@ describe("promote/release", () => {
     expect(meta.status).toBe("experimental")
   })
 
+  it("expected: a view yields independently reviewed slices and memory lands after HITL", () => {
+    const promote = readFileSync(".agents/skills/carina-promote-block/SKILL.md", "utf8")
+    expect(promote).toContain("multiple experimental slices over time")
+    expect(promote).toContain("do not write memory in the same turn as promotion")
+    const memory = readFileSync("docs/AGENT-MEMORY.md", "utf8")
+    expect(memory).toContain("the specialist who shipped it proposes the fact")
+    expect(memory).toContain("waits for explicit human acknowledgement")
+  })
+
   it("forbidden: committing generated public/r from promote", () => {
     const promote = readFileSync(".agents/skills/carina-promote-block/SKILL.md", "utf8")
     expect(promote).toContain("public/r")

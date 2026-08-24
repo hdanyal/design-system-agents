@@ -230,27 +230,44 @@ export function validateHandoff(text, packId) {
   return null
 }
 
+function splitTableCells(line) {
+  return line
+    .split("|")
+    .map((cell) => cell.trim())
+    .filter((_, i, arr) => !(i === 0 && arr[i] === "") && !(i === arr.length - 1 && arr[i] === ""))
+}
+
+function isSeparatorRow(cells) {
+  return cells.length > 0 && cells.every((cell) => /^:?-+:?$/.test(cell))
+}
+
 function parseMarkdownTable(markdown) {
   const rows = []
   const lines = markdown.split("\n").filter((line) => line.includes("|"))
   if (lines.length < 2) return { headers: [], rows }
-  const headers = lines[0]
-    .split("|")
-    .map((cell) => cell.trim().toLowerCase())
-    .filter(Boolean)
-  for (const line of lines.slice(2)) {
-    const cells = line
-      .split("|")
-      .map((cell) => cell.trim())
-      .filter((_, i, arr) => !(i === 0 && arr[i] === "") && !(i === arr.length - 1 && arr[i] === ""))
-    if (cells.every((cell) => /^:?-+:?$/.test(cell))) continue
+  let firstHeaders = []
+  let headers = []
+  for (let i = 0; i < lines.length; i += 1) {
+    const cells = splitTableCells(lines[i])
+    if (isSeparatorRow(cells)) continue
+    const startsBlock = isSeparatorRow(splitTableCells(lines[i + 1] || ""))
+    const repeatsHeaders =
+      headers.length > 0 &&
+      cells.length === headers.length &&
+      cells.every((cell, index) => cell.toLowerCase() === headers[index])
+    if (startsBlock || repeatsHeaders) {
+      headers = cells.map((cell) => cell.toLowerCase())
+      if (firstHeaders.length === 0) firstHeaders = headers
+      continue
+    }
+    if (headers.length === 0) continue
     const row = {}
-    headers.forEach((header, i) => {
-      row[header] = cells[i] || ""
+    headers.forEach((header, index) => {
+      row[header] = cells[index] || ""
     })
     if (Object.values(row).some(Boolean)) rows.push(row)
   }
-  return { headers, rows }
+  return { headers: firstHeaders, rows }
 }
 
 export function validateProgram(root, packId, agentIds) {

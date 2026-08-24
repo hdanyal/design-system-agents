@@ -33,3 +33,15 @@ CODEOWNERS are required on protected paths. CI on every PR runs `pnpm verify:fas
 ## Docs-as-code
 
 Ship documentation in the same PR as the change. Prototypes need `USAGE.md`. New primitives need `RATIONALE.md`, stories, metadata, and a registry entry.
+
+## Open-ended views (prototypes → catalog)
+
+There is no allowlist of view types. Humans may name any surface (chat, timeline, full screen, workflow, …).
+
+1. **Prototype** under `prototypes/<name>/` with `USAGE.md` and a Storybook CSF story. Keep Storybook running (`pnpm storybook`) and review the live story after material changes — chat paste is not verification.
+2. **Harvest while building** — flag regions as reuse, enhance-existing, extract-new primitive/block, or keep local. Prefer reuse, then enhance an existing API, then extract. Batch flags for one Architect pass (template: `.agents/inventory/proposals/_template-harvest-map.md`). Do not promote from Prototype.
+3. **Implement** only Architect-approved files (new or enhanced). Rewire the sandbox to catalog imports. Present the live story again.
+4. **Promote** experimental blocks via `carina-promote-block` after reviews and HITL. Multiple slices may come from one view over time. Do not mark stable or commit `public/r` in the creation PR.
+5. **Remember** after HITL ack — catalog facts in `.agents/memory/shared/` per [docs/AGENT-MEMORY.md](docs/AGENT-MEMORY.md).
+
+Agent routing and harness rules: [docs/AGENT-KIT.md](docs/AGENT-KIT.md). Identity for agents is the generated branding reference from `pnpm tokens:build`, not a hand-edited DESIGN.md over `tokens.json`.

@@ -13,4 +13,4 @@ Storybook is coded truth and the accessibility catalog. Figma is exploration and
 
 ## Consequences
 
-Figma may differ during exploration. Code wins for what shipped.
+Figma may differ during exploration. Code wins for what shipped. When prototyping any named view, Storybook is also the required live companion for visual HITL; chat JSX is not a substitute gallery.

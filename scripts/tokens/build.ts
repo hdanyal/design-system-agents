@@ -70,7 +70,8 @@ function brandingMarkdown(items: ReturnType<typeof flattenTokens>, designLanguag
 
   return `# Carina branding reference
 
-GENERATED from \`tokens.json\` and \`design-language.json\`. Do not hand-copy hex or oklch into components or stories.
+> **GENERATED from \`tokens.json\` and \`design-language.json\`. Do not hand-edit.**
+> Run \`pnpm tokens:build\`. Do not hand-copy hex or oklch into components or stories.
 
 - Preset: \`${designLanguage.preset}\`
 - shadcn CLI: \`${designLanguage.shadcnCli}\`
@@ -78,11 +79,33 @@ GENERATED from \`tokens.json\` and \`design-language.json\`. Do not hand-copy he
 - Font: \`${designLanguage.font}\`
 - Radius: \`${items.find((item) => item.group === "radius")?.light ?? ""}\`
 
-Use CSS variables only: \`bg-primary\`, \`text-foreground\`, \`var(--ring)\`.
+## Overview
+
+Carina's visual identity is expressed through canonical tokens, CSS variables, the Inter type stack, and lucide icons. Treat this reference as identity guidance, not a second palette: compose existing catalog entities and preserve their established contracts.
+
+## Token context (CSS vars)
+
+Use CSS variables only: \`bg-primary\`, \`text-foreground\`, \`var(--ring)\`. Never paste resolved hex or oklch values into JSX, stories, or component classes.
 
 | Token | Description | Light | Dark |
 | --- | --- | --- | --- |
 ${rows}
+
+## Do's and Don'ts
+
+**Do**
+- Use semantic CSS variables and token-backed utility classes.
+- Reuse stock UI, Carina primitives, and registered blocks before extracting.
+- Keep generated outputs synchronized with \`pnpm tokens:build\`.
+
+**Don't**
+- Restyle stock components outside the upstream patch workflow.
+- Create twin primitives or duplicate public APIs when an existing entity can be enhanced.
+- Hand-edit generated token outputs or invent identity colors in components and stories.
+
+## Catalog component intent
+
+Use \`.agents/inventory/components.json\` and Storybook as the source for what exists and how it behaves. Prefer reuse, then enhance an existing entity; extract a new primitive or block only after Architect confirms the catalog gap and rationale.
 `
 }
 

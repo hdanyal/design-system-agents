@@ -1,6 +1,6 @@
 ---
 name: carina-prototype
-description: Route safe-sandbox work through compose
+description: Any human-named view in prototypes with live Storybook present and harvest flags; never promote
 ---
 
 # carina-prototype
@@ -28,5 +28,10 @@ Forbidden: stock restyles, secret commits, main pushes, unreviewed registries, a
 - Incidents: docs/INCIDENTS.md
 
 ## Workflow
-Write only under `prototypes/<name>/` with USAGE.md and a story.
-Then follow `carina-compose`. Do not promote from this skill.
+1. Accept any human-named view; there is no view-name or view-type allowlist.
+2. Write only under `prototypes/<name>/` with USAGE.md and a CSF story, then follow `carina-compose`.
+3. Read generated `.agents/skills/carina-branding/reference.md` and honor its identity guidance.
+4. After every material sandbox or story write, present the live companion using `.agents/agents/references/present.md`; keep the preview available for visual HITL.
+5. Maintain a living Harvest section in USAGE.md, or HARVEST.md linked from it, using only: reuse, enhance-existing, extract-new primitive/block, keep local.
+6. Batch all flags from the view into one Architect handoff using `.agents/inventory/proposals/_template-harvest-map.md`.
+Never promote, mark stable, or create public registry output from this skill.

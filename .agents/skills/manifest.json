@@ -20,7 +20,7 @@
       "audience": "contributor",
       "owner": "carina-ds-design",
       "maturity": "experimental",
-      "boundary": "Canonical-token/reference checks; no token policy duplication",
+      "boundary": "Generated branding identity (Overview, CSS vars, Do's and Don'ts); no hex in JSX; no token policy duplication",
       "dependencies": [],
       "approvals": []
     },
@@ -31,7 +31,7 @@
       "audience": "contributor",
       "owner": "carina-ds-eng",
       "maturity": "experimental",
-      "boundary": "Inventory, reuse, composition map, and extraction routing",
+      "boundary": "Inventory, harvest-while-building, enhance-existing over twins, composition map, extraction routing",
       "dependencies": ["carina-branding"],
       "approvals": []
     },
@@ -64,7 +64,7 @@
       "audience": "contributor",
       "owner": "carina-ds-eng",
       "maturity": "experimental",
-      "boundary": "Route safe-sandbox work through compose",
+      "boundary": "Any human-named view in prototypes with live Storybook present and harvest flags; never promote",
       "dependencies": ["carina-compose"],
       "approvals": []
     },
@@ -75,7 +75,7 @@
       "audience": "maintainer",
       "owner": "carina-ds-eng",
       "maturity": "experimental",
-      "boundary": "Propose and build approved reusable Carina primitives",
+      "boundary": "Propose/build new or enhance named Carina primitives; rewire sandboxes after extract",
       "dependencies": ["carina-compose", "carina-a11y", "carina-stories"],
       "approvals": ["design", "engineering"]
     },
@@ -86,7 +86,7 @@
       "audience": "maintainer",
       "owner": "carina-ds-eng",
       "maturity": "experimental",
-      "boundary": "Experimental block promotion with HITL and evidence",
+      "boundary": "Experimental multi-slice block promotion with HITL; propose memory after ack, not same turn",
       "dependencies": ["carina-compose", "carina-a11y", "carina-stories"],
       "approvals": ["engineering", "a11y"]
     },

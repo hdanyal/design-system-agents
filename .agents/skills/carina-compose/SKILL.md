@@ -1,6 +1,6 @@
 ---
 name: carina-compose
-description: Inventory, reuse, composition map, and extraction routing
+description: Inventory, harvest-while-building, enhance-existing over twins, composition map, extraction routing
 ---
 
 # carina-compose
@@ -28,8 +28,8 @@ Forbidden: stock restyles, secret commits, main pushes, unreviewed registries, a
 - Incidents: docs/INCIDENTS.md
 
 ## Workflow
-1. Inventory stock UI, Carina primitives, blocks, Storybook, and approved MCP registries.
-2. Reuse a match or extract a reusable primitive via `carina-extend-ui`.
-3. Keep trivial local layout local.
-4. Keep USAGE.md in lockstep with imports.
-Forbidden: cloned primitives, stock restyles, duplicate public APIs.
+1. Harvest while building: inventory stock UI, Carina primitives, blocks, Storybook, and approved MCP registries for each reusable-looking region.
+2. Decide in order: reuse → enhance-existing → extract a reusable primitive/block → keep local.
+3. Prefer enhancing a named existing API over creating a twin. A justified family extract (reusable primitive plus thin composing block) is allowed.
+4. Keep living harvest flags and USAGE.md in lockstep with imports and decisions.
+Forbidden: cloned primitives, stock restyles, duplicate public APIs, and extraction merely to clean up local layout.

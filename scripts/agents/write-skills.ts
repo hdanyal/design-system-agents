@@ -28,16 +28,17 @@ Cold start is pack bootstrap (\`ds-release\` / \`node scripts/kit/bootstrap.mjs\
 3. Then load exactly one owning \`ds-*\` agent from docs/AGENT-KIT.md.
 Do not write files until routing is done.`,
   "carina-branding": `## Workflow
-1. Read generated \`.agents/skills/carina-branding/reference.md\`.
-2. Use CSS variables and the resolved lucide/Inter stack only.
-3. Token edits route to \`carina-update-design-language\`.
-Never copy oklch/hex into JSX or stories.`,
+1. Read generated \`.agents/skills/carina-branding/reference.md\` before view, component, story, or token work.
+2. Follow its Overview and Do's and Don'ts when present; use its catalog intent to compose before extracting.
+3. Use CSS variables and the resolved lucide/Inter stack only.
+4. Token edits route to \`carina-update-design-language\`.
+Never copy oklch/hex into JSX or stories. Never hand-edit the generated reference.`,
   "carina-compose": `## Workflow
-1. Inventory stock UI, Carina primitives, blocks, Storybook, and approved MCP registries.
-2. Reuse a match or extract a reusable primitive via \`carina-extend-ui\`.
-3. Keep trivial local layout local.
-4. Keep USAGE.md in lockstep with imports.
-Forbidden: cloned primitives, stock restyles, duplicate public APIs.`,
+1. Harvest while building: inventory stock UI, Carina primitives, blocks, Storybook, and approved MCP registries for each reusable-looking region.
+2. Decide in order: reuse → enhance-existing → extract a reusable primitive/block → keep local.
+3. Prefer enhancing a named existing API over creating a twin. A justified family extract (reusable primitive plus thin composing block) is allowed.
+4. Keep living harvest flags and USAGE.md in lockstep with imports and decisions.
+Forbidden: cloned primitives, stock restyles, duplicate public APIs, and extraction merely to clean up local layout.`,
   "carina-a11y": `## Workflow
 1. Run \`pnpm test:a11y\` and \`pnpm test:stories\`.
 2. Add play tests for stateful primitives/blocks.
@@ -48,19 +49,26 @@ See docs/a11y-allowlist.md.`,
 Follow CONTRIBUTING.md: typed branch, docs-as-code, Conventional Commits, PR template, CODEOWNERS.
 Agents open/update PRs only. Never push or merge main, skip hooks, or rewrite others' commits.`,
   "carina-prototype": `## Workflow
-Write only under \`prototypes/<name>/\` with USAGE.md and a story.
-Then follow \`carina-compose\`. Do not promote from this skill.`,
+1. Accept any human-named view; there is no view-name or view-type allowlist.
+2. Write only under \`prototypes/<name>/\` with USAGE.md and a CSF story, then follow \`carina-compose\`.
+3. Read generated \`.agents/skills/carina-branding/reference.md\` and honor its identity guidance.
+4. After every material sandbox or story write, present the live companion using \`.agents/agents/references/present.md\`; keep the preview available for visual HITL.
+5. Maintain a living Harvest section in USAGE.md, or HARVEST.md linked from it, using only: reuse, enhance-existing, extract-new primitive/block, keep local.
+6. Batch all flags from the view into one Architect handoff using \`.agents/inventory/proposals/_template-harvest-map.md\`.
+Never promote, mark stable, or create public registry output from this skill.`,
   "carina-extend-ui": `## Workflow
-1. Confirm catalog gap via compose inventory.
-2. Add \`components/carina/<name>/\` with RATIONALE.md, stories, meta.json, a11y error.
+1. Confirm an Architect decision to create a new API or enhance a named existing API.
+2. For new entities, add \`components/carina/<name>/\` with RATIONALE.md, stories, meta.json, and a11y error handling; for enhancements, document and test the API delta without adding a twin.
 3. Prefer wrapping stock with tokens over a fork.
-4. Stop for design + engineering HITL.
-Forbidden: editing components/ui for a new API.`,
+4. After implementation, Coding rewires sandbox imports to the decided entity and presents the live companion again.
+5. Stop for design + engineering HITL.
+Forbidden: editing components/ui for a new API or creating a new base without Architect rationale.`,
   "carina-promote-block": `## Workflow
-1. Require USAGE.md matching imports/registryDependencies.
-2. Move approved prototype to registry/blocks/<name>.
-3. Mark experimental, add stories, Changeset, and CI evidence.
-4. Stop for HITL. Do not mark stable and do not commit public/r.`,
+1. A view may yield multiple experimental slices over time; review and name each slice independently.
+2. Require USAGE.md matching imports and registryDependencies matching every registry import.
+3. Move only the approved slice to \`registry/blocks/<name>\`; mark experimental and add stories, Changeset, and CI evidence.
+4. Stop for HITL. After HITL, propose a catalog memory record; do not write memory in the same turn as promotion.
+Do not mark stable, promote unrelated view chrome, or commit \`public/r\`.`,
   "carina-update-design-language": `## Workflow
 1. Edit tokens.json or apply a preset as a candidate diff.
 2. Run \`pnpm tokens:build\` and a11y/Foundations review.

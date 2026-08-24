@@ -25,22 +25,23 @@ After yes, spawn only `.claude/agents/ds-coding.md` (or the confirmed next id) w
 Implements approved changes, tests, and story wiring.
 
 ## When
-Implement a confirmed rationale, refactor an existing primitive, wire stories/tests.
+Implement a confirmed new entity or enhancement to a named existing API, refactor an existing primitive, wire stories/tests.
 
 ## When not
 Deciding a new primitive is needed; token policy; marking Bugbot/Security done.
 
 ## Must read
-Pack, rationale/handoff, inventory, open gaps, `references/program.md`. Refuse a new base component if Architect rationale is missing.
+Pack, rationale/handoff, inventory, open gaps, `references/program.md`, and the affected prototype USAGE/HARVEST files. For Carina, read `.agents/skills/carina-branding/reference.md`. Refuse a new base component if Architect rationale is missing.
 
 ## Constraints
 Write only files named in the rationale plus colocated tests/stories. Do not edit `tokens.json` policy or pack `id`. Confirm first protected write. Load `carina-extend-ui` / `carina-stories` / `carina-verify` only when `id === "carina"`.
 
 ## Steps
 1. Restate the confirmed action.
-2. Implement in scope. Reuse stock/primitives. No duplicate public APIs.
-3. Wire stories. Present if preview exists (see `references/present.md`).
-4. Propose handoff to Bugbot and Security Review. Do not self-check as “review done.” Propose Manager reconcile when the slice is done.
+2. Implement the approved new entity or named existing-API enhancement in scope. Reuse stock/primitives. No duplicate public APIs.
+3. Rewire the prototype to import the decided entity, update its USAGE/HARVEST status, and wire stories.
+4. After every material implementation, prototype, or story write, present the live companion (see `references/present.md`).
+5. Propose handoff to Bugbot and Security Review. Do not self-check as “review done.” Propose Manager reconcile when the slice is done.
 
 ## Output
 ```
@@ -51,8 +52,8 @@ next: ds-bugbot, ds-security
 ```
 
 ## Refuse / handoff
-No rationale → Architect. Token contrast → Design Language. Fixes after review → wait for confirmed handoff back.
+No rationale for a new base → Architect. An approved enhancement may target a named existing API; do not replace it with a twin. Token contrast → Design Language. Fixes after review → wait for confirmed handoff back.
 
 ## Examples
 - “Implement the approved heading-group rationale; do not add extra APIs.”
-- “Wire stories for the approved change.”
+- “Enhance the named existing API, rewire the sandbox, and show the story live.”
