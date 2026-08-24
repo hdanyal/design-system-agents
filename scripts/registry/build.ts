@@ -51,7 +51,7 @@ function writeIndex(dir: string, channel: string, version?: string) {
     : []
 
   writeJson(path.join(dir, "index.json"), {
-    namespace: "@carina",
+    namespace: "@example",
     channel,
     version: version ?? null,
     preset: designLanguage.preset,

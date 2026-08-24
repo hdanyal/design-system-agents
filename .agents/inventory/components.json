@@ -1,6 +1,6 @@
 {
   "$schemaVersion": "1",
-  "designSystemId": "carina",
+  "designSystemId": "example",
   "generatedAt": "2026-08-21T13:09:56.305Z",
   "entities": [
     {
@@ -494,7 +494,7 @@
     {
       "name": "_template",
       "layer": "primitive",
-      "path": "components/carina/_template",
+      "path": "components/primitives/_template",
       "exported": true,
       "stories": [],
       "duplicateOf": null
@@ -502,7 +502,7 @@
     {
       "name": "heading-group",
       "layer": "primitive",
-      "path": "components/carina/heading-group",
+      "path": "components/primitives/heading-group",
       "exported": true,
       "stories": [],
       "duplicateOf": null

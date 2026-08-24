@@ -7,6 +7,6 @@ about: Propose a sandbox experiment
 
 ## Inventory already considered
 
-Link or list stock, Carina, and block candidates.
+Link or list stock, host primitives, and block candidates.
 
 ## Figma URL

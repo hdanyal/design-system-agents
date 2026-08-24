@@ -16,7 +16,7 @@ const blocked = [
 ]
 
 if (blocked.some((pattern) => pattern.test(command))) {
-  console.error("Blocked by Carina fail-closed hook. See SECURITY.md.")
+  console.error("Blocked by Example fail-closed hook. See SECURITY.md.")
   process.exit(2)
 }
 

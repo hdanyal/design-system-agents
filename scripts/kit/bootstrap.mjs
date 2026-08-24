@@ -6,6 +6,7 @@ import {
   loadKitManifest,
   path,
   readJson,
+  isKitSource,
   scanHost,
   seedMemoryLayout,
   writeJson,
@@ -26,14 +27,13 @@ function mergePath(key, guessed) {
   return guessed
 }
 
-const isCarinaSource =
-  existsSync(path.join(root, "design-language.json")) && existsSync(path.join(root, "tokens.json"))
+const kitSource = isKitSource(root)
 
 const pack = {
   $schemaVersion: SCHEMA_VERSION,
   kitVersion: kit.kitVersion,
   bootstrapStatus: existing?.bootstrapStatus || "draft",
-  id: existing?.id || (isCarinaSource ? "carina" : null),
+  id: existing?.id || (kitSource ? "example" : null),
   paths: {
     tokens: mergePath("tokens", scan.guessed.tokens),
     ui: mergePath("ui", scan.guessed.ui),
@@ -52,12 +52,12 @@ const pack = {
   reviewedBy: existing?.reviewedBy || null,
 }
 
-if (isCarinaSource && !existing) {
+if (kitSource && !existing) {
   pack.bootstrapStatus = "complete"
-  pack.id = "carina"
+  pack.id = "example"
   pack.reviewedAt = new Date().toISOString().slice(0, 10)
-  pack.reviewedBy = "carina-ds-eng"
-  pack.reviewedFields = ["id", "paths.tokens", "paths.ui", "figmaFileKey", "preview"]
+  pack.reviewedBy = "example-ds-eng"
+  pack.reviewedFields = ["id", "paths.tokens", "paths.ui", "preview"]
 }
 
 const inventory = {

@@ -2,9 +2,9 @@
 
 ## Inventory considered
 
-- Stock UI:
-- Carina primitives:
-- Blocks:
+- Stock UI (pack `paths.ui`):
+- Host primitives (pack `paths.primitives`):
+- Blocks (pack `paths.blocks`):
 
 ## Composed from
 

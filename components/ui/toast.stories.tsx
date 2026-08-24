@@ -25,7 +25,7 @@ export const Default: Story = {
         onClick={() =>
           toast.add({
             title: "Release published",
-            description: "carina-ds v0.1.0 is available at /r/v0.1.0.",
+            description: "example-ds v0.1.0 is available at /r/v0.1.0.",
           })
         }
       >

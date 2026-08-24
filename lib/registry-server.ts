@@ -5,7 +5,7 @@ const GENERATED_DEV = path.join(process.cwd(), "generated/r/dev")
 const GENERATED_RELEASE = path.join(process.cwd(), "generated/r/v")
 
 export function authorizeRegistry(request: Request) {
-  const expected = process.env.CARINA_REGISTRY_TOKEN
+  const expected = process.env.EXAMPLE_REGISTRY_TOKEN
   if (!expected) {
     return new Response(JSON.stringify({ error: "Registry token is not configured" }), {
       status: 503,

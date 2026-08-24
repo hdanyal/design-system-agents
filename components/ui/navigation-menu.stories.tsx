@@ -45,7 +45,7 @@ export const Default: Story = {
               <li>
                 <NavigationMenuLink href="#primitives">
                   <ComponentIcon />
-                  Carina primitives
+                  host primitives
                 </NavigationMenuLink>
               </li>
               <li>
@@ -82,7 +82,7 @@ export const Default: Story = {
   play: async ({ canvas }) => {
     await userEvent.click(canvas.getByRole("button", { name: /Catalog/ }))
     await waitFor(() =>
-      expect(screen.getByRole("link", { name: /Carina primitives/ })).toBeVisible()
+      expect(screen.getByRole("link", { name: /host primitives/ })).toBeVisible()
     )
   },
 }

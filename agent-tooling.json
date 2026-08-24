@@ -3,7 +3,7 @@
     "shadcn": {
       "command": "pnpm",
       "args": ["dlx", "shadcn@4.18.0", "mcp"],
-      "allowedRegistries": ["@shadcn", "@carina"],
+      "allowedRegistries": ["@shadcn", "@example"],
       "defaultMode": "browse"
     }
   },

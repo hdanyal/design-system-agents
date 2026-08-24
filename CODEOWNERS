@@ -1,22 +1,22 @@
-# Placeholder teams until GitHub org slugs exist.
-# Fallback maintainers: replace with named humans.
+# Fallback maintainer until GitHub org teams exist.
+# Replace with named humans or @org teams when they exist.
 
-* @org/carina-ds-eng
+* @hdanyal
 
-/components/carina/ @org/carina-ds-eng @org/carina-ds-design
-/registry/ @org/carina-ds-eng
-/registry.json @org/carina-ds-eng
-/tokens.json @org/carina-ds-eng @org/carina-ds-design
-/app/tokens.generated.css @org/carina-ds-eng @org/carina-ds-design
-/design-language.json @org/carina-ds-eng @org/carina-ds-design
-/upstream-patches.json @org/carina-ds-eng
-/components/ui/ @org/carina-ds-eng
-/agent-tooling.json @org/carina-ds-eng
-/agent-tooling.lock.json @org/carina-ds-eng
-/.agents/ @org/carina-ds-eng
-/.cursor/ @org/carina-ds-eng
-/CONTRIBUTING.md @org/carina-ds-eng
-/AGENTS.md @org/carina-ds-eng
-/SECURITY.md @org/carina-ds-eng
-/docs/ @org/carina-ds-eng
-/.github/ @org/carina-ds-eng
+/components/primitives/ @hdanyal
+/registry/ @hdanyal
+/registry.json @hdanyal
+/tokens.json @hdanyal
+/app/tokens.generated.css @hdanyal
+/design-language.json @hdanyal
+/upstream-patches.json @hdanyal
+/components/ui/ @hdanyal
+/agent-tooling.json @hdanyal
+/agent-tooling.lock.json @hdanyal
+/.agents/ @hdanyal
+/.cursor/ @hdanyal
+/CONTRIBUTING.md @hdanyal
+/AGENTS.md @hdanyal
+/SECURITY.md @hdanyal
+/docs/ @hdanyal
+/.github/ @hdanyal

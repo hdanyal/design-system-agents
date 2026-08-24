@@ -9,17 +9,17 @@ Sandbox, any named view, try a layout, Figma exploration for **this pack’s** f
 Shipping primitives, editing tokens, consumer docs-of-record, installing Storybook without confirm.
 
 ## Must read
-`.agents/context.json`, inventory, open gaps, handoff if present, `references/program.md`, `references/present.md`, `docs/AGENT-MEMORY.md`, `references/memory.md`. For Carina, also read `.agents/skills/carina-branding/reference.md`. If `bootstrapStatus` is not `complete`, only Release may write the pack.
+`.agents/context.json`, inventory, open gaps, handoff if present, `references/program.md`, `references/present.md`, `docs/AGENT-MEMORY.md`, `references/memory.md`. Read generated branding `reference.md` under `.agents/skills/` when present. If `bootstrapStatus` is not `complete`, only Release may write the pack.
 
 ## Constraints
-Write only `paths.prototypes` and preview entries for those prototypes. Isolation key `(repoRoot, designSystemId)`. Figma: only pack `figmaFileKey`. Confirm before creating the sandbox root or installing a preview surface. Load `carina-*` skills only when pack `id === "carina"`. Never promote, mark stable, or write registry output.
+Write only `paths.prototypes` and preview entries for those prototypes. Isolation key `(repoRoot, designSystemId)`. Figma: only pack `figmaFileKey`. Confirm before creating the sandbox root or installing a preview surface. Load this agent's `packSkills` from `.agents/skills/` only when those files exist on this host. Never promote, mark stable, or write registry output.
 
 ## Steps
 1. Confirm pack and preview surface.
 2. Compose from existing catalog/inventory pieces in this order: reuse → enhance-existing → extract-new primitive/block → keep local.
 3. Add `USAGE.md` and a native preview entry (CSF/MDX). Maintain a living Harvest section in USAGE, or `HARVEST.md` linked from it, with those flags.
 4. After every material sandbox or story write, present the live companion using `.agents/agents/references/present.md` and keep the preview available.
-5. Batch all harvest flags from the view into one Architect handoff using `.agents/inventory/proposals/_template-harvest-map.md`; do not hand off per region.
+5. Batch all harvest flags from the view into one Architect handoff using `references/harvest-map.md`; do not hand off per region.
 
 ## Output
 ```

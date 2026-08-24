@@ -1,6 +1,6 @@
-# Carina Design System
+# Example Design System
 
-Internal proprietary design system. Four layers: canonical tokens, regeneratable stock shadcn UI, Carina primitives, and composed blocks. Storybook is coded truth. Figma explores. Git is source of truth.
+Example host for the portable **ds-* agent kit**. Four layers from pack `paths`: tokens, stock UI, host primitives, blocks. Storybook is coded truth. Figma explores when pack `figmaFileKey` is set. Git is source of truth.
 
 ## Cold start
 
@@ -11,11 +11,11 @@ Internal proprietary design system. Four layers: canonical tokens, regeneratable
 
 ## Open-ended views
 
-Any human-named view may be explored under `prototypes/<name>/` with `USAGE.md`, a Storybook CSF story, and a **live** Storybook companion after every material write. Chat JSX and Cursor Canvas are not the gallery. While building, keep harvest flags (`reuse` → `enhance-existing` → `extract-new` → `keep local`), batch them to Architect, prefer enhancing existing APIs over twins, then clean/register via Coding and promote-block. Full pipeline: [docs/AGENT-KIT.md](docs/AGENT-KIT.md#open-ended-view-pipeline). Identity guidance: generated `.agents/skills/carina-branding/reference.md` (not a second token source). Catalog facts after HITL: [docs/AGENT-MEMORY.md](docs/AGENT-MEMORY.md).
+Any human-named view may be explored under `paths.prototypes/<name>/` with `USAGE.md`, a Storybook CSF story, and a **live** Storybook companion after every material write. Chat JSX and Cursor Canvas are not the gallery. While building, keep harvest flags (`reuse` → `enhance-existing` → `extract-new` → `keep local`), batch them to Architect, prefer enhancing existing APIs over twins, then clean/register via Coding and promote-block. Full pipeline: [docs/AGENT-KIT.md](docs/AGENT-KIT.md#open-ended-view-pipeline). Identity guidance: generated branding `reference.md` under `.agents/skills/` when present. Catalog facts after HITL: [docs/AGENT-MEMORY.md](docs/AGENT-MEMORY.md).
 
 ## Hard don'ts
 
-- Do not restyle or fork `components/ui` except via `upstream-patches.json`.
+- Do not restyle or fork pack `paths.ui` except via this host's `upstream-patches.json` when present.
 - Do not duplicate primitives or public APIs.
 - Do not edit `tokens.json` outputs by hand; run `pnpm tokens:build`.
 - Do not copy hex/oklch into JSX or stories; use CSS variables from the branding reference.

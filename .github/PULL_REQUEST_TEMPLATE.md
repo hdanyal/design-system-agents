@@ -14,7 +14,7 @@
 
 - [ ] Composition: USAGE/imports/registryDependencies match; no duplicated primitives; enhance-existing preferred over twins
 - [ ] Accessibility: automated gates plus manual keyboard/name/role/state/contrast/motion review
-- [ ] Rationale accepted for any new Carina primitive (design + engineering)
+- [ ] Rationale accepted for any new host primitive (design + engineering)
 - [ ] Prototype/view PRs: live Storybook companion reviewed (not chat JSX); harvest flags resolved or mapped
 - [ ] Visual check against Figma exploration when one exists
 - [ ] Changeset included when required

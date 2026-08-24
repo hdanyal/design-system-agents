@@ -1,4 +1,4 @@
-import { existsSync, readFileSync, readdirSync } from "node:fs"
+import { existsSync, readFileSync, readdirSync, statSync } from "node:fs"
 import { describe, expect, it } from "vitest"
 
 function playbookCopies(id: string) {
@@ -47,13 +47,13 @@ describe("ds-kit agents", () => {
     expect(bugbot).not.toContain("implement fixes in the same turn")
   })
 
-  it("forbidden: carina-onboard as a second auto-select cold start", () => {
+  it("forbidden: example-onboard as a second auto-select cold start", () => {
     const manifest = JSON.parse(readFileSync(".agents/skills/manifest.json", "utf8"))
-    const onboard = manifest.skills.find((s: { name: string }) => s.name === "carina-onboard")
+    const onboard = manifest.skills.find((s: { name: string }) => s.name === "example-onboard")
     expect(onboard.invocation).not.toBe("auto-select")
     const agents = readFileSync("AGENTS.md", "utf8")
     expect(agents).toContain("ds-release")
-    expect(agents).not.toContain("Load `carina-onboard`, then exactly one owning skill.")
+    expect(agents).not.toContain("Load `example-onboard`, then exactly one owning skill.")
   })
 
   it("expected: present contract names Storybook command", () => {
@@ -64,9 +64,13 @@ describe("ds-kit agents", () => {
     expect(proto).toContain("shown: yes|no")
   })
 
-  it("forbidden: mixing another pack's memory into Carina", () => {
+  it("forbidden: mixing another pack's memory into this host", () => {
     const rule = readFileSync(".cursor/rules/ds-kit.mdc", "utf8")
     expect(rule).toContain("Never mix another design system's chats")
+    expect(rule).toContain("Do not copy hex/oklch")
+    expect(rule).toContain("Do not duplicate primitives or public APIs")
+    expect(rule).toContain("upstream-patches.json")
+    expect(existsSync(".cursor/rules/carina-ds.mdc")).toBe(false)
     const generated = readdirSync(".cursor/agents")
     expect(generated.filter((name) => name.startsWith("ds-") && name.endsWith(".md")).length).toBeGreaterThanOrEqual(
       11
@@ -85,7 +89,7 @@ describe("ds-kit agents", () => {
       "There is no view allowlist.",
       "shown: yes|no",
       "After every material sandbox or story write, present the live companion",
-      "_template-harvest-map.md",
+      "references/harvest-map.md",
     ])
   })
 
@@ -114,8 +118,10 @@ describe("ds-kit agents", () => {
       "branding `reference.md` identity shape",
       "Overview plus Do's and Don'ts",
       "Never write the identity file.",
+      "figmaFileKey",
+      "Do not write `context.json` or invent a file",
     ])
-    const reference = readFileSync(".agents/skills/carina-branding/reference.md", "utf8")
+    const reference = readFileSync(".agents/skills/example-branding/reference.md", "utf8")
     expect(reference).toContain("## Overview")
     expect(reference).toContain("## Do's and Don'ts")
   })
@@ -124,15 +130,15 @@ describe("ds-kit agents", () => {
     expectEveryHarness("ds-architect", [
       "reuse → enhance-existing → extract-new primitive/block → keep local",
       "Prefer enhancing a named existing API over inventing a twin",
-      "_template-harvest-map.md",
+      "references/harvest-map.md",
     ])
-    const compose = readFileSync(".agents/skills/carina-compose/SKILL.md", "utf8")
+    const compose = readFileSync(".agents/skills/example-compose/SKILL.md", "utf8")
     expect(compose).toContain("Harvest while building")
     expect(compose).toContain("Prefer enhancing a named existing API over creating a twin")
-    const prototype = readFileSync(".agents/skills/carina-prototype/SKILL.md", "utf8")
+    const prototype = readFileSync(".agents/skills/example-prototype/SKILL.md", "utf8")
     expect(prototype).toContain("there is no view-name or view-type allowlist")
     expect(prototype).toContain("reuse, enhance-existing, extract-new primitive/block, keep local")
-    const extend = readFileSync(".agents/skills/carina-extend-ui/SKILL.md", "utf8")
+    const extend = readFileSync(".agents/skills/example-extend-ui/SKILL.md", "utf8")
     expect(extend).toContain("enhance a named existing API")
     expect(extend).toContain("Coding rewires sandbox imports to the decided entity")
   })
@@ -140,7 +146,7 @@ describe("ds-kit agents", () => {
   it("expected: Docs writes shared memory after ack; do not load every memory file", () => {
     expectEveryHarness("ds-docs", [
       "`.agents/memory/shared/` only after **explicit human ack**",
-      "_template-catalog-fact.md",
+      "references/catalog-fact.md",
       "Do not read every memory file",
     ])
   })
@@ -223,7 +229,7 @@ describe("ds-kit agents", () => {
 
   it("expected: critique standards and lesson template", () => {
     expect(existsSync(".agents/agents/references/critique-standards.md")).toBe(true)
-    const template = readFileSync(".agents/inventory/proposals/_template-critique-lesson.md", "utf8")
+    const template = readFileSync(".agents/agents/references/critique-lesson.md", "utf8")
     expect(template).toContain("kind")
     expect(template).toContain("subjectAgent")
     expect(template).toContain("trigger")
@@ -234,5 +240,35 @@ describe("ds-kit agents", () => {
     const handoffs = readFileSync(".agents/agents/references/handoffs.md", "utf8")
     expect(handoffs).toContain("subjectAgent")
     expect(handoffs).toContain("critiqueRound")
+  })
+
+  it("forbidden: kit-copied playbooks treat one pack's folders as the only layout", () => {
+    const kitManifest = JSON.parse(readFileSync(".agents/kit/manifest.json", "utf8")) as { paths: string[] }
+    const isolationScripts = /scripts\/kit\/(lib|check|bootstrap)\.mjs$/
+    const files: string[] = []
+    const walk = (rel: string) => {
+      if (!existsSync(rel)) return
+      if (statSync(rel).isDirectory()) {
+        for (const name of readdirSync(rel)) walk(`${rel}/${name}`)
+        return
+      }
+      files.push(rel)
+    }
+    for (const rel of kitManifest.paths) walk(rel)
+    for (const rel of files) {
+      const body = readFileSync(rel, "utf8")
+      if (rel.endsWith("scripts/kit/lib.mjs")) {
+        expect(body).toContain("components/carina")
+        expect(body).toContain("components/primitives")
+      } else if (!isolationScripts.test(rel)) {
+        expect(body, rel).not.toMatch(/components\/carina(?![\w-])/)
+        expect(body, rel).not.toMatch(/components\/ui(?![\w-])/)
+        expect(body, rel).not.toMatch(/Load `example-\*`/)
+        expect(body, rel).not.toMatch(/id === ["']example["']/)
+        expect(body, rel).not.toMatch(/\bexampleSkills\b/)
+      }
+    }
+    const standards = readFileSync(".agents/agents/references/critique-standards.md", "utf8")
+    expect(standards).toContain("paths.ui")
   })
 })

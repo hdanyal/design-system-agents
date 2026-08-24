@@ -2,13 +2,13 @@
 
 ## Composed from
 
-- `@carina/heading-group` — title, optional eyebrow, optional description
+- `@example/heading-group` — title, optional eyebrow, optional description
 - `separator` — stock horizontal rule under the header
 - Optional action slot — typically stock `button` instances supplied by the consumer
 
 ## New base components introduced
 
-- `heading-group` (see `components/carina/heading-group/RATIONALE.md`)
+- `heading-group` (see `components/primitives/heading-group/RATIONALE.md`)
 
 ## How to use
 

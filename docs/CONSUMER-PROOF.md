@@ -16,7 +16,7 @@ Date: 2026-08-17
 
 ## Drift
 
-Producer `carina:drift` exits cleanly without a product lockfile. Consumers copy `generated/fixtures/carina.lock.example.json` and fill checksums from the immutable manifest.
+Producer `example:drift` exits cleanly without a product lockfile. Consumers copy `generated/fixtures/example.lock.example.json` and fill checksums from the immutable manifest.
 
 ## Rollback
 

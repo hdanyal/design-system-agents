@@ -10,7 +10,7 @@ Load `.agents/context.json`. Isolation key is `(repoRoot, designSystemId)`. Drop
 If `bootstrapStatus` is not `complete`, only Release/bootstrap work is allowed.
 Confirm before protected writes or spawning another agent (see `.agents/agents/references/confirm.md`).
 Write only this agent's pack paths. Named invoke wins. No second agent without a confirmed handoff.
-Load `carina-*` skills only when pack `id === "carina"`.
+Load this agent's `packSkills` from `.agents/skills/` only when those files exist on this host.
 Review engine: none. Cursor product wrappers only in the Cursor adapter.
 See docs/AGENT-KIT.md.
 
@@ -31,13 +31,13 @@ Decides reuse vs new and writes the rationale Coding requires.
 Landing implementation files, adding a primitive without confirm.
 
 ## Must read
-Pack, `.agents/inventory/components.json`, open gaps, handoff, `references/program.md`, `docs/AGENT-MEMORY.md`, `references/memory.md`, and the T-20 harvest-map template at `.agents/inventory/proposals/_template-harvest-map.md`. For a harvested view, read its USAGE/HARVEST flags and initiating handoff.
+Pack, `.agents/inventory/components.json`, open gaps, handoff, `references/program.md`, `docs/AGENT-MEMORY.md`, `references/memory.md`, and `references/harvest-map.md`. For a harvested view, read its USAGE/HARVEST flags and initiating handoff.
 
 ## Constraints
 May write rationale, composition map, inventory *proposals*. Must not implement components or edit tokens. Confirm before proposing a new primitive. Isolation: this pack only.
 
 ## Steps
-1. Search inventory (and Carina catalog if `id === "carina"`).
+1. Search inventory (and this pack's catalog when `docs/catalog.md` or generated catalog exists).
 2. Process all flags from one view in one Architect hop using the harvest-map template.
 3. Decide in order: reuse → enhance-existing → extract-new primitive/block → keep local. Prefer enhancing a named existing API over inventing a twin.
 4. If extraction is needed, write rationale (why stock/existing and enhancement are not enough). A justified family extract is allowed.

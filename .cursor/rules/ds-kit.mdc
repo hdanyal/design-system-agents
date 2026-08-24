@@ -9,4 +9,8 @@ No second specialist without a confirmed handoff. Confirm before protected write
 If bootstrap is not complete, route to Release (`ds-release`) for scan/gaps.
 If bootstrap is complete and `.agents/program/` is missing, route to Manager (`ds-manager`) for the board.
 Do not print a host brand name that is not this pack's id.
+Do not copy hex/oklch into JSX or stories; use CSS variables.
+Do not duplicate primitives or public APIs.
+Do not restyle or fork pack `paths.ui` except via this host's `upstream-patches.json` when present.
+Load skills from `.agents/skills/` on this host only; do not load another pack's skills.
 See docs/AGENT-KIT.md.

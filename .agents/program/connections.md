@@ -6,7 +6,7 @@ Investigation reconstruction remains cancelled: do not restore
 `prototypes/investigation-workspace/`. Remaining sandbox demo:
 `prototypes/invoices-workspace/`.
 
-Catalog files kept (not the prototype): `components/carina/heading-group/USAGE.md`,
+Catalog files kept (not the prototype): `components/primitives/heading-group/USAGE.md`,
 `registry/blocks/page-header/RATIONALE.md` (T-13, T-14 still done).
 
 Pipeline hops complete this slice: **ds-architect** (T-20 harvest-map template,

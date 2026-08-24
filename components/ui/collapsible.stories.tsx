@@ -20,7 +20,7 @@ export const Default: Story = {
   render: () => (
     <Collapsible defaultOpen className="w-80">
       <div className="flex items-center justify-between gap-4">
-        <p className="text-sm font-semibold text-foreground">@carina/ui</p>
+        <p className="text-sm font-semibold text-foreground">@example/ui</p>
         <CollapsibleTrigger render={<Button variant="ghost" size="sm" />}>
           Toggle
         </CollapsibleTrigger>

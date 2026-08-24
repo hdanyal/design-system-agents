@@ -26,11 +26,11 @@ export const Default: Story = {
   render: () => (
     <HoverCard>
       <HoverCardTrigger render={<Button variant="link" />}>
-        @carina
+        @example
       </HoverCardTrigger>
       <HoverCardContent>
         <div className="space-y-1">
-          <p className="text-sm font-semibold">Carina Design System</p>
+          <p className="text-sm font-semibold">Example Design System</p>
           <p className="text-sm text-muted-foreground">
             Internal component library and token pipeline.
           </p>
@@ -43,10 +43,10 @@ export const Default: Story = {
     </HoverCard>
   ),
   play: async ({ canvas }) => {
-    await userEvent.hover(canvas.getByRole("button", { name: "@carina" }))
+    await userEvent.hover(canvas.getByRole("button", { name: "@example" }))
     // The popup mounts before its open animation finishes, so poll for paint.
     await waitFor(() =>
-      expect(screen.getByText("Carina Design System")).toBeVisible()
+      expect(screen.getByText("Example Design System")).toBeVisible()
     )
   },
 }

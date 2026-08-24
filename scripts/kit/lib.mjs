@@ -181,7 +181,14 @@ function hasDeferred(pack, field) {
   return (pack.deferredGaps || []).some((gap) => gap.field === field || gap.id === field)
 }
 
-export function validatePack(pack, { allowCarinaId = false } = {}) {
+export function isKitSource(root) {
+  return (
+    existsSync(path.join(root, "scripts/kit/lib.mjs")) &&
+    existsSync(path.join(root, ".agents/kit/manifest.json"))
+  )
+}
+
+export function validatePack(pack, { allowExampleId = false } = {}) {
   const errors = []
   if (!pack || typeof pack !== "object") return ["pack missing"]
   if (pack.$schemaVersion !== SCHEMA_VERSION) errors.push("pack $schemaVersion")
@@ -190,7 +197,7 @@ export function validatePack(pack, { allowCarinaId = false } = {}) {
   if (!["missing", "draft", "blocked", "complete"].includes(status)) errors.push("pack bootstrapStatus")
   if (status === "complete") {
     if (!ID_RE.test(pack.id || "")) errors.push("pack id")
-    if (pack.id === "carina" && !allowCarinaId) errors.push("pack id must not be carina on a foreign host")
+    if (pack.id === "example" && !allowExampleId) errors.push("pack id must not be example on a foreign host")
     if (!pack.paths?.tokens && !hasDeferred(pack, "paths.tokens")) errors.push("paths.tokens")
     if (!pack.paths?.ui && !hasDeferred(pack, "paths.ui")) errors.push("paths.ui")
     if (!pack.reviewedAt || !pack.reviewedBy) errors.push("pack review")
@@ -505,22 +512,37 @@ export function detectPreview(root, pkg) {
 }
 
 export function guessPaths(root, componentsJson) {
+  const uiCandidates = [
+    componentsJson?.aliases?.ui ? String(componentsJson.aliases.ui).replace(/^@\//, "") : null,
+    "components/ui",
+    "src/components/ui",
+  ].filter(Boolean)
+
+  let ui = null
+  for (const candidate of uiCandidates) {
+    if (existsSync(path.join(root, candidate))) {
+      ui = candidate
+      break
+    }
+  }
+
+  const primitiveCandidates = ["components/primitives", "components/carina", "src/components/primitives"]
+  let primitives = null
+  for (const candidate of primitiveCandidates) {
+    if (existsSync(path.join(root, candidate))) {
+      primitives = candidate
+      break
+    }
+  }
+
   return {
     tokens: existsSync(path.join(root, "tokens.json"))
       ? "tokens.json"
       : existsSync(path.join(root, "tokens/tokens.json"))
         ? "tokens/tokens.json"
         : null,
-    ui: componentsJson?.aliases?.ui
-      ? String(componentsJson.aliases.ui).replace(/^@\//, "")
-      : existsSync(path.join(root, "components/ui"))
-        ? "components/ui"
-        : null,
-    primitives: existsSync(path.join(root, "components/carina"))
-      ? "components/carina"
-      : existsSync(path.join(root, "components/primitives"))
-        ? "components/primitives"
-        : null,
+    ui,
+    primitives,
     blocks: existsSync(path.join(root, "registry/blocks")) ? "registry/blocks" : null,
     prototypes: existsSync(path.join(root, "prototypes")) ? "prototypes" : null,
     docs: existsSync(path.join(root, "docs")) ? "docs" : null,
@@ -603,7 +625,7 @@ export function scanHost(root) {
       id: "paths.ui",
       found: false,
       missing: "UI path",
-      whyNotInferred: "no components/ui or components.json",
+      whyNotInferred: "no stock UI path (components.json aliases.ui, components/ui, src/components/ui, or pack paths.ui)",
       options: ["add path", "defer"],
       ownerAgent: "ds-architect",
       blocking: true,

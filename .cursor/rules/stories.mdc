@@ -3,4 +3,4 @@ description: Storybook stories
 globs: "**/*.stories.tsx"
 ---
 
-Follow `carina-stories`. Foundations must use `var(--*)`.
+Follow this pack's stories skill under `.agents/skills/` when present. Foundations must use `var(--*)`.

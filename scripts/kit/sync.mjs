@@ -2,7 +2,6 @@ import { existsSync, readFileSync } from "node:fs"
 import {
   GENERATED_HEADER,
   adapterRelPaths,
-  fail,
   hashTree,
   kitRootFromScripts,
   loadAgentManifest,
@@ -29,7 +28,7 @@ Load \`.agents/context.json\`. Isolation key is \`(repoRoot, designSystemId)\`. 
 If \`bootstrapStatus\` is not \`complete\`, only Release/bootstrap work is allowed.
 Confirm before protected writes or spawning another agent (see \`.agents/agents/references/confirm.md\`).
 Write only this agent's pack paths. Named invoke wins. No second agent without a confirmed handoff.
-Load \`carina-*\` skills only when pack \`id === "carina"\`.
+Load this agent's \`packSkills\` from \`.agents/skills/\` only when those files exist on this host.
 Review engine: ${agent.reviewEngine || "none"}. Cursor product wrappers only in the Cursor adapter.
 See docs/AGENT-KIT.md.`
 }
@@ -117,6 +116,10 @@ No second specialist without a confirmed handoff. Confirm before protected write
 If bootstrap is not complete, route to Release (\`ds-release\`) for scan/gaps.
 If bootstrap is complete and \`.agents/program/\` is missing, route to Manager (\`ds-manager\`) for the board.
 Do not print a host brand name that is not this pack's id.
+Do not copy hex/oklch into JSX or stories; use CSS variables.
+Do not duplicate primitives or public APIs.
+Do not restyle or fork pack \`paths.ui\` except via this host's \`upstream-patches.json\` when present.
+Load skills from \`.agents/skills/\` on this host only; do not load another pack's skills.
 See docs/AGENT-KIT.md.
 `
 
@@ -170,7 +173,7 @@ if (existsSync(toolingPath)) {
 const skillsPath = path.join(root, ".agents/skills/manifest.json")
 if (existsSync(skillsPath)) {
   const skills = readJson(skillsPath)
-  const skillsDoc = `# Carina skills
+  const skillsDoc = `# Skills
 
 GENERATED from \`.agents/skills/manifest.json\`. Canonical instructions live in each \`SKILL.md\`.
 

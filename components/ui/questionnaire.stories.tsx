@@ -34,7 +34,7 @@ export const SingleChoice: Story = {
   render: () => (
     <Questionnaire className="max-w-lg">
       <QuestionnaireItem name="adoption">
-        <QuestionnaireTitle>How are you adopting Carina?</QuestionnaireTitle>
+        <QuestionnaireTitle>How are you adopting Example?</QuestionnaireTitle>
         <QuestionnaireDescription>
           This determines which install path the docs recommend.
         </QuestionnaireDescription>

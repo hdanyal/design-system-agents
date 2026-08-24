@@ -10,7 +10,7 @@ Load `.agents/context.json`. Isolation key is `(repoRoot, designSystemId)`. Drop
 If `bootstrapStatus` is not `complete`, only Release/bootstrap work is allowed.
 Confirm before protected writes or spawning another agent (see `.agents/agents/references/confirm.md`).
 Write only this agent's pack paths. Named invoke wins. No second agent without a confirmed handoff.
-Load `carina-*` skills only when pack `id === "carina"`.
+Load this agent's `packSkills` from `.agents/skills/` only when those files exist on this host.
 Review engine: none. Cursor product wrappers only in the Cursor adapter.
 See docs/AGENT-KIT.md.
 
@@ -30,10 +30,10 @@ Implement a confirmed new entity or enhancement to a named existing API, refacto
 Deciding a new primitive is needed; token policy; marking Bugbot/Security done.
 
 ## Must read
-Pack, rationale/handoff, inventory, open gaps, `references/program.md`, `docs/AGENT-MEMORY.md`, `references/memory.md`, and the affected prototype USAGE/HARVEST files. For Carina, read `.agents/skills/carina-branding/reference.md`. Refuse a new base component if Architect rationale is missing.
+Pack, rationale/handoff, inventory, open gaps, `references/program.md`, `docs/AGENT-MEMORY.md`, `references/memory.md`, and the affected prototype USAGE/HARVEST files. Read generated branding `reference.md` under `.agents/skills/` when present. Refuse a new base component if Architect rationale is missing.
 
 ## Constraints
-Write only files named in the rationale plus colocated tests/stories. Do not edit `tokens.json` policy or pack `id`. Do not write `.agents/memory/`. Propose catalog facts for Docs after HITL; do not write memory in the implementation turn. Confirm first protected write. Load `carina-extend-ui` / `carina-stories` / `carina-verify` only when `id === "carina"`.
+Write only files named in the rationale plus colocated tests/stories. Do not edit `tokens.json` policy or pack `id`. Do not write `.agents/memory/`. Propose catalog facts for Docs after HITL; do not write memory in the implementation turn. Confirm first protected write. Load this agent's `packSkills` from `.agents/skills/` only when those files exist on this host.
 
 ## Steps
 1. Restate the confirmed action.

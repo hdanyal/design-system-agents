@@ -3,6 +3,7 @@ import { paths } from "./lib/paths"
 import { fail, walkFiles } from "./lib/fs"
 
 const COLOR_RE = /#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})\b|\brgb\(|\brgba\(|\bhsl\(|\bhsla\(/
+const uiAllow = `${paths.packPaths.ui ?? "components/ui"}/`
 const ALLOW = [
   "/generated/",
   "app/tokens.generated.css",
@@ -11,7 +12,7 @@ const ALLOW = [
   ".next",
   "storybook-static",
   "scripts/lint-colors.ts",
-  "components/ui/",
+  uiAllow,
 ]
 
 const files = walkFiles(paths.root, (file) => /\.(ts|tsx|css|md|json)$/.test(file)).filter(

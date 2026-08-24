@@ -31,7 +31,7 @@ const preview: Preview = {
     },
     options: {
       storySort: {
-        order: ["Foundations", "UI", "Carina", "Blocks", "Prototypes"],
+        order: ["Foundations", "UI", "Primitives", "Blocks", "Prototypes"],
       },
     },
   },

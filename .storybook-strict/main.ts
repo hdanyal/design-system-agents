@@ -3,7 +3,7 @@ import type { StorybookConfig } from "@storybook/nextjs-vite"
 const config: StorybookConfig = {
   stories: [
     "../stories/foundations/**/*.stories.@(ts|tsx)",
-    "../components/carina/**/*.stories.@(ts|tsx)",
+    "../components/primitives/**/*.stories.@(ts|tsx)",
     "../registry/blocks/**/*.stories.@(ts|tsx)",
   ],
   addons: [

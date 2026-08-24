@@ -9,8 +9,8 @@ shadcn installs source. Registry semver cannot update a consumer that edited ins
 
 ## Decision
 
-Consumers keep `carina.lock.json` and treat installed files as managed. Updates happen against a new immutable version with dry-run/diff. `carina:drift` detects unmanaged edits.
+Consumers keep `example.lock.json` and treat installed files as managed. Updates happen against a new immutable version with dry-run/diff. `example:drift` detects unmanaged edits.
 
 ## Consequences
 
-Product-local forks must explicitly leave Carina management.
+Product-local forks must explicitly leave Example management.

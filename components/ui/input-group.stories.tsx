@@ -44,7 +44,7 @@ export const WithTextAddon: Story = {
       <Label htmlFor="input-group-url">Docs path</Label>
       <InputGroup>
         <InputGroupAddon>
-          <InputGroupText>carina.dev/</InputGroupText>
+          <InputGroupText>example.dev/</InputGroupText>
         </InputGroupAddon>
         <InputGroupInput id="input-group-url" defaultValue="governance" />
       </InputGroup>
@@ -57,7 +57,7 @@ export const WithButton: Story = {
     <div className="grid w-80 gap-2">
       <Label htmlFor="input-group-token">Registry token</Label>
       <InputGroup>
-        <InputGroupInput id="input-group-token" defaultValue="carina_pat_…" />
+        <InputGroupInput id="input-group-token" defaultValue="example_pat_…" />
         <InputGroupAddon align="inline-end">
           <InputGroupButton>Copy</InputGroupButton>
         </InputGroupAddon>

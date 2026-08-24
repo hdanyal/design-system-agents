@@ -1,4 +1,4 @@
-# Carina catalog
+# Example catalog
 
 GENERATED. Do not hand-edit. Run `pnpm catalog`.
 
@@ -66,14 +66,14 @@ GENERATED. Do not hand-edit. Run `pnpm catalog`.
 - `toggle-group`
 - `tooltip`
 
-## Carina primitives
+## Primitives
 
 | Name | Status | Owner | a11y | Introduced |
 | --- | --- | --- | --- | --- |
-| `heading-group` | experimental | carina-ds-eng | error | 0.1.0 |
+| `heading-group` | experimental | hdanyal | error | 0.1.0 |
 
 ## Blocks
 
 | Name | Status | Owner | a11y | Introduced |
 | --- | --- | --- | --- | --- |
-| `page-header` | experimental | carina-ds-eng | error | 0.1.0 |
+| `page-header` | experimental | example-ds-eng | error | 0.1.0 |

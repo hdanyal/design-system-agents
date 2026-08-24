@@ -24,7 +24,7 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm verify:fast
         env:
-          CARINA_REGISTRY_TOKEN: ${{ secrets.CARINA_REGISTRY_TOKEN || 'ci-local-token' }}
+          EXAMPLE_REGISTRY_TOKEN: ${{ secrets.EXAMPLE_REGISTRY_TOKEN || 'ci-local-token' }}
 
   verify:
     name: verify
@@ -43,4 +43,4 @@ jobs:
       - run: pnpm exec playwright install chromium
       - run: pnpm verify
         env:
-          CARINA_REGISTRY_TOKEN: ${{ secrets.CARINA_REGISTRY_TOKEN || 'ci-local-token' }}
+          EXAMPLE_REGISTRY_TOKEN: ${{ secrets.EXAMPLE_REGISTRY_TOKEN || 'ci-local-token' }}

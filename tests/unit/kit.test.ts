@@ -66,7 +66,7 @@ describe("portable agent kit", () => {
     try {
       const programDir = path.join(tmp, ".agents/program")
       mkdirSync(programDir, { recursive: true })
-      writeFileSync(path.join(programDir, "board.md"), "---\ndesignSystemId: carina\n---\n")
+      writeFileSync(path.join(programDir, "board.md"), "---\ndesignSystemId: example\n---\n")
       writeFileSync(
         path.join(programDir, "tasks.md"),
         [
@@ -84,7 +84,7 @@ describe("portable agent kit", () => {
           "",
         ].join("\n")
       )
-      expect(validateProgram(tmp, "carina", ["ds-coding", "ds-prototype"])).toEqual([])
+      expect(validateProgram(tmp, "example", ["ds-coding", "ds-prototype"])).toEqual([])
       expect(scanProgramInputs(tmp).program.taskIds).toEqual(["T-01", "T-00"])
     } finally {
       rmSync(tmp, { recursive: true, force: true })
@@ -114,7 +114,7 @@ describe("portable agent kit", () => {
     expect(scan.preview.port).toBe(6006)
   })
 
-  it("install does not copy Carina tokens; upgrade does not wipe host memory", () => {
+  it("install does not copy Example tokens; upgrade does not wipe host memory", () => {
     const tmp = mkdtempSync(path.join(os.tmpdir(), "ds-kit-"))
     try {
       cpSync(path.join(root, "tests/fixtures/foreign-ds"), tmp, { recursive: true })
@@ -166,20 +166,20 @@ describe("portable agent kit", () => {
 
   it("rejects memory missing owner or reviewedAt", () => {
     const incomplete = `---
-designSystemId: carina
+designSystemId: example
 agent: ds-docs
 title: Incomplete
 ---
 body`
-    expect(validateMemoryRecord(incomplete, "carina")).toContain("owner")
+    expect(validateMemoryRecord(incomplete, "example")).toContain("owner")
     const noDate = `---
-designSystemId: carina
+designSystemId: example
 agent: ds-docs
 title: No date
 owner: test
 ---
 body`
-    expect(validateMemoryRecord(noDate, "carina")).toContain("reviewedAt")
+    expect(validateMemoryRecord(noDate, "example")).toContain("reviewedAt")
   })
 
   it("seedMemoryLayout creates shared and per-agent namespaces without md records", () => {
@@ -222,7 +222,7 @@ body`
   it("complete pack requires id and tokens or deferral", () => {
     const errors = validatePack(
       { $schemaVersion: "1", kitVersion: "0.1.0", bootstrapStatus: "complete", id: "acme" },
-      { allowCarinaId: false }
+      { allowExampleId: false }
     )
     expect(errors.length).toBeGreaterThan(0)
   })

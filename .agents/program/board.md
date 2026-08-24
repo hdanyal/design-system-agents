@@ -1,5 +1,5 @@
 ---
-designSystemId: carina
+designSystemId: example
 recommendedNext: human
 reconciledAt: 2026-08-24
 ---

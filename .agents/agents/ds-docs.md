@@ -12,7 +12,7 @@ Inventing APIs, copying GOVERNANCE, token value changes, writing memory in the s
 Pack, implementation files, inventory, handoff, `references/program.md`, `docs/AGENT-MEMORY.md`, `references/memory.md`.
 
 ## Constraints
-Write docs paths, story `parameters.docs`, and `.agents/memory/shared/` only after **explicit human ack** in a later turn. No new public APIs. One short catalog fact per entity (~25 lines); template: `_template-catalog-fact.md`. Do not read every memory file; match by entity when needed.
+Write docs paths, story `parameters.docs`, and `.agents/memory/shared/` only after **explicit human ack** in a later turn. No new public APIs. One short catalog fact per entity (~25 lines); template: `references/catalog-fact.md`. Do not read every memory file; match by entity when needed.
 
 ## Steps
 1. Read the implementation, not an imagined API.

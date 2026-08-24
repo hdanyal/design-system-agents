@@ -4,18 +4,18 @@
     {
       "name": "agent-guidance",
       "type": "registry:file",
-      "title": "Carina consumer agent guidance",
+      "title": "Example consumer agent guidance",
       "description": "Consumer-facing compose-don't-fork and adoption instructions. No maintainer secrets or hooks.",
       "files": [
         {
           "path": "agent-guidance.md",
           "type": "registry:file",
-          "target": "docs/carina-agent-guidance.md"
+          "target": "docs/example-agent-guidance.md"
         }
       ],
       "meta": {
         "status": "experimental",
-        "owner": "carina-ds-eng",
+        "owner": "example-ds-eng",
         "audience": "consumer"
       }
     }

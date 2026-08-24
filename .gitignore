@@ -42,7 +42,7 @@ pnpm-debug.log*
 /generated/sbom
 
 # consumer lock is for product apps; producer may keep a fixture copy
-# /carina.lock.json
+# /example.lock.json
 
 # typescript
 *.tsbuildinfo

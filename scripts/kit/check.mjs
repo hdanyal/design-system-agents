@@ -15,13 +15,14 @@ import {
   validateInventory,
   validateMemoryRecord,
   validatePack,
+  isKitSource,
   validateProgram,
 } from "./lib.mjs"
 
 const args = process.argv.slice(2)
 const dirIdx = args.indexOf("--dir")
 const root = path.resolve(dirIdx >= 0 ? args[dirIdx + 1] : kitRootFromScripts())
-const isCarina = existsSync(path.join(root, "design-language.json")) && existsSync(path.join(root, "tokens.json"))
+const kitSource = isKitSource(root)
 
 const kit = loadKitManifest(root)
 const agents = loadAgentManifest(root)
@@ -62,7 +63,7 @@ for (const rel of rels) {
 const packPath = path.join(root, ".agents/context.json")
 if (existsSync(packPath)) {
   const pack = readJson(packPath)
-  const errors = validatePack(pack, { allowCarinaId: isCarina || pack.id === "carina" })
+  const errors = validatePack(pack, { allowExampleId: kitSource || pack.id === "example" })
   if (errors.length) fail(`pack invalid: ${errors.join(", ")}`)
   const invPath = path.join(root, ".agents/inventory/components.json")
   if (existsSync(invPath)) {

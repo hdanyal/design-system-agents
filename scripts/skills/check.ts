@@ -13,50 +13,50 @@ type Skill = {
 }
 
 const REQUIRED = [
-  "carina-onboard",
-  "carina-branding",
-  "carina-compose",
-  "carina-a11y",
-  "carina-contribute",
-  "carina-prototype",
-  "carina-extend-ui",
-  "carina-promote-block",
-  "carina-update-design-language",
-  "carina-update-shadcn",
-  "carina-figma",
-  "carina-shadcn-mcp",
-  "carina-stories",
-  "carina-verify",
-  "carina-consume",
-  "carina-release",
-  "carina-lifecycle",
-  "carina-incident",
-  "carina-dependency-review",
-  "carina-agent-tooling",
+  "example-onboard",
+  "example-branding",
+  "example-compose",
+  "example-a11y",
+  "example-contribute",
+  "example-prototype",
+  "example-extend-ui",
+  "example-promote-block",
+  "example-update-design-language",
+  "example-update-shadcn",
+  "example-figma",
+  "example-shadcn-mcp",
+  "example-stories",
+  "example-verify",
+  "example-consume",
+  "example-release",
+  "example-lifecycle",
+  "example-incident",
+  "example-dependency-review",
+  "example-agent-tooling",
 ]
 
 const THIN = new Set([
-  "carina-onboard",
-  "carina-branding",
-  "carina-prototype",
-  "carina-shadcn-mcp",
-  "carina-verify",
-  "carina-dependency-review",
+  "example-onboard",
+  "example-branding",
+  "example-prototype",
+  "example-shadcn-mcp",
+  "example-verify",
+  "example-dependency-review",
 ])
 
 const AUTO = new Set([
-  "carina-branding",
-  "carina-compose",
-  "carina-a11y",
-  "carina-contribute",
+  "example-branding",
+  "example-compose",
+  "example-a11y",
+  "example-contribute",
 ])
 
 const EXPLICIT = new Set([
-  "carina-release",
-  "carina-lifecycle",
-  "carina-incident",
-  "carina-dependency-review",
-  "carina-agent-tooling",
+  "example-release",
+  "example-lifecycle",
+  "example-incident",
+  "example-dependency-review",
+  "example-agent-tooling",
 ])
 
 const manifest = readJson<{ skills: Skill[] }>(paths.skillManifest)
@@ -83,7 +83,7 @@ for (const skill of manifest.skills) {
     fail(`${skill.name} invocation mismatch`)
   }
   for (const dep of skill.dependencies) {
-    if (dep.startsWith("carina-") && !REQUIRED.includes(dep)) fail(`${skill.name} depends on unknown ${dep}`)
+    if (dep.startsWith("example-") && !REQUIRED.includes(dep)) fail(`${skill.name} depends on unknown ${dep}`)
     if (dep === skill.name) fail(`${skill.name} cannot depend on itself`)
   }
 }

@@ -1,12 +1,12 @@
 # Bugbot
 
-Review Carina PRs for:
+Review Example PRs for:
 
 - Token drift or hardcoded colors
-- Missing stories or play tests on stateful Carina/block work
+- Missing stories or play tests on stateful primitive/block work
 - Registry dependency/install regressions
-- Stock UI edits without `upstream-patches.json`
-- Accessibility regressions on Foundations, Carina, and Blocks
+- Stock UI (`paths.ui`) edits without `upstream-patches.json`
+- Accessibility regressions on Foundations, UI, Primitives, and Blocks
 - Managed-file forks that should be primitives
 
 Do not waive CODEOWNER or HITL requirements.

@@ -3,14 +3,14 @@
 ## Inventory considered
 
 - Stock `button`, `separator`: reused for actions and divider.
-- `@carina/heading-group`: reused via the `page-header` block.
+- `@example/heading-group`: reused via the `page-header` block.
 - `page-header` block: reused as the page chrome.
 - Stock `empty`: not used; this is a populated workspace, not an empty state.
 - Stock `card`: not extracted; the table region is local layout.
 
 ## Composed from
 
-- `page-header` (`@carina/heading-group` + `separator`)
+- `page-header` (`@example/heading-group` + `separator`)
 - stock `button`
 
 ## Local layout only

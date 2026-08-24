@@ -16,15 +16,15 @@ Consumer contract for product teams.
 ## Install
 
 1. Apply the pinned preset with the pinned CLI.
-2. Configure the `@carina` namespace to an immutable URL:
+2. Configure the `@example` namespace to an immutable URL:
 
 ```json
 {
   "registries": {
-    "@carina": {
+    "@example": {
       "url": "https://<host>/r/v0.1.0/{name}.json",
       "headers": {
-        "Authorization": "Bearer ${CARINA_REGISTRY_TOKEN}"
+        "Authorization": "Bearer ${EXAMPLE_REGISTRY_TOKEN}"
       }
     }
   }
@@ -33,7 +33,7 @@ Consumer contract for product teams.
 
 3. Never point production `components.json` at `/r/dev` or `/latest`.
 4. Preview with dry-run/diff. Install in a dedicated PR.
-5. Record `carina.lock.json`:
+5. Record `example.lock.json`:
 
 ```json
 {
@@ -42,18 +42,18 @@ Consumer contract for product teams.
   "cli": "4.18.0",
   "installDate": "2026-08-17",
   "items": [
-    { "name": "heading-group", "checksum": "<sha256>", "path": "components/carina/heading-group/heading-group.tsx" }
+    { "name": "heading-group", "checksum": "<sha256>", "path": "components/example/heading-group/heading-group.tsx" }
   ]
 }
 ```
 
-6. Run product tests and `carina:drift`.
+6. Run product tests and `example:drift`.
 
 ## Managed files
 
-Treat installed Carina files as managed. Customize through composition and wrappers. An intentional product-local fork must explicitly leave Carina management and is no longer centrally upgradeable.
+Treat installed Example files as managed. Customize through composition and wrappers. An intentional product-local fork must explicitly leave Example management and is no longer centrally upgradeable.
 
-Report catalog gaps back as Carina primitive proposals. Do not fork stock UI in the product app.
+Report catalog gaps back as host primitive proposals. Do not fork stock UI in the product app.
 
 ## Support
 

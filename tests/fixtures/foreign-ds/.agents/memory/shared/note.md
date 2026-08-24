@@ -10,4 +10,4 @@ owner: fixture
 reviewedAt: 2026-08-21
 expiresAt: 2027-08-21
 ---
-This record must not be visible to Carina pack checks.
+This record must not be visible to example pack checks.

@@ -90,7 +90,7 @@ export const Group: Story = {
       <Item variant="outline" role="listitem">
         <ItemContent>
           <ItemTitle>heading-group</ItemTitle>
-          <ItemDescription>Carina primitive.</ItemDescription>
+          <ItemDescription>host primitive.</ItemDescription>
         </ItemContent>
         <ItemActions>
           <ChevronRightIcon className="size-4" aria-hidden="true" />

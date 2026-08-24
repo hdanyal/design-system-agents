@@ -38,7 +38,7 @@ if (existsSync(programPath)) {
   programNote = next ? `program recommendedNext=${next[1].trim()}` : "program board present"
 }
 
-const brand = pack.id === "carina" ? "pack id=carina" : `pack id=${pack.id || "(unset)"}`
+const brand = `pack id=${pack.id || "(unset)"}`
 console.log(
   `ds-kit: ${brand} status=${pack.bootstrapStatus} ${gapNote}; ${memNote}; ${programNote}. One ds-* owner. Confirm before writes. See docs/AGENT-KIT.md.`
 )

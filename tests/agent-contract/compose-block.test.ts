@@ -6,7 +6,7 @@ describe("compose/build block", () => {
     const usage = readFileSync("registry/blocks/page-header/USAGE.md", "utf8")
     const source = readFileSync("registry/blocks/page-header/page-header.tsx", "utf8")
     expect(usage).toContain("heading-group")
-    expect(source).toContain("@/components/carina/heading-group/heading-group")
+    expect(source).toContain("@/components/primitives/heading-group/heading-group")
     expect(source).toContain("@/components/ui/separator")
   })
 

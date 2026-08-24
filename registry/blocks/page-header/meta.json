@@ -3,10 +3,10 @@
   "title": "Page Header",
   "type": "registry:block",
   "status": "experimental",
-  "owner": "carina-ds-eng",
+  "owner": "example-ds-eng",
   "a11yStatus": "error",
   "introducedIn": "0.1.0",
   "lastReviewed": "2026-08-17",
   "figmaNode": "",
-  "registryDependencies": ["@carina/heading-group", "separator"]
+  "registryDependencies": ["@example/heading-group", "separator"]
 }

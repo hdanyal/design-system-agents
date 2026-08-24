@@ -50,7 +50,7 @@ function SidebarDemo({
     <SidebarProvider>
       <Sidebar collapsible={collapsible}>
         <SidebarHeader className="px-3 py-2 text-sm font-semibold">
-          Carina
+          Example
         </SidebarHeader>
         <SidebarSeparator />
         <SidebarContent>

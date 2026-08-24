@@ -40,7 +40,7 @@
       ],
       "readonly": false,
       "reviewEngine": null,
-      "carinaSkills": []
+      "packSkills": []
     },
     {
       "id": "ds-prototype",
@@ -52,7 +52,7 @@
       "handoffsTo": ["ds-critique", "ds-architect", "ds-docs", "ds-manager"],
       "readonly": false,
       "reviewEngine": null,
-      "carinaSkills": ["carina-prototype", "carina-compose", "carina-figma"]
+      "packSkills": ["example-prototype", "example-compose", "example-figma"]
     },
     {
       "id": "ds-architect",
@@ -64,7 +64,7 @@
       "handoffsTo": ["ds-critique", "ds-coding", "ds-prototype", "ds-manager"],
       "readonly": false,
       "reviewEngine": null,
-      "carinaSkills": ["carina-compose", "carina-extend-ui", "carina-promote-block"]
+      "packSkills": ["example-compose", "example-extend-ui", "example-promote-block"]
     },
     {
       "id": "ds-coding",
@@ -76,7 +76,7 @@
       "handoffsTo": ["ds-critique", "ds-bugbot", "ds-security", "ds-a11y", "ds-docs", "ds-manager"],
       "readonly": false,
       "reviewEngine": null,
-      "carinaSkills": ["carina-extend-ui", "carina-stories", "carina-update-shadcn", "carina-verify"]
+      "packSkills": ["example-extend-ui", "example-stories", "example-update-shadcn", "example-verify"]
     },
     {
       "id": "ds-docs",
@@ -88,7 +88,7 @@
       "handoffsTo": ["ds-critique", "ds-release", "ds-coding", "ds-manager"],
       "readonly": false,
       "reviewEngine": null,
-      "carinaSkills": ["carina-stories"]
+      "packSkills": ["example-stories"]
     },
     {
       "id": "ds-language",
@@ -100,7 +100,7 @@
       "handoffsTo": ["ds-critique", "ds-a11y", "ds-coding", "ds-manager"],
       "readonly": false,
       "reviewEngine": null,
-      "carinaSkills": ["carina-branding", "carina-update-design-language", "carina-figma"]
+      "packSkills": ["example-branding", "example-update-design-language", "example-figma"]
     },
     {
       "id": "ds-a11y",
@@ -112,7 +112,7 @@
       "handoffsTo": ["ds-critique", "ds-language", "ds-coding", "ds-release", "ds-manager"],
       "readonly": false,
       "reviewEngine": null,
-      "carinaSkills": ["carina-a11y"]
+      "packSkills": ["example-a11y"]
     },
     {
       "id": "ds-critique",
@@ -133,7 +133,7 @@
       ],
       "readonly": true,
       "reviewEngine": null,
-      "carinaSkills": []
+      "packSkills": []
     },
     {
       "id": "ds-bugbot",
@@ -145,7 +145,7 @@
       "handoffsTo": ["ds-coding", "ds-release", "ds-manager"],
       "readonly": true,
       "reviewEngine": "cursor-product",
-      "carinaSkills": []
+      "packSkills": []
     },
     {
       "id": "ds-security",
@@ -157,7 +157,7 @@
       "handoffsTo": ["ds-coding", "ds-release", "ds-manager"],
       "readonly": true,
       "reviewEngine": "cursor-product",
-      "carinaSkills": []
+      "packSkills": []
     },
     {
       "id": "ds-release",
@@ -169,16 +169,16 @@
       "handoffsTo": ["ds-critique", "ds-manager", "ds-prototype", "ds-architect", "ds-security"],
       "readonly": false,
       "reviewEngine": null,
-      "carinaSkills": [
-        "carina-onboard",
-        "carina-contribute",
-        "carina-release",
-        "carina-lifecycle",
-        "carina-incident",
-        "carina-consume",
-        "carina-agent-tooling",
-        "carina-dependency-review",
-        "carina-shadcn-mcp"
+      "packSkills": [
+        "example-onboard",
+        "example-contribute",
+        "example-release",
+        "example-lifecycle",
+        "example-incident",
+        "example-consume",
+        "example-agent-tooling",
+        "example-dependency-review",
+        "example-shadcn-mcp"
       ]
     }
   ]

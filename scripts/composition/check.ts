@@ -10,6 +10,8 @@ function importsOf(file: string) {
   return [...source.matchAll(IMPORT_RE)].map((match) => match[1])
 }
 
+const uiPath = paths.packPaths.ui ?? "components/ui"
+
 function checkUsage(dir: string, usageName = "USAGE.md") {
   const usagePath = path.join(dir, usageName)
   const sourceFiles = readdirSync(dir).filter((file) => file.endsWith(".tsx") && !file.endsWith(".stories.tsx"))
@@ -22,7 +24,7 @@ function checkUsage(dir: string, usageName = "USAGE.md") {
     if (spec.includes("heading-group") && !usage.includes("heading-group")) {
       fail(`${usagePath} does not document heading-group import`)
     }
-    if (spec.includes("components/ui/")) {
+    if (spec.includes(`${uiPath}/`)) {
       const name = spec.split("/").pop()
       if (name && !usage.toLowerCase().includes(name.toLowerCase()) && !usage.includes("stock")) {
         // documented as stock or by name is enough
@@ -44,7 +46,7 @@ function checkRegistryDependencies() {
     if (imports.some((spec) => spec.includes("heading-group")) && !deps.some((dep) => dep.includes("heading-group"))) {
       fail(`${item.name} imports heading-group but registryDependencies omit it`)
     }
-    if (imports.some((spec) => spec.includes("components/ui/separator")) && !deps.includes("separator")) {
+    if (imports.some((spec) => spec.includes(`${uiPath}/separator`)) && !deps.includes("separator")) {
       fail(`${item.name} imports separator but registryDependencies omit it`)
     }
   }

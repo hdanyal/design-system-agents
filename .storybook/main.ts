@@ -4,7 +4,7 @@ const config: StorybookConfig = {
   stories: [
     "../stories/foundations/**/*.stories.@(ts|tsx)",
     "../components/ui/**/*.stories.@(ts|tsx)",
-    "../components/carina/**/*.stories.@(ts|tsx)",
+    "../components/primitives/**/*.stories.@(ts|tsx)",
     "../registry/blocks/**/*.stories.@(ts|tsx)",
     "../prototypes/**/*.stories.@(ts|tsx)",
   ],

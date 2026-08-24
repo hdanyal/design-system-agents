@@ -1,5 +1,5 @@
 {
-  "name": "carina-ds",
+  "name": "example-ds",
   "install": "pnpm install --frozen-lockfile",
   "start": "pnpm storybook",
   "verify": "pnpm verify:fast",

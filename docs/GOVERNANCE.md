@@ -4,11 +4,11 @@ Owns HITL, ownership, maturity, semver, and Code Connect policy.
 
 ## Owners
 
-- Engineering: `@org/carina-ds-eng` (placeholder until GitHub teams exist)
-- Design: `@org/carina-ds-design`
+- Engineering: `@org/example-ds-eng` (placeholder until GitHub teams exist)
+- Design: `@org/example-ds-design`
 - Named fallback maintainers must be listed in CODEOWNERS comments.
 
-Tokens and new Carina primitives need design and engineering approval.
+Tokens and new host primitives need design and engineering approval.
 Blocks need engineering plus the a11y checklist; design approval when a Figma exploration exists.
 
 ## HITL matrix
@@ -16,7 +16,7 @@ Blocks need engineering plus the a11y checklist; design approval when a Figma ex
 | Artifact | Automated gates | Required humans | Evidence |
 | --- | --- | --- | --- |
 | Tokens / preset | `tokens:check`, a11y, Foundations | Design + engineering | PR checkboxes |
-| Carina primitive | stories, `test:a11y`, composition | Design + engineering | RATIONALE + PR |
+| host primitive | stories, `test:a11y`, composition | Design + engineering | RATIONALE + PR |
 | Block promotion | composition, stories, registry smoke | Engineering + a11y | USAGE + PR |
 | Stock patch | `upstream:check` | Engineering CODEOWNER | ledger entry |
 | Release | full `verify`, smoke, SBOM | Release maintainer | version PR |
@@ -47,6 +47,6 @@ Stable promotion cannot be bundled into initial creation.
 ## Code Connect
 
 - Do not map the full stock shadcn kit in v1.
-- When a new Carina primitive ships and the Figma kit exists, add the Figma component and Code Connect in the same lifecycle.
+- When a new host primitive ships and the Figma kit exists, add the Figma component and Code Connect in the same lifecycle.
 - Otherwise record a mapping gap in the primitive metadata.
 - Figma instructions for MCP must not drift from git; validate with `agents:check` when those files exist.

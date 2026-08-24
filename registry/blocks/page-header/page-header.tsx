@@ -1,6 +1,6 @@
 import type { ReactNode } from "react"
 
-import { HeadingGroup } from "@/components/carina/heading-group/heading-group"
+import { HeadingGroup } from "@/components/primitives/heading-group/heading-group"
 import { Separator } from "@/components/ui/separator"
 import { cn } from "@/lib/utils"
 

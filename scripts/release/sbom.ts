@@ -24,7 +24,7 @@ const sbom = {
   version: 1,
   metadata: {
     timestamp: "1970-01-01T00:00:00.000Z",
-    component: { name: "carina-ds", type: "application" },
+    component: { name: "example-ds", type: "application" },
   },
   components,
   hash: createHash("sha256").update(JSON.stringify(components)).digest("hex"),

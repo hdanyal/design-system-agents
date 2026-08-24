@@ -10,7 +10,7 @@ Load `.agents/context.json`. Isolation key is `(repoRoot, designSystemId)`. Drop
 If `bootstrapStatus` is not `complete`, only Release/bootstrap work is allowed.
 Confirm before protected writes or spawning another agent (see `.agents/agents/references/confirm.md`).
 Write only this agent's pack paths. Named invoke wins. No second agent without a confirmed handoff.
-Load `carina-*` skills only when pack `id === "carina"`.
+Load this agent's `packSkills` from `.agents/skills/` only when those files exist on this host.
 Review engine: cursor-product. Cursor product wrappers only in the Cursor adapter.
 See docs/AGENT-KIT.md.
 

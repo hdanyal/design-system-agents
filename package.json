@@ -1,5 +1,5 @@
 {
-  "name": "carina-ds",
+  "name": "example-ds",
   "version": "0.1.0",
   "type": "module",
   "private": true,
@@ -41,7 +41,7 @@
     "test:unit": "vitest run --project unit",
     "test:stories": "vitest run --project stories",
     "test:a11y": "vitest run --project a11y",
-    "carina:drift": "tsx scripts/carina-drift.ts",
+    "example:drift": "tsx scripts/example-drift.ts",
     "verify:fast": "tsx scripts/verify.ts --fast",
     "verify": "tsx scripts/verify.ts",
     "changeset": "changeset"

@@ -22,10 +22,10 @@
   "menuColor": "default",
   "menuAccent": "subtle",
   "registries": {
-    "@carina": {
+    "@example": {
       "url": "http://localhost:3000/r/dev/{name}.json",
       "headers": {
-        "Authorization": "Bearer ${CARINA_REGISTRY_TOKEN}"
+        "Authorization": "Bearer ${EXAMPLE_REGISTRY_TOKEN}"
       }
     }
   }

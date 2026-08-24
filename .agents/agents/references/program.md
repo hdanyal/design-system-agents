@@ -43,3 +43,5 @@ Index of `.agents/handoffs/*` plus next owner. Does not replace handoff files.
 ## First write
 
 Create the four files on the first confirmed Manager write. Isolation: `designSystemId` must match pack `id`.
+
+On that first/missing-board audit, also task unset `figmaFileKey` when the host needs Figma (human creates or links the file; roster owner maps pack after confirm). Do not write `context.json` or invent a file. If Figma is not needed, leave the inventory gap open and non-blocking.

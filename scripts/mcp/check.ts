@@ -13,9 +13,9 @@ if (!shadcn.args.includes("4.18.0") && !shadcn.args.some((arg) => arg.includes("
   fail("shadcn MCP must use the pinned CLI version")
 }
 
-const allowed = shadcn.allowedRegistries ?? ["@shadcn", "@carina"]
-if (!allowed.includes("@carina") || !allowed.includes("@shadcn")) {
-  fail("MCP allowlist must include @shadcn and @carina only unless reviewed")
+const allowed = shadcn.allowedRegistries ?? ["@shadcn", "@example"]
+if (!allowed.includes("@example") || !allowed.includes("@shadcn")) {
+  fail("MCP allowlist must include @shadcn and @example only unless reviewed")
 }
 
 const catalog = readJson<{ items: Array<{ name: string }> }>(paths.catalogJson)

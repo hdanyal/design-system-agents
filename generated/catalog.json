@@ -1,7 +1,7 @@
 {
   "generatedFrom": [
     "registry.json",
-    "components/carina",
+    "components/primitives",
     "registry/blocks"
   ],
   "stock": [
@@ -67,17 +67,16 @@
     "toggle-group",
     "tooltip"
   ],
-  "carina": [
+  "primitives": [
     {
       "name": "heading-group",
       "title": "Heading Group",
       "type": "registry:ui",
       "status": "experimental",
-      "owner": "carina-ds-eng",
+      "owner": "hdanyal",
       "a11yStatus": "error",
       "introducedIn": "0.1.0",
       "lastReviewed": "2026-08-17",
-      "figmaNode": "https://www.figma.com/design/4rMUl36kQlaVzUxy4xoz4Y?node-id=1-27",
       "codeConnect": "deferred-until-kit",
       "reuseContexts": [
         "page-header block",
@@ -91,13 +90,13 @@
       "title": "Page Header",
       "type": "registry:block",
       "status": "experimental",
-      "owner": "carina-ds-eng",
+      "owner": "example-ds-eng",
       "a11yStatus": "error",
       "introducedIn": "0.1.0",
       "lastReviewed": "2026-08-17",
       "figmaNode": "",
       "registryDependencies": [
-        "@carina/heading-group",
+        "@example/heading-group",
         "separator"
       ]
     }
@@ -106,18 +105,18 @@
     {
       "name": "agent-guidance",
       "type": "registry:file",
-      "title": "Carina consumer agent guidance",
+      "title": "Example consumer agent guidance",
       "description": "Consumer-facing compose-don't-fork and adoption instructions. No maintainer secrets or hooks.",
       "files": [
         {
           "path": "registry/guidance/agent-guidance.md",
           "type": "registry:file",
-          "target": "docs/carina-agent-guidance.md"
+          "target": "docs/example-agent-guidance.md"
         }
       ],
       "meta": {
         "status": "experimental",
-        "owner": "carina-ds-eng",
+        "owner": "example-ds-eng",
         "audience": "consumer"
       }
     }
@@ -130,14 +129,14 @@
       "description": "Reusable title, eyebrow, and description cluster for page and section intros.",
       "files": [
         {
-          "path": "components/carina/heading-group/heading-group.tsx",
+          "path": "components/primitives/heading-group/heading-group.tsx",
           "type": "registry:ui",
-          "target": "components/carina/heading-group/heading-group.tsx"
+          "target": "components/example/heading-group/heading-group.tsx"
         }
       ],
       "meta": {
         "status": "experimental",
-        "owner": "carina-ds-eng",
+        "owner": "example-ds-eng",
         "a11yStatus": "error",
         "introducedIn": "0.1.0"
       }
@@ -148,19 +147,19 @@
       "title": "Page Header",
       "description": "Page title cluster with optional actions and a separator, composed from heading-group and stock separator.",
       "registryDependencies": [
-        "@carina/heading-group",
+        "@example/heading-group",
         "separator"
       ],
       "files": [
         {
           "path": "registry/blocks/page-header/page-header.tsx",
           "type": "registry:block",
-          "target": "components/carina/blocks/page-header.tsx"
+          "target": "components/example/blocks/page-header.tsx"
         }
       ],
       "meta": {
         "status": "experimental",
-        "owner": "carina-ds-eng",
+        "owner": "example-ds-eng",
         "a11yStatus": "error",
         "introducedIn": "0.1.0"
       }
@@ -168,18 +167,18 @@
     {
       "name": "agent-guidance",
       "type": "registry:file",
-      "title": "Carina consumer agent guidance",
+      "title": "Example consumer agent guidance",
       "description": "Consumer-facing compose-don't-fork and adoption instructions. No maintainer secrets or hooks.",
       "files": [
         {
           "path": "registry/guidance/agent-guidance.md",
           "type": "registry:file",
-          "target": "docs/carina-agent-guidance.md"
+          "target": "docs/example-agent-guidance.md"
         }
       ],
       "meta": {
         "status": "experimental",
-        "owner": "carina-ds-eng",
+        "owner": "example-ds-eng",
         "audience": "consumer"
       }
     }

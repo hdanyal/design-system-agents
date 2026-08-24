@@ -68,7 +68,7 @@ function brandingMarkdown(items: ReturnType<typeof flattenTokens>, designLanguag
     )
     .join("\n")
 
-  return `# Carina branding reference
+  return `# Example branding reference
 
 > **GENERATED from \`tokens.json\` and \`design-language.json\`. Do not hand-edit.**
 > Run \`pnpm tokens:build\`. Do not hand-copy hex or oklch into components or stories.
@@ -81,7 +81,7 @@ function brandingMarkdown(items: ReturnType<typeof flattenTokens>, designLanguag
 
 ## Overview
 
-Carina's visual identity is expressed through canonical tokens, CSS variables, the Inter type stack, and lucide icons. Treat this reference as identity guidance, not a second palette: compose existing catalog entities and preserve their established contracts.
+Example's visual identity is expressed through canonical tokens, CSS variables, the Inter type stack, and lucide icons. Treat this reference as identity guidance, not a second palette: compose existing catalog entities and preserve their established contracts.
 
 ## Token context (CSS vars)
 
@@ -95,7 +95,7 @@ ${rows}
 
 **Do**
 - Use semantic CSS variables and token-backed utility classes.
-- Reuse stock UI, Carina primitives, and registered blocks before extracting.
+- Reuse stock UI, host primitives, and registered blocks before extracting.
 - Keep generated outputs synchronized with \`pnpm tokens:build\`.
 
 **Don't**

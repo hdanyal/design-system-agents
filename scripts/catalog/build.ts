@@ -21,6 +21,7 @@ type RegistryFile = {
 }
 
 const STOCK_RESERVED = new Set<string>()
+const primitivesRel = paths.packPaths.primitives ?? "components/primitives"
 
 function stockNames() {
   if (!existsSync(paths.uiDir)) return
@@ -39,13 +40,13 @@ function collectRegistryItems(file: string, acc: NonNullable<RegistryFile["items
   }
 }
 
-function carinaMetas(): Meta[] {
-  if (!existsSync(paths.carinaDir)) return []
-  return readdirSync(paths.carinaDir, { withFileTypes: true })
+function primitiveMetas(): Meta[] {
+  if (!existsSync(paths.primitivesDir)) return []
+  return readdirSync(paths.primitivesDir, { withFileTypes: true })
     .filter((entry) => entry.isDirectory() && !entry.name.startsWith("_"))
     .map((entry) => {
-      const metaPath = path.join(paths.carinaDir, entry.name, "meta.json")
-      if (!existsSync(metaPath)) fail(`Missing meta.json for Carina primitive ${entry.name}`)
+      const metaPath = path.join(paths.primitivesDir, entry.name, "meta.json")
+      if (!existsSync(metaPath)) fail(`Missing meta.json for primitive ${entry.name}`)
       return readJson<Meta>(metaPath)
     })
 }
@@ -72,20 +73,21 @@ function buildCatalog() {
 
   for (const item of items) {
     if (STOCK_RESERVED.has(item.name) && item.type !== "registry:file") {
-      fail(`Registry item "${item.name}" collides with a reserved stock shadcn name`)
+      fail(`Registry item "${item.name}" collides with a reserved stock UI name`)
     }
   }
 
+  const primitives = primitiveMetas()
   const catalog = {
-    generatedFrom: ["registry.json", "components/carina", "registry/blocks"],
+    generatedFrom: ["registry.json", primitivesRel, paths.packPaths.blocks ?? "registry/blocks"],
     stock: [...STOCK_RESERVED].sort(),
-    carina: carinaMetas(),
+    primitives,
     blocks: blockMetas(),
     guidance: items.filter((item) => item.type === "registry:file"),
     items,
   }
 
-  const md = `# Carina catalog
+  const md = `# Example catalog
 
 GENERATED. Do not hand-edit. Run \`pnpm catalog\`.
 
@@ -93,11 +95,11 @@ GENERATED. Do not hand-edit. Run \`pnpm catalog\`.
 
 ${catalog.stock.map((name) => `- \`${name}\``).join("\n")}
 
-## Carina primitives
+## Primitives
 
 | Name | Status | Owner | a11y | Introduced |
 | --- | --- | --- | --- | --- |
-${catalog.carina
+${catalog.primitives
   .map(
     (item) =>
       `| \`${item.name}\` | ${item.status ?? ""} | ${item.owner ?? ""} | ${item.a11yStatus ?? ""} | ${item.introducedIn ?? ""} |`

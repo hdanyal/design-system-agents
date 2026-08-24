@@ -15,7 +15,7 @@ writeFileSync(
   path.join(fixture, "package.json"),
   `${JSON.stringify(
     {
-      name: "@carina/consumer-fixture",
+      name: "@example/consumer-fixture",
       private: true,
       type: "module",
       dependencies: {
@@ -28,7 +28,7 @@ writeFileSync(
   )}\n`
 )
 
-for (const item of index.items.filter((entry) => entry.name !== "carina")) {
+for (const item of index.items.filter((entry) => entry.name !== "example")) {
   const source = path.join(paths.generatedRegistry, "dev", `${item.name}.json`)
   if (!existsSync(source)) fail(`Missing built item ${item.name}`)
   const json = JSON.parse(readFileSync(source, "utf8")) as {

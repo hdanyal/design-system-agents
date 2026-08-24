@@ -14,7 +14,7 @@ Out of scope: Bugbot (logic bugs), Security (secrets/XSS), second axe run unless
 
 `subjectAgent`: `ds-prototype`
 
-Must-read or refuse: pack `paths.prototypes`, named sandbox `USAGE.md` (and `HARVEST.md` if linked), CSF/MDX story, `references/present.md`, inventory, harvest-map template, branding reference when pack `id === "carina"`.
+Must-read or refuse: pack `paths.prototypes`, named sandbox `USAGE.md` (and `HARVEST.md` if linked), CSF/MDX story, `references/present.md`, inventory, harvest-map template, branding `reference.md` under `.agents/skills/` when present.
 
 1. Sandbox lives under `paths.prototypes/<human-name>/` (not chat JSX, not Cursor Canvas as the gallery).
 2. `USAGE.md` exists; living harvest flags are in a Harvest section or a linked `HARVEST.md`.
@@ -25,7 +25,7 @@ Must-read or refuse: pack `paths.prototypes`, named sandbox `USAGE.md` (and `HAR
 7. Hex/oklch copied into JSX or stories (not CSS variables) → **automatic revise**.
 8. Local composition twins an inventory/catalog entity without a harvest flag toward enhance-existing or reuse.
 9. Next hop is **one** Architect batch for the whole view, not one handoff per region.
-10. Stock `components/ui` restyle or fork (except via `upstream-patches.json`) → **automatic revise**.
+10. Stock restyle or fork of pack `paths.ui` (except via this host's `upstream-patches.json` when present) → **automatic revise**.
 
 Out of scope: implementing the extract, axe, secrets.
 
@@ -38,7 +38,7 @@ Out of scope: implementing the extract, axe, secrets.
 Must-read or refuse: inventory, filled harvest map, prototype USAGE/HARVEST, extract rationale if any `extract-new` row exists.
 
 1. One Architect hop covers **all** flags from one view; harvest-map template used (not per-region spawns).
-2. Inventory search is cited (entity ids/paths). If pack `id === "carina"`, catalog was searched too.
+2. Inventory search is cited (entity ids/paths). This pack's catalog was searched when `docs/catalog.md` or generated catalog exists.
 3. Every harvest row uses the decision enum only: `reuse` | `enhance-existing` | `extract-new primitive` | `extract-new block` | `keep local`.
 4. Any `extract-new *` row has a written rationale that stock **and** enhance-existing are not enough.
 5. `enhance-existing` names the **existing** export (path + public API), not a cousin name that would be a twin.
@@ -56,7 +56,7 @@ Out of scope: writing the component, running Bugbot.
 
 `subjectAgent`: `ds-coding`
 
-Must-read or refuse: confirmed rationale/handoff, inventory, affected prototype USAGE/HARVEST, branding reference when Carina.
+Must-read or refuse: confirmed rationale/handoff, inventory, affected prototype USAGE/HARVEST, branding `reference.md` under `.agents/skills/` when present.
 
 1. New base component without Architect rationale → **automatic revise** (do not treat as accept).
 2. Written files are only rationale-named files plus colocated tests/stories (no drive-by APIs).
@@ -67,7 +67,7 @@ Must-read or refuse: confirmed rationale/handoff, inventory, affected prototype 
 7. `.agents/memory/` written in the implementation turn → **automatic revise**.
 8. Self-declared Bugbot, Security, or Critique “done” → **automatic revise**.
 9. Colocated tests and stories exist for the changed API.
-10. Stock restyle without `upstream-patches.json` → **automatic revise**.
+10. Stock restyle or fork of pack `paths.ui` without this host's `upstream-patches.json` when that ledger exists → **automatic revise**.
 
 Out of scope: token policy, GOVERNANCE, closing reviews.
 
@@ -94,7 +94,7 @@ Out of scope: implementing missing components; token builds.
 
 `subjectAgent`: `ds-language`
 
-Must-read or refuse: canonical token path, `commands.tokensBuild`, T-28 identity-shape proposal, generated branding reference when Carina.
+Must-read or refuse: canonical token path, `commands.tokensBuild`, T-28 identity-shape proposal, generated branding `reference.md` under `.agents/skills/` when present.
 
 1. Canonical token source missing → gap, not a new invented token file. Invention → **automatic revise**.
 2. Contrast changes include WCAG impact (which pair, which surface).

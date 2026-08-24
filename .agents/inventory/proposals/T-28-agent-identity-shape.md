@@ -1,6 +1,6 @@
 ---
 title: T-28 — Agent identity file shape
-designSystemId: carina
+designSystemId: example
 task: T-28
 architectOwner: ds-architect
 status: decided
@@ -10,14 +10,14 @@ status: decided
 
 ## Decision
 
-**extend** `.agents/skills/carina-branding/reference.md` generation
+**extend** `.agents/skills/example-branding/reference.md` generation
 
 Do **not** add a hand-maintained repo-root `DESIGN.md` as a parallel identity file.
 
 ## Rationale
 
 - Canonical tokens remain `tokens.json` (ADR 0002). Identity prose must not become a second source of truth for colors, radius, or type.
-- `reference.md` already exists, is **GENERATED** by `pnpm tokens:build` (`scripts/tokens/build.ts` → `brandingMarkdown`), and is the must-read for `carina-branding`.
+- `reference.md` already exists, is **GENERATED** by `pnpm tokens:build` (`scripts/tokens/build.ts` → `brandingMarkdown`), and is the must-read for `example-branding`.
 - A separate `DESIGN.md` would invite agents to treat marketing/philosophy copy as canonical over tokens, or to hand-edit hex/oklch into a root doc that drifts from `tokens.json`.
 - DESIGN.md *philosophy* (Overview, Do's and Don'ts) is still useful — adapt it as **generated sections** inside `reference.md`, not as a competing file.
 - Strong reason against a root `DESIGN.md` here: branding reference generation already ships; inventing a parallel hand-maintained doc violates pack preference and isolation.
@@ -26,7 +26,7 @@ Do **not** add a hand-maintained repo-root `DESIGN.md` as a parallel identity fi
 
 Order after the existing GENERATED banner and preset/stack bullets:
 
-1. **Overview** — short product/visual intent for agents (Carina look: tokens, CSS vars, lucide/Inter; not a second palette).
+1. **Overview** — short product/visual intent for agents (Example look: tokens, CSS vars, lucide/Inter; not a second palette).
 2. **Token context (CSS vars)** — keep/extend the current guidance: use `bg-primary`, `text-foreground`, `var(--ring)`, etc.; never copy hex/oklch into JSX or stories. Retain the token table sourced from `tokens.json`.
 3. **Do's and Don'ts** — DESIGN.md-style rules adapted for agents (do: CSS variables, compose catalog; don't: stock restyles, twin APIs, hand-edit generated outputs, invent identity colors in components).
 4. **Catalog component intent** — one short block pointing agents at inventory/Storybook for *what exists* and when to reuse vs extract; no duplicate component catalog inside the branding file.
@@ -46,8 +46,8 @@ Hand-edits to `reference.md` are forbidden. Drift → regenerate.
 
 ## Who generates
 
-- **Owner:** **ds-language** (via `carina-update-design-language` / branding reference generation).
-- **Command:** `pnpm tokens:build` (existing `scripts/tokens/build.ts` `brandingMarkdown` output to `.agents/skills/carina-branding/reference.md`).
+- **Owner:** **ds-language** (via `example-update-design-language` / branding reference generation).
+- **Command:** `pnpm tokens:build` (existing `scripts/tokens/build.ts` `brandingMarkdown` output to `.agents/skills/example-branding/reference.md`).
 - Language extends the generator to emit Overview, Do's and Don'ts, and catalog-intent sections; does not maintain a separate root DESIGN.md.
 
 ## Manager duty
@@ -56,11 +56,11 @@ On the **first board after bootstrap**, Manager always tasks identity-shape work
 
 ## Must-read while building views
 
-Prototype, Coding, and Language **must read** `.agents/skills/carina-branding/reference.md` (this identity surface) while building or harvesting views — alongside inventory and compose rules. Do not invent a root DESIGN.md “for agents.”
+Prototype, Coding, and Language **must read** `.agents/skills/example-branding/reference.md` (this identity surface) while building or harvesting views — alongside inventory and compose rules. Do not invent a root DESIGN.md “for agents.”
 
 ## Explicit dependency gate
 
-**Do not** add `@google/design.md` (or similar external design.md package) until **`carina-dependency-review`** intake and approval. This decision does not authorize that dependency.
+**Do not** add `@google/design.md` (or similar external design.md package) until **`example-dependency-review`** intake and approval. This decision does not authorize that dependency.
 
 ## What this is not
 
@@ -71,8 +71,8 @@ Prototype, Coding, and Language **must read** `.agents/skills/carina-branding/re
 
 ## Inventory refs
 
-- Existing: `.agents/skills/carina-branding/reference.md` (generated)
+- Existing: `.agents/skills/example-branding/reference.md` (generated)
 - Generator: `scripts/tokens/build.ts` (`brandingMarkdown`)
-- Skill: `.agents/skills/carina-branding/SKILL.md`
+- Skill: `.agents/skills/example-branding/SKILL.md`
 - Canonical tokens: `tokens.json` (+ `design-language.json` for preset/stack metadata)
 - No new catalog primitive or block from this task

@@ -1,6 +1,6 @@
 ---
 name: New base component
-about: Propose a Carina primitive
+about: Propose a host primitive
 ---
 
 ## Requirement

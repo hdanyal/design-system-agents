@@ -19,7 +19,7 @@ Never put customer data, PII, credentials, confidential screenshots, or unlicens
 
 ## Dependencies
 
-New runtime dependencies require: need, alternatives, license allowlist, vulnerability scan, maintenance health, bundle/client impact, and CODEOWNER approval. Disallow install scripts unless explicitly approved. Use `carina-dependency-review`.
+New runtime dependencies require: need, alternatives, license allowlist, vulnerability scan, maintenance health, bundle/client impact, and CODEOWNER approval. Disallow install scripts unless explicitly approved. Use `example-dependency-review`.
 
 Pin GitHub Actions by full SHA. Generate an SBOM at release time and retain it with the manifest.
 

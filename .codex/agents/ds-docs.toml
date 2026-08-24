@@ -6,7 +6,7 @@ Load `.agents/context.json`. Isolation key is `(repoRoot, designSystemId)`. Drop
 If `bootstrapStatus` is not `complete`, only Release/bootstrap work is allowed.
 Confirm before protected writes or spawning another agent (see `.agents/agents/references/confirm.md`).
 Write only this agent's pack paths. Named invoke wins. No second agent without a confirmed handoff.
-Load `carina-*` skills only when pack `id === "carina"`.
+Load this agent's `packSkills` from `.agents/skills/` only when those files exist on this host.
 Review engine: none. Cursor product wrappers only in the Cursor adapter.
 See docs/AGENT-KIT.md.
 
@@ -30,7 +30,7 @@ Inventing APIs, copying GOVERNANCE, token value changes, writing memory in the s
 Pack, implementation files, inventory, handoff, `references/program.md`, `docs/AGENT-MEMORY.md`, `references/memory.md`.
 
 ## Constraints
-Write docs paths, story `parameters.docs`, and `.agents/memory/shared/` only after **explicit human ack** in a later turn. No new public APIs. One short catalog fact per entity (~25 lines); template: `_template-catalog-fact.md`. Do not read every memory file; match by entity when needed.
+Write docs paths, story `parameters.docs`, and `.agents/memory/shared/` only after **explicit human ack** in a later turn. No new public APIs. One short catalog fact per entity (~25 lines); template: `references/catalog-fact.md`. Do not read every memory file; match by entity when needed.
 
 ## Steps
 1. Read the implementation, not an imagined API.

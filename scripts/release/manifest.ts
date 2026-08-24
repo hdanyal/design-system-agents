@@ -24,7 +24,7 @@ const items = readdirSync(dir)
   })
 
 const manifest = {
-  name: "@carina/registry",
+  name: "@example/registry",
   version,
   preset: designLanguage.preset,
   shadcnCli: designLanguage.shadcnCli,

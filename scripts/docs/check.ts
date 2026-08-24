@@ -7,7 +7,9 @@ const MARKER_BEGIN = "<!-- BEGIN ds-kit-agents -->"
 const MARKER_END = "<!-- END ds-kit-agents -->"
 
 const requiredDocs = [
-  "ONBOARDING.md",
+  "docs/ONBOARDING.md",
+  "docs/EXAMPLE-HOST.md",
+  "docs/README.md",
   "CONTRIBUTING.md",
   "AGENTS.md",
   "SECURITY.md",
@@ -26,6 +28,8 @@ const requiredDocs = [
   "docs/adr/0004-immutable-registry.md",
   "docs/adr/0005-storybook-figma-roles.md",
   "docs/adr/0006-copy-code-drift.md",
+  "docs/adr/0007-primitives-folder.md",
+  "docs/adr/0008-example-host-identity.md",
 ]
 
 for (const file of requiredDocs) {

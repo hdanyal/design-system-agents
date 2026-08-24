@@ -9,14 +9,14 @@ Most product screens open with a title, optional supporting copy, and a small cl
 - Stock `CardHeader` / `CardTitle` / `CardDescription`: card-scoped chrome, not a page intro.
 - Stock `EmptyHeader` / `EmptyTitle`: empty-state layout and dashed container.
 - Stock `Item` / `Field`: list and form semantics.
-- Primitive `@carina/heading-group` alone: covers title / eyebrow / description, and deliberately has no actions, breadcrumbs, or rule. A page header without an action slot would push every screen to invent its own flex row.
+- Primitive `@example/heading-group` alone: covers title / eyebrow / description, and deliberately has no actions, breadcrumbs, or rule. A page header without an action slot would push every screen to invent its own flex row.
 - Raw `h1` + `p` + button row in every screen: duplicates the heading-group contract and the separator.
 
-No stock primitive is a page chrome composition. No existing Carina primitive should grow an actions slot — that would turn heading-group into a layout.
+No stock primitive is a page chrome composition. No existing host primitive should grow an actions slot — that would turn heading-group into a layout.
 
 ## Why this is a block, not a primitive
 
-`page-header` is a registry composition: `@carina/heading-group` + optional consumer-supplied actions + stock `separator`. Blocks stay thin. The heading cluster is already extracted. What remains is local flex wrapping (`sm:flex-row sm:items-end sm:justify-between`) and a rule. That is not a reusable base component and must not grow a public API of its own.
+`page-header` is a registry composition: `@example/heading-group` + optional consumer-supplied actions + stock `separator`. Blocks stay thin. The heading cluster is already extracted. What remains is local flex wrapping (`sm:flex-row sm:items-end sm:justify-between`) and a rule. That is not a reusable base component and must not grow a public API of its own.
 
 ## API
 

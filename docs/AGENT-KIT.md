@@ -2,17 +2,43 @@
 
 Portable specialists (`ds-*`) for a design-system git root. Cursor, Claude Code, and Codex share the same pack, inventory, memory, and program board. Copy this guide with the kit.
 
+The **kit source** checkout also includes an example host (pack `id: example`) so the specialists can run against a real catalog. `pnpm kit:pack` does **not** include that catalog. On a packed install, bootstrap **your** pack and paths. On the kit source repo, [EXAMPLE-HOST.md](EXAMPLE-HOST.md) covers using or replacing the example.
+
 ## Install
 
-1. From a Carina git tag run `pnpm kit:pack` or copy kit paths listed in `.agents/kit/manifest.json`.
-2. On the host: `node scripts/kit/install.mjs --dir <host-root>` (from the unpacked kit, or copy files then `pnpm agents:sync`).
-3. Do **not** copy Carina `.agents/context.json`, `.agents/inventory/`, `.agents/memory/`, `.agents/program/`, `tokens.json`, `design-language.json`, `agent-tooling.json`, or `components/`.
-4. Open **one** product on the host git root. Invoke **Release** (`ds-release`): bootstrap this design system.
-5. Run `node scripts/kit/bootstrap.mjs --dir .` (scan). After you confirm: `--write --confirm-write` (seeds empty `.agents/memory/` layout; no records).
-6. Review pack `id` (not `carina` unless it is Carina), paths, Figma key, gaps. Then `bootstrapStatus: complete`.
-7. Invoke **Manager** (`ds-manager`) to seed `.agents/program/` (or explicitly defer the board). On the first board after bootstrap, and whenever the board is missing, Manager must task any generated-brand-identity gap: the branding reference needs Overview plus Do's and Don'ts. Manager records the gap/task only and never writes the identity file.
+**One git root = one pack.** Do not nest a second design system inside another host's tree (not under `prototypes/`, `components/`, or a subfolder of an existing pack).
 
-Upgrade later: `node scripts/kit/upgrade.mjs --dir <host-root>`. It must not clobber pack, inventory, memory records, or program; it may add missing empty memory folders. Kit-minimal check: `node scripts/kit/check.mjs --dir <host-root>`.
+### Pack the kit (from this repo)
+
+```bash
+pnpm kit:pack
+# or: pnpm kit:pack --out /tmp/ds-agent-kit
+```
+
+Outputs kit paths from `.agents/kit/manifest.json` (playbooks, `scripts/kit`, agent docs, harness adapters). Does **not** include host tokens, components, inventory records, or memory.
+
+### New git root (greenfield)
+
+1. Create or clone a **separate** design-system repository (outside any other pack's git root).
+2. From this checkout: `node scripts/kit/install.mjs --dir /path/to/new-ds` (refuses the kit source root itself).
+3. On the host: invoke **Release** (`ds-release`).
+4. Scan: `node scripts/kit/bootstrap.mjs --dir /path/to/new-ds`. After confirm: `--write --confirm-write` (seeds empty `.agents/memory/` only).
+5. Review pack `id` (must not reuse this source host's id), `paths`, Figma key, gaps. Set `bootstrapStatus: complete`.
+6. Invoke **Manager** (`ds-manager`) to seed `.agents/program/` (or defer explicitly).
+
+Do **not** copy this source host's `.agents/context.json`, `.agents/inventory/`, `.agents/memory/`, `.agents/program/`, `tokens.json`, `design-language.json`, `agent-tooling.json`, or `components/`. On the kit source repo, [EXAMPLE-HOST.md](EXAMPLE-HOST.md) explains why.
+
+### Existing design system
+
+1. Same `node scripts/kit/install.mjs --dir /path/to/existing-ds` from a packed or source checkout.
+2. Install leaves an existing host pack, inventory, memory, and program **untouched**.
+3. If no pack: bootstrap as above. If pack exists: `node scripts/kit/upgrade.mjs --dir /path/to/existing-ds` to refresh kit playbooks without clobbering host data.
+4. Confirm `paths.ui`, `paths.primitives`, `paths.blocks`, and preview match **that** repo's layout (bootstrap scan output or reviewed pack paths).
+5. Run `node scripts/kit/check.mjs --dir /path/to/existing-ds`, then Manager on the host.
+
+Upgrade later: `node scripts/kit/upgrade.mjs --dir <host-root>`. Kit-minimal check: `node scripts/kit/check.mjs --dir <host-root>`.
+
+After install on any host: `pnpm agents:sync` (or `node scripts/kit/sync.mjs` from the host if scripts are wired).
 
 ## Harness
 
@@ -55,9 +81,9 @@ Pipeline (confirm each hop): Prototype → Critique → Architect → Critique �
 
 ## Open-ended view pipeline
 
-Prototype accepts any human-named view; no screen allowlist defines the work. Each prototype keeps `USAGE.md` and a CSF story, reads the generated branding reference, and maintains living harvest flags while building. After every material sandbox or story write, it presents the live Storybook companion and keeps the preview available for visual HITL; chat JSX and Cursor Canvas are not the gallery.
+Prototype accepts any human-named view; no screen allowlist defines the work. Each prototype keeps `USAGE.md` and a CSF story, reads the generated branding reference when present, and maintains living harvest flags while building. After every material sandbox or story write, it presents the live Storybook companion and keeps the preview available for visual HITL; chat JSX and Cursor Canvas are not the gallery.
 
-Harvest decisions follow one order: reuse → enhance-existing → extract-new primitive/block → keep local. Prototype batches all regions from a view into one Architect hop using `.agents/inventory/proposals/_template-harvest-map.md`. Architect may approve a family extract, but prefers enhancing a named API over a twin. Coding implements the approved new or enhanced entity, rewires prototype imports, and presents the live companion again.
+Harvest decisions follow one order: reuse → enhance-existing → extract-new primitive/block → keep local. Prototype batches all regions from a view into one Architect hop using `.agents/agents/references/harvest-map.md`. Architect may approve a family extract, but prefers enhancing a named API over a twin. Coding implements the approved new or enhanced entity, rewires prototype imports, and presents the live companion again.
 
 Experimental block slices may be harvested from one view over time. Each slice remains experimental, keeps `registryDependencies` aligned with imports, and requires HITL. After HITL, the specialist who shipped it may **propose** a shared catalog-memory fact; **Documentation (`ds-docs`)** writes it under `.agents/memory/shared/` only in a later acknowledged turn. Keep facts short (~25 lines); retrieve by entity match — do not load every memory file. Handoffs are not memory.
 
@@ -67,7 +93,7 @@ One git root = one pack. Do not attach another DS’s chats, catalog, or Figma f
 
 ## MCP
 
-Host `agent-tooling.json` is the allowlist. Cursor: `pnpm agents:sync` writes `.cursor/mcp.json`. Claude Code / Codex: configure MCP yourself; do not copy Carina’s shadcn pin.
+Host `agent-tooling.json` is the allowlist. Cursor: `pnpm agents:sync` writes `.cursor/mcp.json`. Claude Code / Codex: configure MCP yourself; do not copy this source host's shadcn pin.
 
 ## Done on a foreign host
 

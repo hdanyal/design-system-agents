@@ -1,18 +1,18 @@
-# Carina Design System
+# Example Design System
 
-Internal, proprietary design system built from shadcn preset `b3m6Yzw0W`.
+This git root ships the portable **`ds-*` agent kit** plus an **example design system** (pack `id: example`) so you can run the specialists against a real catalog. Use the example as a scaffold, or install the kit on another git root and replace it with your own system — [docs/EXAMPLE-HOST.md](docs/EXAMPLE-HOST.md).
 
-**New here?** Start with [ONBOARDING.md](ONBOARDING.md) (humans) or [AGENTS.md](AGENTS.md) (agents).
-
-Figma file: [Carina Design System](https://www.figma.com/design/4rMUl36kQlaVzUxy4xoz4Y)
+**New here?** Humans: [docs/ONBOARDING.md](docs/ONBOARDING.md). Agents: [AGENTS.md](AGENTS.md). Kit install: [docs/AGENT-KIT.md](docs/AGENT-KIT.md).
 
 This repository is an **enterprise-contract-ready scaffold**. It is not enterprise-ready until the Scale gate in [docs/READINESS.md](docs/READINESS.md) has objective evidence.
 
-## Layers
+## Layers (this pack)
+
+Resolved from `.agents/context.json` `paths`. Other hosts use their own pack paths — see [docs/AGENT-KIT.md](docs/AGENT-KIT.md).
 
 1. Canonical tokens in `tokens.json`
 2. Regeneratable stock UI in `components/ui`
-3. Carina primitives in `components/carina`
+3. Host primitives in `components/primitives`
 4. Blocks in `registry/blocks`
 
 ## Start
@@ -34,12 +34,12 @@ pnpm verify
 
 ## Docs
 
-- [ONBOARDING.md](ONBOARDING.md) — human first-day guide
-- [CONTRIBUTING.md](CONTRIBUTING.md) — branching, PRs, docs-as-code, view pipeline
-- [AGENTS.md](AGENTS.md) — agent cold-start router
-- [docs/AGENT-KIT.md](docs/AGENT-KIT.md) — specialists, harnesses, open-ended view pipeline
-- [docs/AGENT-CRITIQUE.md](docs/AGENT-CRITIQUE.md) — independent decision-quality critic and provenance
-- [docs/AGENT-MEMORY.md](docs/AGENT-MEMORY.md) — selective reviewed catalog facts after HITL (`shared/` seeded empty at bootstrap)
-- [docs/ADOPTION.md](docs/ADOPTION.md)
-- [docs/GOVERNANCE.md](docs/GOVERNANCE.md)
-- [SECURITY.md](SECURITY.md)
+Full map: [docs/README.md](docs/README.md)
+
+| Audience | Start here |
+| --- | --- |
+| Humans | [docs/ONBOARDING.md](docs/ONBOARDING.md) → [CONTRIBUTING.md](CONTRIBUTING.md) |
+| Kit vs this example catalog | [docs/EXAMPLE-HOST.md](docs/EXAMPLE-HOST.md) |
+| Agents | [AGENTS.md](AGENTS.md) → [docs/AGENT-KIT.md](docs/AGENT-KIT.md) |
+| Consumers | [docs/ADOPTION.md](docs/ADOPTION.md) |
+| Security | [SECURITY.md](SECURITY.md) |

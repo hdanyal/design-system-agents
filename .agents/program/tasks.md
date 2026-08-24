@@ -4,13 +4,13 @@ Live catalog hygiene (not the deleted prototype):
 
 | id | title | owner | dependsOn | status | links |
 | --- | --- | --- | --- | --- | --- |
-| T-13 | Write `heading-group` USAGE.md | ds-docs | | done | `components/carina/heading-group/USAGE.md` |
+| T-13 | Write `heading-group` USAGE.md | ds-docs | | done | `components/primitives/heading-group/USAGE.md` |
 | T-14 | Write `page-header` RATIONALE.md | ds-architect | | done | `registry/blocks/page-header/RATIONALE.md` |
 | T-20 | Harvest-map template (reuse / enhance-existing / extract-new / keep local) | ds-architect | | done | `.agents/inventory/proposals/_template-harvest-map.md` |
-| T-21 | Prototype playbook: any view, live present, harvest flags, no promote | ds-release | T-20 | done | carina-prototype, ds-prototype.md, present.md |
-| T-22 | Compose + Architect: harvest-while-building; enhance-existing over twins | ds-release | T-20 | done | carina-compose, ds-architect.md |
-| T-23 | Coding: named new/enhanced APIs; sandbox rewire; present after rewire | ds-release | T-20 | done | carina-extend-ui, ds-coding.md |
-| T-24 | Promote-block: multi-slice experimental; propose memory not same turn | ds-release | T-20 | done | carina-promote-block |
+| T-21 | Prototype playbook: any view, live present, harvest flags, no promote | ds-release | T-20 | done | example-prototype, ds-prototype.md, present.md |
+| T-22 | Compose + Architect: harvest-while-building; enhance-existing over twins | ds-release | T-20 | done | example-compose, ds-architect.md |
+| T-23 | Coding: named new/enhanced APIs; sandbox rewire; present after rewire | ds-release | T-20 | done | example-extend-ui, ds-coding.md |
+| T-24 | Promote-block: multi-slice experimental; propose memory not same turn | ds-release | T-20 | done | example-promote-block |
 | T-25 | Memory catalog-fact template + HITL-then-ack path | ds-release | | done | docs/AGENT-MEMORY.md |
 | T-26 | Intent-eval + agent-contract tests (all three harness adapters) | ds-coding | T-21,T-22,T-23,T-24,T-25 | done | intent-eval.json, tests/agent-contract |
 | T-27 | Later: human names first sandbox; then retarget to ds-prototype | human | T-21,T-26 | open | |

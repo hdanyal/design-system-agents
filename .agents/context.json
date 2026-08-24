@@ -2,16 +2,16 @@
   "$schemaVersion": "1",
   "kitVersion": "0.2.0",
   "bootstrapStatus": "complete",
-  "id": "carina",
+  "id": "example",
   "paths": {
     "tokens": "tokens.json",
     "ui": "components/ui",
-    "primitives": "components/carina",
+    "primitives": "components/primitives",
     "blocks": "registry/blocks",
     "prototypes": "prototypes",
     "docs": "docs"
   },
-  "figmaFileKey": "4rMUl36kQlaVzUxy4xoz4Y",
+  "figmaFileKey": null,
   "preview": {
     "kind": "storybook",
     "command": "pnpm storybook",
@@ -30,9 +30,8 @@
     "id",
     "paths.tokens",
     "paths.ui",
-    "figmaFileKey",
     "preview"
   ],
   "reviewedAt": "2026-08-21",
-  "reviewedBy": "carina-ds-eng"
+  "reviewedBy": "hdanyal"
 }

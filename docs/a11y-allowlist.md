@@ -12,16 +12,16 @@ Every row needs an owner and an expiry. At expiry the dependency is re-checked a
 
 | Story | Owner | Issue | Reason | Expiry | Last review |
 | --- | --- | --- | --- | --- | --- |
-| UI/*/Default demo fixtures | carina-ds-eng | n/a | Upstream example stories may include incomplete demo chrome | 2026-11-17 | 2026-08-17 |
+| UI/*/Default demo fixtures | example-ds-eng | n/a | Upstream example stories may include incomplete demo chrome | 2026-11-17 | 2026-08-17 |
 
 ## Third-party upstream defects
 
 | Story | Dependency | Rule scoped | Defect | Owner | Expiry | Last review |
 | --- | --- | --- | --- | --- | --- | --- |
-| UI/Menubar/Default | @base-ui/react | `aria-required-children` off | While a menu is open, Base UI injects a `span[aria-owns]` directly into the `role="menubar"` element. ARIA permits only `menuitem`, `menuitemcheckbox`, `menuitemradio`, and `group` children there. | carina-ds-eng | 2026-11-17 | 2026-08-17 |
-| UI/Navigation Menu/Default | @base-ui/react | `aria-hidden-focus` off | Base UI's focus guard spans carry `aria-hidden="true"` together with `tabindex="0"`, so a hidden element remains in the tab order. | carina-ds-eng | 2026-11-17 | 2026-08-17 |
-| UI/Combobox/Default | @base-ui/react | `[data-slot="input-group-addon"][aria-hidden="true"]` excluded | When the popup opens, Base UI marks surrounding content `aria-hidden` without removing its focusable children from the tab order. | carina-ds-eng | 2026-11-17 | 2026-08-17 |
-| UI/Command/Empty | cmdk | `aria-required-children` off | cmdk renders its empty-state element inside the `role="listbox"` list, which ARIA does not permit as a child. | carina-ds-eng | 2026-11-17 | 2026-08-17 |
+| UI/Menubar/Default | @base-ui/react | `aria-required-children` off | While a menu is open, Base UI injects a `span[aria-owns]` directly into the `role="menubar"` element. ARIA permits only `menuitem`, `menuitemcheckbox`, `menuitemradio`, and `group` children there. | example-ds-eng | 2026-11-17 | 2026-08-17 |
+| UI/Navigation Menu/Default | @base-ui/react | `aria-hidden-focus` off | Base UI's focus guard spans carry `aria-hidden="true"` together with `tabindex="0"`, so a hidden element remains in the tab order. | example-ds-eng | 2026-11-17 | 2026-08-17 |
+| UI/Combobox/Default | @base-ui/react | `[data-slot="input-group-addon"][aria-hidden="true"]` excluded | When the popup opens, Base UI marks surrounding content `aria-hidden` without removing its focusable children from the tab order. | example-ds-eng | 2026-11-17 | 2026-08-17 |
+| UI/Command/Empty | cmdk | `aria-required-children` off | cmdk renders its empty-state element inside the `role="listbox"` list, which ARIA does not permit as a child. | example-ds-eng | 2026-11-17 | 2026-08-17 |
 
 ## Fixed rather than allowlisted
 
