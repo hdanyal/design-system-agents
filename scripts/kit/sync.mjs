@@ -177,6 +177,8 @@ if (existsSync(skillsPath)) {
 
 GENERATED from \`.agents/skills/manifest.json\`. Canonical instructions live in each \`SKILL.md\`.
 
+What each agent skill is for on this host.
+
 | Skill | Form | Invocation | Boundary |
 | --- | --- | --- | --- |
 ${skills.skills

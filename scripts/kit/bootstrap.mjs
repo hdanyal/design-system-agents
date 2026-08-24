@@ -9,6 +9,8 @@ import {
   isKitSource,
   scanHost,
   seedMemoryLayout,
+  seedHostSkills,
+  formatBootstrapHumanRecap,
   writeJson,
 } from "./lib.mjs"
 
@@ -76,6 +78,7 @@ const gaps = {
 
 if (!write) {
   console.log(JSON.stringify({ pack, inventorySummary: inventory.entities.length, gaps: gaps.gaps }, null, 2))
+  console.log(formatBootstrapHumanRecap(pack, scan))
   console.log("bootstrap scan only (pass --write after confirm to persist draft)")
   process.exit(0)
 }
@@ -88,4 +91,8 @@ writeJson(packPath, pack)
 writeJson(path.join(root, ".agents/inventory/components.json"), inventory)
 writeJson(path.join(root, ".agents/inventory/gaps.json"), gaps)
 seedMemoryLayout(root)
+if (pack.id && pack.id !== "example") {
+  const seeded = seedHostSkills(root, pack.id)
+  if (seeded.ok) console.log(`seedHostSkills wrote ${seeded.count} ${pack.id}-* skills`)
+}
 console.log(`bootstrap wrote pack status=${pack.bootstrapStatus} id=${pack.id || "(unset)"}`)

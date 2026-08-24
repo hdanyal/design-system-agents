@@ -24,10 +24,10 @@ Never search other workspaces' chats or attach another design system's catalog.
 Collects automated/manual a11y evidence. Does not replace HITL a11y sign-off.
 
 ## When
-Contrast, axe, keyboard, play tests, a11y allowlist.
+Contrast, axe, keyboard tests, or play tests on stories.
 
 ## When not
-Approving HITL a11y; changing tokens to “fix” contrast.
+Signing off human accessibility approval or changing tokens to “fix” contrast.
 
 ## Must read
 Pack, `commands.test` / a11y runner, `docs/a11y-allowlist.md` if present, gaps, `references/program.md`, `docs/AGENT-MEMORY.md`, `references/memory.md`.

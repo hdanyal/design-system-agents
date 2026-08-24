@@ -1,6 +1,6 @@
 # Contributing
 
-Human handbook for Example DS. First-day setup is in [docs/ONBOARDING.md](docs/ONBOARDING.md). Agents follow this via `example-contribute` and the portable `ds-*` specialists in [docs/AGENT-KIT.md](docs/AGENT-KIT.md). Manager (`ds-manager`) tracks that work on `.agents/program/`. Policy details for HITL, maturity, and Code Connect live in [docs/GOVERNANCE.md](docs/GOVERNANCE.md). Full doc map: [docs/README.md](docs/README.md).
+How we change this design system. First-day setup: [docs/ONBOARDING.md](docs/ONBOARDING.md). Agents follow this via `example-contribute` and the portable `ds-*` specialists in [docs/AGENT-KIT.md](docs/AGENT-KIT.md). Approval rules: [docs/GOVERNANCE.md](docs/GOVERNANCE.md). Doc map: [docs/README.md](docs/README.md).
 
 ## Branching
 

@@ -1,6 +1,8 @@
 # Readiness
 
-The repository is an **enterprise-contract-ready scaffold**. Do not call it enterprise-ready until the Scale gate has objective evidence.
+**This repo is a scaffold** until the Scale gate has real evidence. Do not call it enterprise-ready before then.
+
+The repository is an **enterprise-contract-ready scaffold**.
 
 ## Foundation
 

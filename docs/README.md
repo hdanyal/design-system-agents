@@ -1,48 +1,48 @@
 # Documentation
 
-Human and agent docs for Example DS. Repo entry points stay at the root: [README](../README.md), [CONTRIBUTING](../CONTRIBUTING.md), [AGENTS](../AGENTS.md), [SECURITY](../SECURITY.md).
+Human and agent docs for Example DS. Root entry points: [README](../README.md), [CONTRIBUTING](../CONTRIBUTING.md), [AGENTS](../AGENTS.md), [SECURITY](../SECURITY.md).
 
 ## Getting started
 
 | Doc | Purpose |
 | --- | --- |
-| [ONBOARDING.md](ONBOARDING.md) | First-day setup and mental model for humans |
-| [EXAMPLE-HOST.md](EXAMPLE-HOST.md) | Example design system vs kit; how to use or replace it |
-| [catalog.md](catalog.md) | Generated component and block inventory |
-| [SKILLS.md](SKILLS.md) | Agent skill index (generated from manifest) |
-| [READINESS.md](READINESS.md) | Foundation / Pilot / Scale gates |
+| [ONBOARDING.md](ONBOARDING.md) | First day on this example |
+| [EXAMPLE-HOST.md](EXAMPLE-HOST.md) | Use the example vs install agents on your repo |
+| [catalog.md](catalog.md) | What components and blocks exist here |
+| [SKILLS.md](SKILLS.md) | What each agent skill is for |
+| [READINESS.md](READINESS.md) | When this repo is ready for wider use |
 
 ## Contributing & governance
 
 | Doc | Purpose |
 | --- | --- |
-| [../CONTRIBUTING.md](../CONTRIBUTING.md) | Branching, PRs, docs-as-code, view pipeline |
-| [GOVERNANCE.md](GOVERNANCE.md) | HITL, maturity, semver, Code Connect |
-| [adr/](adr/) | Architecture decision records |
+| [../CONTRIBUTING.md](../CONTRIBUTING.md) | How we change this system |
+| [GOVERNANCE.md](GOVERNANCE.md) | Who must approve what |
+| [adr/](adr/) | Architecture decisions |
 
 ## Agents
 
 | Doc | Purpose |
 | --- | --- |
 | [../AGENTS.md](../AGENTS.md) | Agent cold-start router |
-| [AGENT-KIT.md](AGENT-KIT.md) | Specialists, harnesses, open-ended view pipeline |
-| [EXAMPLE-HOST.md](EXAMPLE-HOST.md) | Kit vs this example catalog; install on another host |
-| [AGENT-MEMORY.md](AGENT-MEMORY.md) | Selective catalog facts after HITL |
-| [AGENT-CRITIQUE.md](AGENT-CRITIQUE.md) | Independent decision-quality critic |
+| [AGENT-KIT.md](AGENT-KIT.md) | Commands and specialist reference |
+| [EXAMPLE-HOST.md](EXAMPLE-HOST.md) | Install on another host |
+| [AGENT-MEMORY.md](AGENT-MEMORY.md) | Short catalog notes after approval |
+| [AGENT-CRITIQUE.md](AGENT-CRITIQUE.md) | Independent decision review |
 
 ## Consumers
 
 | Doc | Purpose |
 | --- | --- |
-| [ADOPTION.md](ADOPTION.md) | Install, update, drift for product apps |
-| [CONSUMER-PROOF.md](CONSUMER-PROOF.md) | Consumer contract verification |
+| [ADOPTION.md](ADOPTION.md) | Install this catalog in product apps |
+| [CONSUMER-PROOF.md](CONSUMER-PROOF.md) | Consumer contract checks |
 
 ## Operations
 
 | Doc | Purpose |
 | --- | --- |
-| [../SECURITY.md](../SECURITY.md) | Disclosure, secrets, dependencies, MCP |
-| [INCIDENTS.md](INCIDENTS.md) | Incident and rollback routing |
+| [../SECURITY.md](../SECURITY.md) | Secrets, dependencies, disclosure |
+| [INCIDENTS.md](INCIDENTS.md) | Incidents and rollback routing |
 | [ROLLBACK.md](ROLLBACK.md) | Rollback procedures |
 
 ## Reference

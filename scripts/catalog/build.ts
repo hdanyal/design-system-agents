@@ -91,6 +91,8 @@ function buildCatalog() {
 
 GENERATED. Do not hand-edit. Run \`pnpm catalog\`.
 
+Inventory of stock UI, host primitives, and blocks in this repo.
+
 ## Stock UI
 
 ${catalog.stock.map((name) => `- \`${name}\``).join("\n")}

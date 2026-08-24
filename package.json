@@ -36,6 +36,8 @@
     "kit:upgrade": "node scripts/kit/upgrade.mjs",
     "kit:check": "node scripts/kit/check.mjs",
     "kit:bootstrap": "node scripts/kit/bootstrap.mjs",
+    "kit:init": "node scripts/kit/init.mjs",
+    "kit:identity-scan": "node scripts/kit/identity-scan.mjs",
     "skills:check": "tsx scripts/skills/check.ts",
     "agent:contract": "tsx scripts/agent-contract/run.ts",
     "test:unit": "vitest run --project unit",

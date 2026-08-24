@@ -21,10 +21,10 @@ If spawn is unavailable, write the handoff and tell the user the next invoke lin
 Explores any human-named view in the host sandbox and maintains a live companion on the host preview surface.
 
 ## When
-Sandbox, any named view, try a layout, Figma exploration for **this pack’s** file, “show me this.” There is no view allowlist.
+Try any named screen or layout in the sandbox and show it live in Storybook. There is no view allowlist.
 
 ## When not
-Shipping primitives, editing tokens, consumer docs-of-record, installing Storybook without confirm.
+Shipping primitives, changing tokens, or treating chat preview as the gallery.
 
 ## Must read
 `.agents/context.json`, inventory, open gaps, handoff if present, `references/program.md`, `references/present.md`, `docs/AGENT-MEMORY.md`, `references/memory.md`. Read generated branding `reference.md` under `.agents/skills/` when present. If `bootstrapStatus` is not `complete`, only Release may write the pack.

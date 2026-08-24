@@ -1,25 +1,25 @@
 # Human onboarding
 
-Welcome to Example DS — pack `id: example` in this git root. This is the first-day guide for people. The same `ds-*` specialists install onto **any other design-system git root**; they read that host's `.agents/context.json`, not this host's folders. Agents use [AGENTS.md](../AGENTS.md). Contribution process lives in [CONTRIBUTING.md](../CONTRIBUTING.md).
+Welcome to the **Example** design system — a working sample in this repo. This guide is for people. Agents start at [AGENTS.md](../AGENTS.md). How to contribute: [CONTRIBUTING.md](../CONTRIBUTING.md).
 
-This example host is an **enterprise-contract-ready** internal design system. Do not call it enterprise-ready until the Scale gate in [READINESS.md](READINESS.md) has evidence.
+This is an **enterprise-contract-ready** scaffold, not enterprise-ready until [READINESS.md](READINESS.md) has evidence.
 
-The `ds-*` kit is portable. The tokens, UI, primitives, and `example-*` skills in this checkout are a **sample host**. Keep them to learn or ship from this scaffold, or install the kit on a **separate** git root for your real system. Details: [EXAMPLE-HOST.md](EXAMPLE-HOST.md).
+The agents work on **any** design-system repo. The tokens, UI, and `example-*` skills here are just a sample. Keep them to learn, or [install the agents on your own repo](EXAMPLE-HOST.md).
 
 ## What you are joining
 
-Four layers, in order of authority. On every host, folder names come from pack `paths` in `.agents/context.json`:
+Four layers, most important first:
 
-| Layer | Pack key | This pack |
-| --- | --- | --- |
-| Tokens | `paths.tokens` | `tokens.json` |
-| Stock UI | `paths.ui` | `components/ui` (shadcn; regeneratable) |
-| Host primitives | `paths.primitives` | `components/primitives` |
-| Blocks | `paths.blocks` | `registry/blocks` |
+| Layer | This repo |
+| --- | --- |
+| Tokens | `tokens.json` |
+| Stock UI | `components/ui` (shadcn; regeneratable) |
+| Your components | `components/primitives` |
+| Blocks | `registry/blocks` |
 
-Storybook is coded truth. Figma is optional exploration. Git is the source of truth for what shipped.
+Storybook shows what shipped. Figma is optional. Git is the source of truth.
 
-No Figma file is linked yet. If this host needs Code Connect or design exploration, Manager (`ds-manager`) flags that on `.agents/program/`. Do not invent a file URL.
+No Figma file is linked yet. If you need design exploration, ask **Manager** (`ds-manager`) to flag it on the task board.
 
 ## Prerequisites
 
@@ -65,9 +65,9 @@ Confirm you can open:
 
 ## Another repository
 
-**Do not add a second design system inside this git root.** One git root = one pack.
+Do not add a second design system inside this repo.
 
-To use these agents on a **new or existing** design system elsewhere, see [EXAMPLE-HOST.md](EXAMPLE-HOST.md) and [AGENT-KIT.md](AGENT-KIT.md#install) — pack the kit from this repo, install into the other git root, bootstrap that host's pack (id must not be `example`), then run Manager there.
+To use these agents on your own repo, see [EXAMPLE-HOST.md](EXAMPLE-HOST.md).
 
 ## How work moves
 

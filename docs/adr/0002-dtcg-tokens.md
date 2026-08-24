@@ -3,6 +3,8 @@
 - Status: accepted
 - Date: 2026-08-17
 
+**In plain words:** Edit `tokens.json` once; CSS, Storybook, and docs are generated from it so colors do not drift.
+
 ## Context
 
 CSS, Storybook Foundations, branding docs, and Figma variables must not drift.

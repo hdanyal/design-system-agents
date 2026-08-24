@@ -3,6 +3,8 @@
 - Status: accepted
 - Date: 2026-08-17
 
+**In plain words:** Tokens, stock UI, your components, and blocks are separate layers so shadcn can update without breaking your catalog.
+
 ## Context
 
 The system must stay upgradeable with upstream shadcn while publishing reusable Carina work.

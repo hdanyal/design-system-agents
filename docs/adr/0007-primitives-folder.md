@@ -3,6 +3,8 @@
 - Status: accepted
 - Date: 2026-08-24
 
+**In plain words:** Your components live in a role-named folder (`components/primitives`), not a brand-named folder.
+
 ## Context
 
 The producer repository used `components/carina/` for the primitive layer. That taught agents and humans that primitive paths are pack-branded. Portable kit hosts need role-named folders resolved from `.agents/context.json` `paths.primitives`.

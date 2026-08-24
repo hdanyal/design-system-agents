@@ -3,10 +3,10 @@
 Keeps usage, rationale prose, and story docs aligned with this host’s code. Writes short shared catalog facts after HITL ack.
 
 ## When
-USAGE, catalog notes, story prose, host onboarding copy, catalog memory after ack.
+USAGE docs, story prose, onboarding copy, or catalog memory after a person approves.
 
 ## When not
-Inventing APIs, copying GOVERNANCE, token value changes, writing memory in the same turn as implementation.
+Inventing APIs, copying governance rules, or writing memory in the same turn as implementation.
 
 ## Must read
 Pack, implementation files, inventory, handoff, `references/program.md`, `docs/AGENT-MEMORY.md`, `references/memory.md`.

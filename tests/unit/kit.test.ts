@@ -6,8 +6,10 @@ import { describe, expect, it } from "vitest"
 import {
   routeIntent,
   scanHost,
+  scanIdentityPaths,
   scanMemoryRecords,
   scanProgramInputs,
+  seedHostSkills,
   seedMemoryLayout,
   validateMemoryRecord,
   validatePack,
@@ -120,6 +122,9 @@ describe("portable agent kit", () => {
       cpSync(path.join(root, "tests/fixtures/foreign-ds"), tmp, { recursive: true })
       const install = run("node", ["scripts/kit/install.mjs", "--dir", tmp])
       expect(install.status, install.stderr).toBe(0)
+      expect(install.stdout).toContain("ds-release")
+      expect(install.stdout).toContain("ds-manager")
+      expect(install.stdout).toContain("bootstrap.mjs")
       expect(existsSync(path.join(tmp, "tokens.json"))).toBe(false)
       expect(existsSync(path.join(tmp, ".cursor/agents/ds-coding.md"))).toBe(true)
       expect(existsSync(path.join(tmp, ".cursor/agents/ds-manager.md"))).toBe(true)
@@ -225,5 +230,67 @@ body`
       { allowExampleId: false }
     )
     expect(errors.length).toBeGreaterThan(0)
+  })
+
+  it("bootstrap scan prints a human recap", () => {
+    const tmp = mkdtempSync(path.join(os.tmpdir(), "ds-bootstrap-scan-"))
+    try {
+      cpSync(path.join(root, "tests/fixtures/foreign-ds"), tmp, { recursive: true })
+      run("node", ["scripts/kit/install.mjs", "--dir", tmp])
+      const scan = run("node", ["scripts/kit/bootstrap.mjs", "--dir", tmp])
+      expect(scan.status, scan.stderr).toBe(0)
+      expect(scan.stdout).toContain("Human recap:")
+    } finally {
+      rmSync(tmp, { recursive: true, force: true })
+    }
+  })
+
+  it("refuses first pack write without --confirm-write", () => {
+    const tmp = mkdtempSync(path.join(os.tmpdir(), "ds-bootstrap-refuse-"))
+    try {
+      cpSync(path.join(root, "tests/fixtures/foreign-ds"), tmp, { recursive: true })
+      run("node", ["scripts/kit/install.mjs", "--dir", tmp])
+      const bootstrap = run("node", ["scripts/kit/bootstrap.mjs", "--dir", tmp, "--write"])
+      expect(bootstrap.status).not.toBe(0)
+      expect(bootstrap.stderr || bootstrap.stdout).toMatch(/confirm-write/)
+      expect(existsSync(path.join(tmp, ".agents/context.json"))).toBe(false)
+    } finally {
+      rmSync(tmp, { recursive: true, force: true })
+    }
+  })
+
+  it("kit:init without --write does not create a pack", () => {
+    const tmp = mkdtempSync(path.join(os.tmpdir(), "ds-kit-init-"))
+    try {
+      cpSync(path.join(root, "tests/fixtures/foreign-ds"), tmp, { recursive: true })
+      const init = run("node", ["scripts/kit/init.mjs", "--dir", tmp])
+      expect(init.status, init.stderr).toBe(0)
+      expect(existsSync(path.join(tmp, ".agents/context.json"))).toBe(false)
+    } finally {
+      rmSync(tmp, { recursive: true, force: true })
+    }
+  })
+
+  it("identity-scan is dry-run only on the kit source", () => {
+    const scan = run("node", ["scripts/kit/identity-scan.mjs", "--dir", root])
+    expect(scan.status, scan.stderr).toBe(0)
+    expect(scan.stdout).toContain("example")
+    const hits = scanIdentityPaths(root)
+    expect(hits.length).toBeGreaterThan(0)
+  })
+
+  it("seedHostSkills writes foreign-ds-* stubs", () => {
+    const tmp = mkdtempSync(path.join(os.tmpdir(), "ds-seed-skills-"))
+    try {
+      cpSync(path.join(root, ".agents/agents"), path.join(tmp, ".agents/agents"), { recursive: true })
+      cpSync(path.join(root, ".agents/kit"), path.join(tmp, ".agents/kit"), { recursive: true })
+      const result = seedHostSkills(tmp, "foreign-ds")
+      expect(result.ok).toBe(true)
+      expect(existsSync(path.join(tmp, ".agents/skills/foreign-ds-onboard/SKILL.md"))).toBe(true)
+      const manifest = JSON.parse(readFileSync(path.join(tmp, ".agents/skills/manifest.json"), "utf8"))
+      expect(manifest.skills.some((s: { name: string }) => s.name === "foreign-ds-onboard")).toBe(true)
+    } finally {
+      rmSync(tmp, { recursive: true, force: true })
+    }
   })
 })

@@ -1,5 +1,7 @@
 # Incidents
 
+**When something shipped wrong:** stop publication, pin a known-good release, preserve evidence, and tell consumers. Only the incident owner or a CODEOWNER may revoke or republish.
+
 Owns severity, rollback, revocation, evidence, and communication.
 
 ## Severity

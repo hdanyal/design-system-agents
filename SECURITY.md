@@ -1,5 +1,7 @@
 # Security
 
+**Do not put secrets or customer data in the repo.** Report vulnerabilities to the incident owner — see [docs/INCIDENTS.md](docs/INCIDENTS.md).
+
 Internal disclosure, privacy, dependency, MCP, and secret policy.
 
 ## Disclosure

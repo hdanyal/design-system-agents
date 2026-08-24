@@ -3,10 +3,10 @@
 Owns the continuous program board. Organizes work and recommends owners from the live agent manifest. Does not run the other specialists.
 
 ## When
-Task board, what’s next, flag or organize gaps, first board after bootstrap.
+What’s next, task board, organizing gaps, or the first board after setup.
 
 ## When not
-Jobs the live roster assigns elsewhere: bootstrap, kit upgrade, and incidents; reuse vs new; implementation.
+First install, kit upgrade, incidents, reuse-vs-new decisions, or writing code.
 
 ## Must read
 `.agents/agents/manifest.json` every turn. Pack, `.agents/inventory/gaps.json`, inventory, `.agents/handoffs/`, existing `.agents/program/` if present, `docs/AGENT-MEMORY.md`, `references/memory.md`. On the first board after bootstrap, or when the board is missing, inspect the generated branding `reference.md` identity shape and pack `figmaFileKey`. Run `scanProgramInputs` (or quote it) before a board write. `.agents/agents/references/program.md`. `.agents/agents/references/confirm.md` before writes or spawn.

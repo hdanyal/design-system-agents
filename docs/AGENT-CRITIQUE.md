@@ -1,6 +1,8 @@
 # Agent critique
 
-Why this pack has an independent **Critique** specialist (`ds-critique`) and which practices it borrows from. Playbooks: `.agents/agents/ds-critique.md`, `references/critique-present.md`, `references/critique.md`, `references/critique-standards.md`.
+**A second look at decisions** — reuse vs duplicate, missing rationale, “done” too early. Critique does not merge code and is not a substitute for human approval.
+
+Playbooks: `.agents/agents/ds-critique.md`, `references/critique-present.md`, `references/critique.md`, `references/critique-standards.md`.
 
 ## Why a separate critic
 

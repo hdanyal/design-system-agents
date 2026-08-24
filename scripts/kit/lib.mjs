@@ -687,4 +687,168 @@ export function hashTree(root, rels) {
   return hashes
 }
 
+export function printInstallNextSteps(host, { hasExistingPack = false } = {}) {
+  console.log("")
+  console.log("--- Next steps ---")
+  console.log(`Copied into ${host}.`)
+  if (hasExistingPack) {
+    console.log("Your system settings were left as they are. Use upgrade to refresh the agents.")
+  } else {
+    console.log("Open that folder in Cursor.")
+    console.log("Ask Release (ds-release) to set it up, then Manager (ds-manager) for the task board.")
+  }
+  console.log(`Optional scan: node scripts/kit/bootstrap.mjs --dir ${host}`)
+  console.log("------------------")
+}
+
+export function formatBootstrapHumanRecap(pack, scan) {
+  const id = pack.id ?? "(unset — pick a short name, not example)"
+  const paths = pack.paths || {}
+  const gapIds =
+    (scan?.gaps || [])
+      .map((g) => g.id)
+      .filter(Boolean)
+      .join(", ") || "none"
+  return [
+    "",
+    "Human recap:",
+    `  Name: ${id}`,
+    `  Tokens: ${paths.tokens ?? "not found"}`,
+    `  UI: ${paths.ui ?? "not found"}`,
+    `  Primitives: ${paths.primitives ?? "not found"}`,
+    `  Blocks: ${paths.blocks ?? "not found"}`,
+    `  Preview: ${pack.preview?.kind ?? "missing"}`,
+    `  Open gaps: ${gapIds}`,
+    "  Ask Release before writing. After confirm: node scripts/kit/bootstrap.mjs --dir <host> --write --confirm-write",
+    "",
+  ].join("\n")
+}
+
+const IDENTITY_SCAN_PATTERNS = [
+  { label: "pack id example", glob: ".agents/context.json", test: (t) => /"id"\s*:\s*"example"/.test(t) },
+  { label: "registry @example", glob: "registry.json", test: (t) => t.includes("@example") },
+  { label: "components/example consumer targets", glob: "registry.json", test: (t) => t.includes("components/example") },
+  { label: "example-* skills", glob: ".agents/skills/manifest.json", test: (t) => /"example-/.test(t) },
+  { label: "example drift script", glob: "package.json", test: (t) => t.includes("example:drift") },
+  { label: "EXAMPLE_REGISTRY env", glob: ".env.example", test: (t) => t.includes("EXAMPLE_REGISTRY") },
+  { label: "example.lock.json reference", glob: "docs/ADOPTION.md", test: (t) => t.includes("example.lock.json") },
+]
+
+export function scanIdentityPaths(root) {
+  const hits = []
+  for (const row of IDENTITY_SCAN_PATTERNS) {
+    const full = path.join(root, row.glob)
+    if (!existsSync(full)) continue
+    const text = readFileSync(full, "utf8")
+    if (row.test(text)) hits.push({ path: row.glob, label: row.label })
+  }
+  const skillsDir = path.join(root, ".agents/skills")
+  if (existsSync(skillsDir)) {
+    for (const entry of readdirSync(skillsDir)) {
+      if (entry.startsWith("example-") && statSync(path.join(skillsDir, entry)).isDirectory()) {
+        hits.push({ path: `.agents/skills/${entry}`, label: "example-* skill folder" })
+      }
+    }
+  }
+  return hits
+}
+
+function skillWorkflowExtra(prefix, suffix) {
+  const p = prefix
+  const workflows = {
+    onboard: `## Workflow
+Cold start is pack bootstrap (\`ds-release\` / \`node scripts/kit/bootstrap.mjs\`), not a second auto-select skill.
+1. Read \`.agents/context.json\`. If missing or not \`complete\`, stop and invoke \`ds-release\`.
+2. If bootstrap is \`complete\`, invoke \`ds-manager\` for \`.agents/program/\` (not auto-select).
+3. Then load exactly one owning \`ds-*\` agent from docs/AGENT-KIT.md.
+Do not write files until routing is done.`,
+    branding: `## Workflow
+1. Read generated \`.agents/skills/${p}-branding/reference.md\` when present before view, component, story, or token work.
+2. Follow its Overview and Do's and Don'ts; use CSS variables only.
+3. Token edits route to \`${p}-update-design-language\`.
+Never copy oklch/hex into JSX or stories.`,
+    compose: `## Workflow
+1. Harvest while building: inventory stock UI, host primitives, blocks, and Storybook for reusable regions.
+2. Decide in order: reuse → enhance-existing → extract → keep local.
+3. Prefer enhancing a named existing API over creating a twin.`,
+    verify: `## Workflow
+Use \`pnpm verify:fast\` for local iteration.
+Use \`pnpm verify\` before merge/release.`,
+  }
+  return (
+    workflows[suffix] ||
+    `## Workflow
+Follow host policy in CONTRIBUTING.md and docs/GOVERNANCE.md for ${p}-${suffix}.`
+  )
+}
+
+export function seedHostSkills(root, packId) {
+  if (!packId || !ID_RE.test(packId)) return { ok: false, reason: "invalid pack id" }
+  if (packId === "example" && !isKitSource(root)) return { ok: false, reason: "example reserved on foreign hosts" }
+  if (packId === "example" && isKitSource(root)) return { ok: false, reason: "kit source keeps example-* skills" }
+
+  const templateRoot = isKitSource(root) ? root : kitRootFromScripts()
+  const templateManifest = readJson(path.join(templateRoot, ".agents/skills/manifest.json"))
+  const skillsDir = path.join(root, ".agents/skills")
+  mkdirSync(skillsDir, { recursive: true })
+
+  const skills = templateManifest.skills.map((skill) => {
+    const suffix = skill.name.replace(/^example-/, "")
+    const name = `${packId}-${suffix}`
+    return {
+      ...skill,
+      name,
+      owner: skill.owner.replace(/^example-/, `${packId}-`),
+      dependencies: (skill.dependencies || []).map((d) => d.replace(/^example-/, `${packId}-`)),
+    }
+  })
+
+  writeJson(path.join(skillsDir, "manifest.json"), {
+    version: templateManifest.version,
+    lastReviewed: new Date().toISOString().slice(0, 10),
+    skills,
+  })
+
+  const policy = {
+    contribute: "CONTRIBUTING.md",
+    governance: "docs/GOVERNANCE.md",
+    adoption: "docs/ADOPTION.md",
+    security: "SECURITY.md",
+    incidents: "docs/INCIDENTS.md",
+  }
+
+  for (const skill of skills) {
+    const suffix = skill.name.replace(`${packId}-`, "")
+    const dir = path.join(skillsDir, skill.name)
+    mkdirSync(dir, { recursive: true })
+    const body = `---
+name: ${skill.name}
+description: ${skill.boundary}
+---
+
+# ${skill.name}
+
+- Form: ${skill.form}
+- Invocation: ${skill.invocation}
+- Audience: ${skill.audience}
+- Depends on: ${skill.dependencies.join(", ") || "none"}
+
+## Triggers
+Use this skill for work that matches its boundary.
+
+## Policy links
+- Process: ${policy.contribute}
+- Governance: ${policy.governance}
+- Adoption: ${policy.adoption}
+- Security: ${policy.security}
+- Incidents: ${policy.incidents}
+
+${skillWorkflowExtra(packId, suffix)}
+`
+    writeText(path.join(dir, "SKILL.md"), body)
+  }
+
+  return { ok: true, count: skills.length }
+}
+
 export { cpSync, existsSync, mkdirSync, path, readFileSync, readdirSync, rmSync, writeFileSync }

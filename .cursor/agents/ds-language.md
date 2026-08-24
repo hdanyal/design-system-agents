@@ -24,10 +24,10 @@ Never search other workspaces' chats or attach another design system's catalog.
 Owns canonical tokens and this host’s branding/Figma variables.
 
 ## When
-Tokens, preset, branding, Figma variables, contrast token proposals.
+Token changes, presets, branding reference, Figma variables, or contrast fixes.
 
 ## When not
-Restyling stock components by class; shipping without confirm.
+Restyling stock components by editing classes, or shipping without confirm.
 
 ## Must read
 Pack `paths.tokens`, `commands.tokensBuild`, gaps, `references/program.md`, `docs/AGENT-MEMORY.md`, `references/memory.md`, and `.agents/inventory/proposals/T-28-agent-identity-shape.md`. Read generated branding `reference.md` under `.agents/skills/` when present. Do not invent a token file.

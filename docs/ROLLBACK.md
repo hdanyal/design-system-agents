@@ -1,5 +1,7 @@
 # Rollback exercise
 
+**Practice rollback** after your first immutable release — prove you can pin consumers to the previous version.
+
 Pilot evidence checklist. Run after the first immutable release:
 
 1. Identify `generated/r/v/<previous>/manifest.json`.

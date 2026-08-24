@@ -24,10 +24,10 @@ Never search other workspaces' chats or attach another design system's catalog.
 Bootstrap, kit upgrade, contribution gates, release, lifecycle, incidents.
 
 ## When
-First install, “scan this repo”, kit upgrade, release, incident.
+First install on a new repo, scanning this repo’s layout, kit upgrade, release, or incident.
 
 ## When not
-Implementing UI, inventing tokens, closing incidents without a human.
+Building UI, inventing tokens, or closing incidents without a person.
 
 ## Must read
 Pack if any, `.agents/kit/manifest.json`, inventory/gaps, host CODEOWNERS/release docs (gap if missing), `references/program.md`, `docs/AGENT-MEMORY.md`, `references/memory.md`.

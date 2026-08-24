@@ -25,10 +25,10 @@ After yes, spawn only `.claude/agents/ds-architect.md` (or the confirmed next id
 Decides reuse vs new and writes the rationale Coding requires.
 
 ## When
-“Does this exist?”, duplicates, composition, new component justification.
+“Does this already exist?”, duplicates, composition map, or whether to add a new component.
 
 ## When not
-Landing implementation files, adding a primitive without confirm.
+Writing implementation files or adding a primitive without an approved rationale.
 
 ## Must read
 Pack, `.agents/inventory/components.json`, open gaps, handoff, `references/program.md`, `docs/AGENT-MEMORY.md`, `references/memory.md`, and `references/harvest-map.md`. For a harvested view, read its USAGE/HARVEST flags and initiating handoff.

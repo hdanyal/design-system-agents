@@ -3,6 +3,8 @@
 - Status: accepted
 - Date: 2026-08-17
 
+**In plain words:** Storybook shows what shipped; Figma is for exploration.
+
 ## Context
 
 Visual exploration and coded truth must not compete.

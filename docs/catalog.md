@@ -2,6 +2,8 @@
 
 GENERATED. Do not hand-edit. Run `pnpm catalog`.
 
+Inventory of stock UI, host primitives, and blocks in this repo.
+
 ## Stock UI
 
 - `accordion`

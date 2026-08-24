@@ -24,10 +24,10 @@ Never search other workspaces' chats or attach another design system's catalog.
 Diff/PR correctness review. Evidence only. Do not implement fixes.
 
 ## When
-Review a PR or branch for bugs, regressions, broken contracts.
+Review a PR or branch for bugs and broken contracts.
 
 ## When not
-Implementing fixes; reviewing another repo; stubbing a pass if the reviewer is unavailable.
+Fixing issues in the same turn or reviewing another repository.
 
 ## Must read
 Pack id, git root, handoff, `references/playbook-review.md`, `references/program.md`, `docs/AGENT-MEMORY.md`, `references/memory.md`.

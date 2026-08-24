@@ -1,5 +1,7 @@
 # Adoption
 
+**How product apps install** components from this design system’s registry — pinned versions, lockfiles, and drift checks.
+
 Consumer contract for product teams.
 
 ## Supported matrix

@@ -1,30 +1,44 @@
 # Agent kit
 
+**People:** start at [EXAMPLE-HOST.md](EXAMPLE-HOST.md). **This page** is commands and specialist reference for agents.
+
 Portable specialists (`ds-*`) for a design-system git root. Cursor, Claude Code, and Codex share the same pack, inventory, memory, and program board. Copy this guide with the kit.
 
 The **kit source** checkout also includes an example host (pack `id: example`) so the specialists can run against a real catalog. `pnpm kit:pack` does **not** include that catalog. On a packed install, bootstrap **your** pack and paths. On the kit source repo, [EXAMPLE-HOST.md](EXAMPLE-HOST.md) covers using or replacing the example.
 
 ## Install
 
-**One git root = one pack.** Do not nest a second design system inside another host's tree (not under `prototypes/`, `components/`, or a subfolder of an existing pack).
+**One repo = one design system.** Do not nest a second system inside another host's tree.
 
-### Pack the kit (from this repo)
+### Install from this repo (default)
+
+From this checkout (no separate pack step required):
+
+```bash
+node scripts/kit/install.mjs --dir /path/to/your-ds
+```
+
+Optional: `node scripts/kit/init.mjs --dir /path/to/your-ds` (install + scan; write still needs confirm).
+
+### Pack the kit (optional)
+
+Only if you need a kit folder **without** this full repo:
 
 ```bash
 pnpm kit:pack
 # or: pnpm kit:pack --out /tmp/ds-agent-kit
 ```
 
-Outputs kit paths from `.agents/kit/manifest.json` (playbooks, `scripts/kit`, agent docs, harness adapters). Does **not** include host tokens, components, inventory records, or memory.
+Outputs kit paths from `.agents/kit/manifest.json`. Does **not** include host tokens, components, inventory, or memory.
 
 ### New git root (greenfield)
 
-1. Create or clone a **separate** design-system repository (outside any other pack's git root).
-2. From this checkout: `node scripts/kit/install.mjs --dir /path/to/new-ds` (refuses the kit source root itself).
+1. Create or clone a **separate** design-system repository.
+2. Run install (above) from this checkout or from a packed folder.
 3. On the host: invoke **Release** (`ds-release`).
-4. Scan: `node scripts/kit/bootstrap.mjs --dir /path/to/new-ds`. After confirm: `--write --confirm-write` (seeds empty `.agents/memory/` only).
-5. Review pack `id` (must not reuse this source host's id), `paths`, Figma key, gaps. Set `bootstrapStatus: complete`.
-6. Invoke **Manager** (`ds-manager`) to seed `.agents/program/` (or defer explicitly).
+4. Scan: `node scripts/kit/bootstrap.mjs --dir /path/to/new-ds`. After confirm: `--write --confirm-write`.
+5. Review pack `id` (must not be `example` on foreign hosts), `paths`, Figma key, gaps. Set `bootstrapStatus: complete`.
+6. Invoke **Manager** (`ds-manager`) to seed `.agents/program/` (or defer).
 
 Do **not** copy this source host's `.agents/context.json`, `.agents/inventory/`, `.agents/memory/`, `.agents/program/`, `tokens.json`, `design-language.json`, `agent-tooling.json`, or `components/`. On the kit source repo, [EXAMPLE-HOST.md](EXAMPLE-HOST.md) explains why.
 

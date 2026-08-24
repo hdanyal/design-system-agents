@@ -1,19 +1,19 @@
 # Example Design System
 
-This git root ships the portable **`ds-*` agent kit** plus an **example design system** (pack `id: example`) so you can run the specialists against a real catalog. Use the example as a scaffold, or install the kit on another git root and replace it with your own system — [docs/EXAMPLE-HOST.md](docs/EXAMPLE-HOST.md).
+This repo ships **portable design-system agents** plus a **working example** you can learn from or copy patterns from.
 
-**New here?** Humans: [docs/ONBOARDING.md](docs/ONBOARDING.md). Agents: [AGENTS.md](AGENTS.md). Kit install: [docs/AGENT-KIT.md](docs/AGENT-KIT.md).
+**New here?** [docs/ONBOARDING.md](docs/ONBOARDING.md) · **Your own system elsewhere?** [docs/EXAMPLE-HOST.md](docs/EXAMPLE-HOST.md) · **Agents:** [AGENTS.md](AGENTS.md)
 
-This repository is an **enterprise-contract-ready scaffold**. It is not enterprise-ready until the Scale gate in [docs/READINESS.md](docs/READINESS.md) has objective evidence.
+This is an **enterprise-contract-ready scaffold**. It is not enterprise-ready until the Scale gate in [docs/READINESS.md](docs/READINESS.md) has evidence.
 
-## Layers (this pack)
+## What’s in the example
 
-Resolved from `.agents/context.json` `paths`. Other hosts use their own pack paths — see [docs/AGENT-KIT.md](docs/AGENT-KIT.md).
+1. Design tokens in `tokens.json`
+2. Stock UI in `components/ui` (regeneratable)
+3. Your components in `components/primitives`
+4. Composed blocks in `registry/blocks`
 
-1. Canonical tokens in `tokens.json`
-2. Regeneratable stock UI in `components/ui`
-3. Host primitives in `components/primitives`
-4. Blocks in `registry/blocks`
+Other repos use their own folder layout — see [docs/AGENT-KIT.md](docs/AGENT-KIT.md).
 
 ## Start
 
@@ -36,10 +36,10 @@ pnpm verify
 
 Full map: [docs/README.md](docs/README.md)
 
-| Audience | Start here |
+| You are… | Start here |
 | --- | --- |
-| Humans | [docs/ONBOARDING.md](docs/ONBOARDING.md) → [CONTRIBUTING.md](CONTRIBUTING.md) |
-| Kit vs this example catalog | [docs/EXAMPLE-HOST.md](docs/EXAMPLE-HOST.md) |
-| Agents | [AGENTS.md](AGENTS.md) → [docs/AGENT-KIT.md](docs/AGENT-KIT.md) |
-| Consumers | [docs/ADOPTION.md](docs/ADOPTION.md) |
-| Security | [SECURITY.md](SECURITY.md) |
+| A person on this team | [docs/ONBOARDING.md](docs/ONBOARDING.md) → [CONTRIBUTING.md](CONTRIBUTING.md) |
+| Putting agents on your own repo | [docs/EXAMPLE-HOST.md](docs/EXAMPLE-HOST.md) |
+| An agent | [AGENTS.md](AGENTS.md) → [docs/AGENT-KIT.md](docs/AGENT-KIT.md) |
+| A product app consuming this catalog | [docs/ADOPTION.md](docs/ADOPTION.md) |
+| Security / incidents | [SECURITY.md](SECURITY.md) |

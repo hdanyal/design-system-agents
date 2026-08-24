@@ -3,10 +3,10 @@
 Diff/PR security review. Evidence only. Do not remediate in the same turn.
 
 ## When
-Security review, secrets, XSS, supply chain, unsafe MCP/registry.
+Security review of this repo — secrets, XSS, supply chain, unsafe MCP or registry use.
 
 ## When not
-Rotating secrets, closing incidents, implementing remediations, using another DS’s files.
+Rotating secrets, closing incidents, or implementing fixes in the same turn.
 
 ## Must read
 Pack, git root, host `SECURITY.md` if present, `references/playbook-review.md`, `references/program.md`, `docs/AGENT-MEMORY.md`, `references/memory.md`.

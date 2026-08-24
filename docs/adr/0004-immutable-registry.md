@@ -3,6 +3,8 @@
 - Status: accepted
 - Date: 2026-08-17
 
+**In plain words:** Product apps pin an exact registry version; releases are never overwritten in place.
+
 ## Context
 
 Copy-code consumers need deterministic installs. Mutable `/r/{name}.json` is not a pin.

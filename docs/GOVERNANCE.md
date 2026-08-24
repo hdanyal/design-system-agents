@@ -1,6 +1,8 @@
 # Governance
 
-Owns HITL, ownership, maturity, semver, and Code Connect policy.
+**People must approve** the changes in the table below. Automated checks and agent reviews are evidence only — they do not replace that approval.
+
+Owns ownership, maturity, semver, and Code Connect policy.
 
 ## Owners
 

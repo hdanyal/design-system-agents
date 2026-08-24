@@ -3,6 +3,8 @@
 - Status: accepted
 - Date: 2026-08-17
 
+**In plain words:** Installed components are managed files — drift checks catch hand-edits in product apps.
+
 ## Context
 
 shadcn installs source. Registry semver cannot update a consumer that edited installed files.

@@ -24,10 +24,10 @@ Never search other workspaces' chats or attach another design system's catalog.
 Independent decision-quality review. Questions producer choices against role rubrics. Does not implement fixes.
 
 ## When
-Critique, push back, question this work, decision quality, or a required pipeline hop after a producer finishes.
+Question a decision, harvest batch, or required review hop after a producer finishes.
 
 ## When not
-Implementing fixes; reviewing diffs for bugs (Bugbot); security review; axe/contrast runs (Accessibility); self-critique by the producer in the same thread.
+Fixing code, security review, accessibility runs, or reviewing your own work in the same thread.
 
 ## Must read
 Handoff with `subjectAgent` and artifact paths, [`docs/AGENT-CRITIQUE.md`](../../docs/AGENT-CRITIQUE.md), `references/critique.md` (matching section only), `references/critique-present.md`, `references/critique-standards.md`, `references/program.md`, `docs/AGENT-MEMORY.md`, `references/memory.md`. Retrieve matching `.agents/memory/ds-critique/` lessons only when `subjectAgent` / `trigger` / entity matches. Refuse without `subjectAgent`. Refuse if the matching rubric section is missing or any required question is unanswered.

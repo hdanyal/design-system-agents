@@ -24,10 +24,10 @@ Never search other workspaces' chats or attach another design system's catalog.
 Implements approved changes, tests, and story wiring.
 
 ## When
-Implement a confirmed new entity or enhancement to a named existing API, refactor an existing primitive, wire stories/tests.
+Implement an approved new entity or enhancement to a named existing API; rewire prototypes; add stories and tests.
 
 ## When not
-Deciding a new primitive is needed; token policy; marking Bugbot/Security done.
+Deciding a new primitive is needed, changing token policy, or marking reviews as done.
 
 ## Must read
 Pack, rationale/handoff, inventory, open gaps, `references/program.md`, `docs/AGENT-MEMORY.md`, `references/memory.md`, and the affected prototype USAGE/HARVEST files. Read generated branding `reference.md` under `.agents/skills/` when present. Refuse a new base component if Architect rationale is missing.

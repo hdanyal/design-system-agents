@@ -1,5 +1,12 @@
 import { existsSync } from "node:fs"
-import { copyKitPaths, fail, kitRootFromScripts, loadKitManifest, path } from "./lib.mjs"
+import {
+  copyKitPaths,
+  fail,
+  kitRootFromScripts,
+  loadKitManifest,
+  path,
+  printInstallNextSteps,
+} from "./lib.mjs"
 
 const args = process.argv.slice(2)
 const dirIdx = args.indexOf("--dir")
@@ -12,8 +19,10 @@ const kit = loadKitManifest(source)
 if (kit.paths.includes("tokens.json") || kit.paths.includes("components")) {
   fail("kit manifest must not include host tokens or components")
 }
-if (existsSync(path.join(host, ".agents/context.json"))) {
+const hasExistingPack = existsSync(path.join(host, ".agents/context.json"))
+if (hasExistingPack) {
   console.log("host pack present; leaving context/inventory/memory untouched")
 }
 copyKitPaths(source, host)
 console.log(`kit:install copied kit ${kit.kitVersion} into ${host}`)
+printInstallNextSteps(host, { hasExistingPack })

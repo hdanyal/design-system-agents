@@ -3,6 +3,8 @@
 - Status: accepted
 - Date: 2026-08-24
 
+**In plain words:** This repo uses the neutral name `example` so the kit demo does not look like one product brand.
+
 ## Context
 
 This git root ships the portable **ds-* agent kit** and must demonstrate kit usage without teaching agents that every host is branded "Carina." Pack `id`, skill prefixes, registry namespace, and consumer install targets should read as a neutral **example host**.

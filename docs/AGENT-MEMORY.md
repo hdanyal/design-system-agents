@@ -1,6 +1,8 @@
 # Agent memory
 
-Reviewed Git files under `.agents/memory/`. Retrieval context, not training. Isolation key: `(repoRoot, designSystemId)`.
+**Short notes agents can look up later** — not a second catalog. Open a file only when the entity matches this turn. Write only after a person approves.
+
+Reviewed Git files under `.agents/memory/`. Isolation key: `(repoRoot, designSystemId)`.
 
 Bootstrap `--write` and kit upgrade seed **empty** namespaces (`.gitkeep` only). They never copy records from another pack.
 

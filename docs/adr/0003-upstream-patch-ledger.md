@@ -3,6 +3,8 @@
 - Status: accepted
 - Date: 2026-08-17
 
+**In plain words:** Urgent fixes to stock shadcn files must be listed in a ledger — no silent edits.
+
 ## Context
 
 Urgent stock correctness, security, or accessibility fixes may be required without forking the kit for brand reasons.
