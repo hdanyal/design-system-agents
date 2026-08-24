@@ -8,4 +8,4 @@ State `reviewEngine: playbook`. Never claim Cursor Bugbot or Cursor Security Rev
 
 **ds-security checklist:** secrets in diff, XSS / unsafe HTML, dependency or registry URL surprises, production data, MCP allowlist drift. Output findings with path + severity. Do not remediate.
 
-Write evidence under `.agents/memory/<agent>/` only after human ack, or a handoff file. No drive-by code edits.
+Write evidence under `.agents/memory/<agent>/` only after human ack — **pointer only** (path, severity, PR), or a handoff file. No drive-by code edits. Do not read every memory file in one turn.

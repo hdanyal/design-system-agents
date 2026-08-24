@@ -8,11 +8,11 @@ Portable specialists (`ds-*`) for a design-system git root. Cursor, Claude Code,
 2. On the host: `node scripts/kit/install.mjs --dir <host-root>` (from the unpacked kit, or copy files then `pnpm agents:sync`).
 3. Do **not** copy Carina `.agents/context.json`, `.agents/inventory/`, `.agents/memory/`, `.agents/program/`, `tokens.json`, `design-language.json`, `agent-tooling.json`, or `components/`.
 4. Open **one** product on the host git root. Invoke **Release** (`ds-release`): bootstrap this design system.
-5. Run `node scripts/kit/bootstrap.mjs --dir .` (scan). After you confirm: `--write --confirm-write`.
+5. Run `node scripts/kit/bootstrap.mjs --dir .` (scan). After you confirm: `--write --confirm-write` (seeds empty `.agents/memory/` layout; no records).
 6. Review pack `id` (not `carina` unless it is Carina), paths, Figma key, gaps. Then `bootstrapStatus: complete`.
 7. Invoke **Manager** (`ds-manager`) to seed `.agents/program/` (or explicitly defer the board). On the first board after bootstrap, and whenever the board is missing, Manager must task any generated-brand-identity gap: the branding reference needs Overview plus Do's and Don'ts. Manager records the gap/task only and never writes the identity file.
 
-Upgrade later: `node scripts/kit/upgrade.mjs --dir <host-root>`. It must not clobber pack, inventory, memory, or program. Kit-minimal check: `node scripts/kit/check.mjs --dir <host-root>`.
+Upgrade later: `node scripts/kit/upgrade.mjs --dir <host-root>`. It must not clobber pack, inventory, memory records, or program; it may add missing empty memory folders. Kit-minimal check: `node scripts/kit/check.mjs --dir <host-root>`.
 
 ## Harness
 
@@ -58,7 +58,7 @@ Prototype accepts any human-named view; no screen allowlist defines the work. Ea
 
 Harvest decisions follow one order: reuse → enhance-existing → extract-new primitive/block → keep local. Prototype batches all regions from a view into one Architect hop using `.agents/inventory/proposals/_template-harvest-map.md`. Architect may approve a family extract, but prefers enhancing a named API over a twin. Coding implements the approved new or enhanced entity, rewires prototype imports, and presents the live companion again.
 
-Experimental block slices may be harvested from one view over time. Each slice remains experimental, keeps `registryDependencies` aligned with imports, and requires HITL. After HITL, the specialist who shipped it may propose a shared catalog-memory fact; memory is written only in a later acknowledged turn. Handoffs are not memory.
+Experimental block slices may be harvested from one view over time. Each slice remains experimental, keeps `registryDependencies` aligned with imports, and requires HITL. After HITL, the specialist who shipped it may **propose** a shared catalog-memory fact; **Documentation (`ds-docs`)** writes it under `.agents/memory/shared/` only in a later acknowledged turn. Keep facts short (~25 lines); retrieve by entity match — do not load every memory file. Handoffs are not memory.
 
 ## Isolation
 

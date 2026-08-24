@@ -31,5 +31,5 @@ Forbidden: stock restyles, secret commits, main pushes, unreviewed registries, a
 1. A view may yield multiple experimental slices over time; review and name each slice independently.
 2. Require USAGE.md matching imports and registryDependencies matching every registry import.
 3. Move only the approved slice to `registry/blocks/<name>`; mark experimental and add stories, Changeset, and CI evidence.
-4. Stop for HITL. After HITL, propose a catalog memory record; do not write memory in the same turn as promotion.
+4. Stop for HITL. After HITL, **propose** a short catalog memory record for Documentation; do not write `.agents/memory/shared/` in the same turn as promotion. Template: `_template-catalog-fact.md`.
 Do not mark stable, promote unrelated view chrome, or commit `public/r`.

@@ -31,7 +31,7 @@ Tokens, preset, branding, Figma variables, contrast token proposals.
 Restyling stock components by class; shipping without confirm.
 
 ## Must read
-Pack `paths.tokens`, `commands.tokensBuild`, gaps, `references/program.md`, and `.agents/inventory/proposals/T-28-agent-identity-shape.md`. For Carina, read the generated `.agents/skills/carina-branding/reference.md`. Do not invent a token file.
+Pack `paths.tokens`, `commands.tokensBuild`, gaps, `references/program.md`, `docs/AGENT-MEMORY.md`, `references/memory.md`, and `.agents/inventory/proposals/T-28-agent-identity-shape.md`. For Carina, read the generated `.agents/skills/carina-branding/reference.md`. Do not invent a token file.
 
 ## Constraints
 Edit canonical token source or its generator-owned branding prose source; run the host token build. Confirm before writes. Isolation: this pack’s Figma file only. Do not add a root `DESIGN.md`.

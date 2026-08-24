@@ -7,6 +7,7 @@ import {
   path,
   readJson,
   scanHost,
+  seedMemoryLayout,
   writeJson,
 } from "./lib.mjs"
 
@@ -86,4 +87,5 @@ if (!existing && !args.includes("--confirm-write")) {
 writeJson(packPath, pack)
 writeJson(path.join(root, ".agents/inventory/components.json"), inventory)
 writeJson(path.join(root, ".agents/inventory/gaps.json"), gaps)
+seedMemoryLayout(root)
 console.log(`bootstrap wrote pack status=${pack.bootstrapStatus} id=${pack.id || "(unset)"}`)

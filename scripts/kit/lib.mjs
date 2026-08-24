@@ -213,10 +213,67 @@ export function validateMemoryRecord(text, packId) {
   if (!data.designSystemId) return "memory missing designSystemId"
   if (packId && data.designSystemId !== packId) return "memory designSystemId mismatch"
   if (!data.agent || !data.title) return "memory missing agent/title"
+  if (!data.owner) return "memory missing owner"
+  if (!data.reviewedAt) return "memory missing reviewedAt"
   if (/sk-[a-zA-Z0-9]{8,}|BEGIN (RSA |OPENSSH )?PRIVATE KEY|password\s*=\s*\S+/i.test(text)) {
     return "memory contains a secret pattern"
   }
   return null
+}
+
+export function seedMemoryLayout(root) {
+  const manifest = loadAgentManifest(root)
+  writeText(path.join(root, ".agents/memory/.gitkeep"), "")
+  writeText(path.join(root, ".agents/memory/shared/.gitkeep"), "")
+  for (const agent of manifest.agents) {
+    writeText(path.join(root, ".agents/memory", agent.id, ".gitkeep"), "")
+  }
+}
+
+export function listMemoryRecordPaths(root) {
+  const memRoot = path.join(root, ".agents/memory")
+  if (!existsSync(memRoot)) return []
+  const out = []
+  const walk = (dir) => {
+    for (const entry of readdirSync(dir)) {
+      const full = path.join(dir, entry)
+      if (statSync(full).isDirectory()) walk(full)
+      else if (entry.endsWith(".md")) out.push(path.relative(root, full).split(path.sep).join("/"))
+    }
+  }
+  walk(memRoot)
+  return out.sort()
+}
+
+export function scanMemoryRecords(root) {
+  const memRoot = path.join(root, ".agents/memory")
+  if (!existsSync(memRoot)) {
+    return { sharedTitles: [], perAgentCounts: {}, total: 0 }
+  }
+  const sharedTitles = []
+  const perAgentCounts = {}
+  let total = 0
+  const sharedDir = path.join(memRoot, "shared")
+  if (existsSync(sharedDir)) {
+    for (const entry of readdirSync(sharedDir)) {
+      if (!entry.endsWith(".md")) continue
+      total += 1
+      const text = readFileSync(path.join(sharedDir, entry), "utf8")
+      const { data } = parseFrontmatter(text)
+      sharedTitles.push(data.title || entry.replace(/\.md$/, ""))
+    }
+  }
+  for (const agent of loadAgentManifest(root).agents) {
+    const agentDir = path.join(memRoot, agent.id)
+    if (!existsSync(agentDir)) continue
+    let count = 0
+    for (const entry of readdirSync(agentDir)) {
+      if (entry.endsWith(".md")) count += 1
+    }
+    if (count > 0) perAgentCounts[agent.id] = count
+    total += count
+  }
+  return { sharedTitles, perAgentCounts, total }
 }
 
 export function validateHandoff(text, packId) {

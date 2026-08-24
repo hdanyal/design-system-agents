@@ -30,10 +30,10 @@ Task board, what’s next, flag or organize gaps, first board after bootstrap.
 Jobs the live roster assigns elsewhere: bootstrap, kit upgrade, and incidents; reuse vs new; implementation.
 
 ## Must read
-`.agents/agents/manifest.json` every turn. Pack, `.agents/inventory/gaps.json`, inventory, `.agents/handoffs/`, existing `.agents/program/` if present. On the first board after bootstrap, or when the board is missing, inspect the generated branding `reference.md` identity shape. Run `scanProgramInputs` (or quote it) before a board write. `.agents/agents/references/program.md`. `.agents/agents/references/confirm.md` before writes or spawn.
+`.agents/agents/manifest.json` every turn. Pack, `.agents/inventory/gaps.json`, inventory, `.agents/handoffs/`, existing `.agents/program/` if present, `docs/AGENT-MEMORY.md`, `references/memory.md`. On the first board after bootstrap, or when the board is missing, inspect the generated branding `reference.md` identity shape. Run `scanProgramInputs` (or quote it) before a board write. `.agents/agents/references/program.md`. `.agents/agents/references/confirm.md` before writes or spawn.
 
 ## Constraints
-Write only `.agents/program/`. Do not implement UI, edit tokens, rewrite `gaps.json`, run bootstrap or `kit:install`, close HITL, run host verify, or spawn without confirm. At most one spawn per turn. Do not hardcode other agent names; owners come from the manifest (`invokeWhen`, `handoffsTo`, `mustNotWrite`). `carinaSkills` only when pack `id === "carina"`.
+Write only `.agents/program/`. Do not write `.agents/memory/`. Do not implement UI, edit tokens, rewrite `gaps.json`, run bootstrap or `kit:install`, close HITL, run host verify, or spawn without confirm. At most one spawn per turn. Do not hardcode other agent names; owners come from the manifest (`invokeWhen`, `handoffsTo`, `mustNotWrite`). `carinaSkills` only when pack `id === "carina"`.
 
 ## Steps
 1. If there is no pack, propose a blocked board whose first task is the roster agent whose `invokeWhen` includes bootstrap. Do not write `context.json`.

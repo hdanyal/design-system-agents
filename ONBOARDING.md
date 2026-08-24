@@ -63,7 +63,7 @@ Confirm you can open:
 
 1. Open an issue (prototype, new base component, promote block, design language, or a11y).
 2. Ask Manager (`ds-manager`) for the task board when you want work sequenced; `.agents/program/` is local documentation, not a substitute for GitHub issues. After bootstrap, expect a board row for generated branding identity (Overview + Do's and Don'ts) if it is missing.
-3. For a new view: name it, prototype under `prototypes/<name>/`, iterate with live Storybook, harvest candidates, then Architect → Coding → reviews → experimental promote → memory after HITL ack. Details: [docs/AGENT-KIT.md](docs/AGENT-KIT.md#open-ended-view-pipeline).
+3. For a new view: name it, prototype under `prototypes/<name>/`, iterate with live Storybook, harvest candidates, then Architect → Coding → reviews → experimental promote → **Docs writes memory after HITL ack** (empty namespaces seeded at bootstrap/upgrade). Details: [docs/AGENT-KIT.md](docs/AGENT-KIT.md#open-ended-view-pipeline).
 4. Branch as `type/<your-github-login>/<slug>` — see CONTRIBUTING for types.
 5. Keep docs, stories, tests, and a Changeset (when required) in the same PR.
 6. Complete the PR HITL checkboxes. Those checkboxes are the audit record.
@@ -81,7 +81,7 @@ Stable promotion is a **separate** lifecycle PR from first creation. New Carina 
 | Secrets, MCP, dependencies | [SECURITY.md](SECURITY.md) |
 | Rollback / incidents | [docs/INCIDENTS.md](docs/INCIDENTS.md) |
 | Agent cold start / view pipeline | [AGENTS.md](AGENTS.md) · [docs/AGENT-KIT.md](docs/AGENT-KIT.md) |
-| Agent catalog memory after HITL | [docs/AGENT-MEMORY.md](docs/AGENT-MEMORY.md) |
+| Agent catalog memory after HITL | [docs/AGENT-MEMORY.md](docs/AGENT-MEMORY.md) — selective facts; `ds-docs` writes `shared/` after ack |
 | Generated branding identity (CSS vars) | `.agents/skills/carina-branding/reference.md` (run `pnpm tokens:build`) |
 | Architecture decisions | [docs/adr/](docs/adr/) |
 

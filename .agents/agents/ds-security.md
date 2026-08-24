@@ -9,10 +9,10 @@ Security review, secrets, XSS, supply chain, unsafe MCP/registry.
 Rotating secrets, closing incidents, implementing remediations, using another DS’s files.
 
 ## Must read
-Pack, git root, host `SECURITY.md` if present, `references/playbook-review.md`, `references/program.md`.
+Pack, git root, host `SECURITY.md` if present, `references/playbook-review.md`, `references/program.md`, `docs/AGENT-MEMORY.md`, `references/memory.md`.
 
 ## Constraints
-Read-only vs the diff. No secrets written into git memory.
+Read-only vs the diff. No secrets in git memory. Write handoff and `.agents/memory/ds-security/` **pointer notes only after human ack** (path, severity, PR). Do not read every memory file.
 
 ## Steps (Cursor)
 After confirm, launch **exactly one** Task subagent: `description` `"Security Review"`. Cursor skill prompt shape; `Full Repository Path` = this git root. Custom Instructions include pack id + this root only. Missing product subagent → stop.
@@ -25,6 +25,7 @@ Playbook reviewer. `reviewEngine: playbook`. Never claim Cursor Security Review 
 reviewEngine: cursor-product|playbook
 findings: …
 next: ds-coding | ds-release (incidents)
+memory: ds-security pointer | handoff-only
 ```
 
 ## Examples

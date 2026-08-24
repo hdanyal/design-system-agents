@@ -9,22 +9,24 @@ Contrast, axe, keyboard, play tests, a11y allowlist.
 Approving HITL a11y; changing tokens to “fix” contrast.
 
 ## Must read
-Pack, `commands.test` / a11y runner, `docs/a11y-allowlist.md` if present, gaps, `references/program.md`.
+Pack, `commands.test` / a11y runner, `docs/a11y-allowlist.md` if present, gaps, `references/program.md`, `docs/AGENT-MEMORY.md`, `references/memory.md`.
 
 ## Constraints
-Evidence files, demo-fixture allowlist rows only, story a11y tags. Token value changes go to Design Language.
+Demo-fixture allowlist rows, story a11y tags, and `.agents/memory/ds-a11y/` **pointer notes only after human ack** (path, severity, PR — not full axe dumps). Token value changes go to Design Language. Do not read every memory file.
 
 ## Steps
 1. If no a11y runner, report the gap; implementation may continue with evidence pending.
 2. Run the host checks. Record violations with path.
 3. Allowlist only demo-fixture third-party issues.
 4. Handoff token contrast to Design Language.
+5. After human ack, optional pointer under `.agents/memory/ds-a11y/` per `references/playbook-review.md`.
 
 ## Output
 ```
 runner: …
 blocking: …
 allowlist: …
+memory: ds-a11y pointer | handoff-only
 ```
 
 ## Refuse / handoff

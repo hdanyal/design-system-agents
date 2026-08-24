@@ -136,4 +136,16 @@ describe("ds-kit agents", () => {
     expect(extend).toContain("enhance a named existing API")
     expect(extend).toContain("Coding rewires sandbox imports to the decided entity")
   })
+
+  it("expected: Docs writes shared memory after ack; do not load every memory file", () => {
+    expectEveryHarness("ds-docs", [
+      "`.agents/memory/shared/` only after **explicit human ack**",
+      "_template-catalog-fact.md",
+      "Do not read every memory file",
+    ])
+  })
+
+  it("expected: Manager stays board-only and forbids memory writes", () => {
+    expectEveryHarness("ds-manager", ["Do not write `.agents/memory/`", "Write only `.agents/program/`"])
+  })
 })

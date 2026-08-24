@@ -42,6 +42,6 @@ There is no allowlist of view types. Humans may name any surface (chat, timeline
 2. **Harvest while building** — flag regions as reuse, enhance-existing, extract-new primitive/block, or keep local. Prefer reuse, then enhance an existing API, then extract. Batch flags for one Architect pass (template: `.agents/inventory/proposals/_template-harvest-map.md`). Do not promote from Prototype.
 3. **Implement** only Architect-approved files (new or enhanced). Rewire the sandbox to catalog imports. Present the live story again.
 4. **Promote** experimental blocks via `carina-promote-block` after reviews and HITL. Multiple slices may come from one view over time. Do not mark stable or commit `public/r` in the creation PR.
-5. **Remember** after HITL ack — catalog facts in `.agents/memory/shared/` per [docs/AGENT-MEMORY.md](docs/AGENT-MEMORY.md).
+5. **Remember** after HITL ack — **Documentation (`ds-docs`)** writes one short catalog fact per entity in `.agents/memory/shared/` per [docs/AGENT-MEMORY.md](docs/AGENT-MEMORY.md). The shipper proposes only; do not paste USAGE into memory.
 
 Agent routing and harness rules: [docs/AGENT-KIT.md](docs/AGENT-KIT.md). Identity for agents is the generated branding reference from `pnpm tokens:build`, not a hand-edited DESIGN.md over `tokens.json`.

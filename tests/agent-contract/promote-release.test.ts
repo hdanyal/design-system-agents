@@ -15,9 +15,9 @@ describe("promote/release", () => {
   it("expected: a view yields independently reviewed slices and memory lands after HITL", () => {
     const promote = readFileSync(".agents/skills/carina-promote-block/SKILL.md", "utf8")
     expect(promote).toContain("multiple experimental slices over time")
-    expect(promote).toContain("do not write memory in the same turn as promotion")
+    expect(promote).toContain("do not write `.agents/memory/shared/` in the same turn as promotion")
     const memory = readFileSync("docs/AGENT-MEMORY.md", "utf8")
-    expect(memory).toContain("the specialist who shipped it proposes the fact")
+    expect(memory).toContain("**proposes** the fact")
     expect(memory).toContain("waits for explicit human acknowledgement")
   })
 

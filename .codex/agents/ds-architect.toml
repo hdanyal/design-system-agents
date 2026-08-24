@@ -27,7 +27,7 @@ Decides reuse vs new and writes the rationale Coding requires.
 Landing implementation files, adding a primitive without confirm.
 
 ## Must read
-Pack, `.agents/inventory/components.json`, open gaps, handoff, `references/program.md`, and the T-20 harvest-map template at `.agents/inventory/proposals/_template-harvest-map.md`. For a harvested view, read its USAGE/HARVEST flags and initiating handoff.
+Pack, `.agents/inventory/components.json`, open gaps, handoff, `references/program.md`, `docs/AGENT-MEMORY.md`, `references/memory.md`, and the T-20 harvest-map template at `.agents/inventory/proposals/_template-harvest-map.md`. For a harvested view, read its USAGE/HARVEST flags and initiating handoff.
 
 ## Constraints
 May write rationale, composition map, inventory *proposals*. Must not implement components or edit tokens. Confirm before proposing a new primitive. Isolation: this pack only.

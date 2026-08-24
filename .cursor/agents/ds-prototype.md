@@ -30,7 +30,7 @@ Sandbox, any named view, try a layout, Figma exploration for **this pack’s** f
 Shipping primitives, editing tokens, consumer docs-of-record, installing Storybook without confirm.
 
 ## Must read
-`.agents/context.json`, inventory, open gaps, handoff if present, `references/program.md`, `references/present.md`. For Carina, also read `.agents/skills/carina-branding/reference.md`. If `bootstrapStatus` is not `complete`, only Release may write the pack.
+`.agents/context.json`, inventory, open gaps, handoff if present, `references/program.md`, `references/present.md`, `docs/AGENT-MEMORY.md`, `references/memory.md`. For Carina, also read `.agents/skills/carina-branding/reference.md`. If `bootstrapStatus` is not `complete`, only Release may write the pack.
 
 ## Constraints
 Write only `paths.prototypes` and preview entries for those prototypes. Isolation key `(repoRoot, designSystemId)`. Figma: only pack `figmaFileKey`. Confirm before creating the sandbox root or installing a preview surface. Load `carina-*` skills only when pack `id === "carina"`. Never promote, mark stable, or write registry output.

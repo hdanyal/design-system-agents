@@ -6,7 +6,9 @@ import { describe, expect, it } from "vitest"
 import {
   routeIntent,
   scanHost,
+  scanMemoryRecords,
   scanProgramInputs,
+  seedMemoryLayout,
   validateMemoryRecord,
   validatePack,
   validateProgram,
@@ -160,6 +162,61 @@ describe("portable agent kit", () => {
     const pack = JSON.parse(readFileSync(".agents/context.json", "utf8"))
     const foreign = readFileSync("tests/fixtures/foreign-ds/.agents/memory/shared/note.md", "utf8")
     expect(validateMemoryRecord(foreign, pack.id)).toContain("mismatch")
+  })
+
+  it("rejects memory missing owner or reviewedAt", () => {
+    const incomplete = `---
+designSystemId: carina
+agent: ds-docs
+title: Incomplete
+---
+body`
+    expect(validateMemoryRecord(incomplete, "carina")).toContain("owner")
+    const noDate = `---
+designSystemId: carina
+agent: ds-docs
+title: No date
+owner: test
+---
+body`
+    expect(validateMemoryRecord(noDate, "carina")).toContain("reviewedAt")
+  })
+
+  it("seedMemoryLayout creates shared and per-agent namespaces without md records", () => {
+    const tmp = mkdtempSync(path.join(os.tmpdir(), "ds-mem-"))
+    try {
+      cpSync(path.join(root, ".agents/agents"), path.join(tmp, ".agents/agents"), { recursive: true })
+      seedMemoryLayout(tmp)
+      expect(existsSync(path.join(tmp, ".agents/memory/shared/.gitkeep"))).toBe(true)
+      expect(existsSync(path.join(tmp, ".agents/memory/ds-docs/.gitkeep"))).toBe(true)
+      expect(existsSync(path.join(tmp, ".agents/memory/ds-manager/.gitkeep"))).toBe(true)
+      const scan = scanMemoryRecords(tmp)
+      expect(scan.total).toBe(0)
+      expect(scan.sharedTitles).toEqual([])
+    } finally {
+      rmSync(tmp, { recursive: true, force: true })
+    }
+  })
+
+  it("bootstrap --write on a temp host seeds empty memory layout", () => {
+    const tmp = mkdtempSync(path.join(os.tmpdir(), "ds-bootstrap-mem-"))
+    try {
+      cpSync(path.join(root, "tests/fixtures/foreign-ds"), tmp, { recursive: true })
+      run("node", ["scripts/kit/install.mjs", "--dir", tmp])
+      const bootstrap = run("node", [
+        "scripts/kit/bootstrap.mjs",
+        "--dir",
+        tmp,
+        "--write",
+        "--confirm-write",
+      ])
+      expect(bootstrap.status, bootstrap.stderr).toBe(0)
+      expect(existsSync(path.join(tmp, ".agents/memory/shared/.gitkeep"))).toBe(true)
+      expect(existsSync(path.join(tmp, ".agents/memory/ds-docs/.gitkeep"))).toBe(true)
+      expect(scanMemoryRecords(tmp).total).toBe(1)
+    } finally {
+      rmSync(tmp, { recursive: true, force: true })
+    }
   })
 
   it("complete pack requires id and tokens or deferral", () => {

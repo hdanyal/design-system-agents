@@ -1,5 +1,6 @@
 import { existsSync, readFileSync } from "node:fs"
 import path from "node:path"
+import { scanMemoryRecords } from "../kit/lib.mjs"
 
 const packPath = path.join(process.cwd(), ".agents/context.json")
 if (!existsSync(packPath)) {
@@ -16,8 +17,14 @@ if (existsSync(gapsPath)) {
   gapNote = `${open.length} open gaps`
 }
 
-const memDir = path.join(process.cwd(), ".agents/memory")
-const memNote = existsSync(memDir) ? "memory namespaces present" : "empty memory"
+const { sharedTitles, perAgentCounts, total } = scanMemoryRecords(process.cwd())
+let memNote = "memory 0 records"
+if (total > 0) {
+  const sharedPart =
+    sharedTitles.length > 0 ? `shared ${sharedTitles.length}: ${sharedTitles.join(", ")}` : "shared 0"
+  const perAgentTotal = Object.values(perAgentCounts).reduce((sum, n) => sum + n, 0)
+  memNote = `${sharedPart}; per-agent ${perAgentTotal}`
+}
 
 const programPath = path.join(process.cwd(), ".agents/program/board.md")
 let programNote = pack.bootstrapStatus === "complete" ? "no program board (invoke ds-manager)" : "program n/a until bootstrap"
