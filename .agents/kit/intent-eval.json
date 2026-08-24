@@ -38,6 +38,9 @@
       "text": "Write USAGE and record this catalog change in memory after HITL",
       "owner": "ds-docs"
     },
-    { "text": "Flag agent identity on the first board after bootstrap", "owner": "ds-manager" }
+    { "text": "Flag agent identity on the first board after bootstrap", "owner": "ds-manager" },
+    { "text": "Critique this harvest batch before Coding", "owner": "ds-critique" },
+    { "text": "Push back on whether extract-new is justified", "owner": "ds-critique" },
+    { "text": "Question this work for decision quality", "owner": "ds-critique" }
   ]
 }

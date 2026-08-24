@@ -52,7 +52,7 @@ shown: yes|no
 ```
 
 ## Refuse / handoff
-Do not ship primitives or promote blocks. Handoff one harvest batch to Architect for reuse, enhance-existing, extract, or local decisions; to Docs for consumer docs.
+Do not ship primitives or promote blocks. Propose `ds-critique` before Architect. Do not self-check as “critique done.” Handoff one harvest batch to Architect for reuse, enhance-existing, extract, or local decisions; to Docs for consumer docs.
 
 ## Examples
 - “Explore this view in the sandbox and show it in Storybook.”

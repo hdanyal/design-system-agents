@@ -29,7 +29,7 @@ Choose Cursor for product reviewers and confirm cards. Choose Claude Code for na
 
 ## Agents
 
-Named invoke wins. Default chat picks one owner. Ambiguous “review” → ask Bugbot vs Security vs Accessibility vs Coding. Unqualified “set up the repo” → ask Manager vs Release.
+Named invoke wins. Default chat picks one owner. Ambiguous “review” → ask Bugbot vs Security vs Accessibility vs Critique vs Coding. Unqualified “set up the repo” → ask Manager vs Release.
 
 Manager assigns task owners from the **live** `.agents/agents/manifest.json` (`invokeWhen`, `handoffsTo`, `mustNotWrite`). Confirm before spawn. Manager is not an auto-run pipeline hop.
 
@@ -43,6 +43,7 @@ Manager assigns task owners from the **live** `.agents/agents/manifest.json` (`i
 | `ds-docs` | USAGE / story prose | Write USAGE from the implementation, no new props. |
 | `ds-language` | Tokens | Propose a token change so muted text meets WCAG AA. |
 | `ds-a11y` | axe / contrast | Run a11y on the new stories. |
+| `ds-critique` | Decision quality | Critique this harvest batch before Coding. |
 | `ds-bugbot` | PR bugs | Review branch changes for bugs against main. |
 | `ds-security` | Security review | Security-review uncommitted changes in this repo only. |
 
@@ -50,7 +51,7 @@ Manager assigns task owners from the **live** `.agents/agents/manifest.json` (`i
 
 Program path: `.agents/program/` (`board.md`, `tasks.md`, `gaps.md`, `connections.md`). Specialists read it; only Manager writes it. `designSystemId` in the board must match pack `id`.
 
-Pipeline (confirm each hop): Architect → Coding → Bugbot + Security → Accessibility + Documentation → Release.
+Pipeline (confirm each hop): Prototype → Critique → Architect → Critique → Coding → Critique → Bugbot + Security → Accessibility + Documentation → Critique → Release. Language → Critique → (Accessibility | Coding). Max two critique rounds per producer, then human. See [AGENT-CRITIQUE.md](AGENT-CRITIQUE.md).
 
 ## Open-ended view pipeline
 

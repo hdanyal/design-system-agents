@@ -8,8 +8,9 @@ Bootstrap `--write` and kit upgrade seed **empty** namespaces (`.gitkeep` only).
 
 - `shared/` — one short catalog fact per public entity after human ack
 - `<agent-id>/` — pointer notes for Bugbot, Security, or Accessibility evidence after human ack
+- `ds-critique/` — short pack lessons and user instructions after human ack (not full critique essays)
 
-The program board under `.agents/program/` is not memory. Manager writes only `.agents/program/`.
+The program board under `.agents/program/` is not memory. Manager writes only `.agents/program/`. Kit `critique-standards.md` is portable industry bar, not host memory.
 
 ## Selectivity
 
@@ -19,11 +20,13 @@ Memory is a **small retrieval index**, not a second catalog. Prefer omitting a r
 
 **Write to `<agent-id>/` (review agents only, after ack):** path, severity, PR or handoff id — not full axe dumps or review essays.
 
+**Write to `ds-critique/` (Critique only, after ack):** short pack lessons or user instructions from `_template-critique-lesson.md`. Retrieve by `subjectAgent` / `trigger` / entity match — not every lesson in one turn. Producers must not pre-seed `ds-critique/` for a friendly review.
+
 **Never memory:** inventory, USAGE, RATIONALE, harvest maps, program board, handoffs (until reviewed and reduced), token tables, secrets, chat transcripts.
 
-**Retrieval:** read [docs/AGENT-MEMORY.md](AGENT-MEMORY.md) and session-start title counts. Do **not** load every file under `.agents/memory/`. Open a `shared/*.md` only when this turn’s entity matches. Open own-namespace files only when recording/acking evidence or the user asked about a prior finding. Inventory and Storybook remain source for what exists.
+**Retrieval:** read [docs/AGENT-MEMORY.md](AGENT-MEMORY.md) and session-start title counts (shared and ds-critique titles only). Do **not** load every file under `.agents/memory/`. Open a `shared/*.md` only when this turn’s entity matches. Open `ds-critique/*.md` only when `subjectAgent` / `trigger` / entity matches this hop. Open own-namespace files only when recording/acking evidence or the user asked about a prior finding. Never open producer memory namespaces from Critique. Inventory and Storybook remain source for what exists.
 
-Template: `.agents/inventory/proposals/_template-catalog-fact.md`.
+Template: `.agents/inventory/proposals/_template-catalog-fact.md`. Critique lessons: `_template-critique-lesson.md`.
 
 ## Frontmatter
 

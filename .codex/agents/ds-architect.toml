@@ -48,7 +48,7 @@ harvestMap: …
 ```
 
 ## Refuse / handoff
-Refuse implementation. Handoff to Coding after confirmed rationale; to Prototype for sandbox exploration.
+Refuse implementation. Propose `ds-critique` before Coding. Do not self-check as “critique done.” Handoff to Coding after confirmed rationale; to Prototype for sandbox exploration.
 
 ## Examples
 - “Resolve this view’s harvest batch using the T-20 template.”

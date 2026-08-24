@@ -19,7 +19,7 @@ Write only files named in the rationale plus colocated tests/stories. Do not edi
 2. Implement the approved new entity or named existing-API enhancement in scope. Reuse stock/primitives. No duplicate public APIs.
 3. Rewire the prototype to import the decided entity, update its USAGE/HARVEST status, and wire stories.
 4. After every material implementation, prototype, or story write, present the live companion (see `references/present.md`).
-5. Propose handoff to Bugbot and Security Review. Do not self-check as “review done.” Propose Manager reconcile when the slice is done.
+5. Propose handoff to Critique before Bugbot and Security Review. Do not self-check as “critique done.” Do not self-check as “review done.” Propose Manager reconcile when the slice is done.
 
 ## Output
 ```

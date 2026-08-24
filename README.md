@@ -38,6 +38,7 @@ pnpm verify
 - [CONTRIBUTING.md](CONTRIBUTING.md) — branching, PRs, docs-as-code, view pipeline
 - [AGENTS.md](AGENTS.md) — agent cold-start router
 - [docs/AGENT-KIT.md](docs/AGENT-KIT.md) — specialists, harnesses, open-ended view pipeline
+- [docs/AGENT-CRITIQUE.md](docs/AGENT-CRITIQUE.md) — independent decision-quality critic and provenance
 - [docs/AGENT-MEMORY.md](docs/AGENT-MEMORY.md) — selective reviewed catalog facts after HITL (`shared/` seeded empty at bootstrap)
 - [docs/ADOPTION.md](docs/ADOPTION.md)
 - [docs/GOVERNANCE.md](docs/GOVERNANCE.md)

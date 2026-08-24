@@ -69,7 +69,7 @@ describe("ds-kit agents", () => {
     expect(rule).toContain("Never mix another design system's chats")
     const generated = readdirSync(".cursor/agents")
     expect(generated.filter((name) => name.startsWith("ds-") && name.endsWith(".md")).length).toBeGreaterThanOrEqual(
-      10
+      11
     )
   })
 
@@ -147,5 +147,92 @@ describe("ds-kit agents", () => {
 
   it("expected: Manager stays board-only and forbids memory writes", () => {
     expectEveryHarness("ds-manager", ["Do not write `.agents/memory/`", "Write only `.agents/program/`"])
+  })
+
+  it("expected: Critique is independent and readonly", () => {
+    const manifest = JSON.parse(readFileSync(".agents/agents/manifest.json", "utf8"))
+    const critique = manifest.agents.find((a: { id: string }) => a.id === "ds-critique")
+    expect(critique.readonly).toBe(true)
+    expect(critique.reviewEngine).toBeNull()
+    expectEveryHarness("ds-critique", [
+      "Does not implement fixes",
+      "Do not read producer memory namespaces",
+      "never in the same turn as first proposing",
+      "Unanswered rubric items → `refuse`, not `accept`",
+    ])
+  })
+
+  it("forbidden: producers self-check critique done", () => {
+    for (const id of [
+      "ds-prototype",
+      "ds-architect",
+      "ds-coding",
+      "ds-docs",
+      "ds-language",
+      "ds-a11y",
+      "ds-release",
+    ]) {
+      expectEveryHarness(id, ["Do not self-check as “critique done.”"])
+    }
+  })
+
+  it("expected: pipeline docs name Critique hop", () => {
+    const kit = readFileSync("docs/AGENT-KIT.md", "utf8")
+    expect(kit).toContain("Prototype → Critique → Architect → Critique → Coding → Critique")
+    expect(kit).toContain("Language → Critique")
+    expect(kit).toContain("AGENT-CRITIQUE.md")
+  })
+
+  it("expected: AGENT-CRITIQUE provenance and kit path", () => {
+    const doc = readFileSync("docs/AGENT-CRITIQUE.md", "utf8")
+    expect(doc).toContain("Anthropic")
+    expect(doc).toContain("OpenAI")
+    expect(doc).toContain("Conventional Comments")
+    const kitManifest = JSON.parse(readFileSync(".agents/kit/manifest.json", "utf8"))
+    expect(kitManifest.paths).toContain("docs/AGENT-CRITIQUE.md")
+  })
+
+  it("expected: role rubrics with automatic revise lines", () => {
+    const rubrics = readFileSync(".agents/agents/references/critique.md", "utf8")
+    for (const heading of [
+      "## Prototype",
+      "## Architect",
+      "## Coding",
+      "## Docs",
+      "## Language",
+      "## Accessibility",
+      "## Release",
+    ]) {
+      expect(rubrics).toContain(heading)
+    }
+    expect(rubrics).toContain("automatic revise")
+    expect(rubrics.match(/automatic revise/g)?.length).toBeGreaterThanOrEqual(7)
+  })
+
+  it("expected: critique presentation contract", () => {
+    const present = readFileSync(".agents/agents/references/critique-present.md", "utf8")
+    expect(present).toContain("No feedback sandwich")
+    expect(present).toContain("nitpick` cannot force `revise`")
+    expect(present).toContain("quote")
+    expect(present).toContain("reasoning")
+    expect(present).toContain("Do not echo producer claims")
+    expect(present).toContain("label: issue")
+    expect(present).toContain("blocking:")
+    expect(present).toContain("observation:")
+  })
+
+  it("expected: critique standards and lesson template", () => {
+    expect(existsSync(".agents/agents/references/critique-standards.md")).toBe(true)
+    const template = readFileSync(".agents/inventory/proposals/_template-critique-lesson.md", "utf8")
+    expect(template).toContain("kind")
+    expect(template).toContain("subjectAgent")
+    expect(template).toContain("trigger")
+    expect(template).toContain("lesson")
+  })
+
+  it("expected: handoffs require subjectAgent for critique", () => {
+    const handoffs = readFileSync(".agents/agents/references/handoffs.md", "utf8")
+    expect(handoffs).toContain("subjectAgent")
+    expect(handoffs).toContain("critiqueRound")
   })
 })

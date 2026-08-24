@@ -33,6 +33,7 @@
         "ds-docs",
         "ds-language",
         "ds-a11y",
+        "ds-critique",
         "ds-bugbot",
         "ds-security",
         "ds-release"
@@ -48,7 +49,7 @@
       "invokeWhen": ["sandbox", "explore", "prototype", "figma mock", "show me this"],
       "mayWrite": ["paths.prototypes", "preview entries for those prototypes"],
       "mustNotWrite": ["primitives", "tokens", "registry", "silent Storybook install"],
-      "handoffsTo": ["ds-architect", "ds-docs", "ds-manager"],
+      "handoffsTo": ["ds-critique", "ds-architect", "ds-docs", "ds-manager"],
       "readonly": false,
       "reviewEngine": null,
       "carinaSkills": ["carina-prototype", "carina-compose", "carina-figma"]
@@ -60,7 +61,7 @@
       "invokeWhen": ["reuse", "duplicates", "duplicate", "already have", "new component", "composition", "does this exist"],
       "mayWrite": ["rationale", "composition map", "inventory proposals"],
       "mustNotWrite": ["component implementations", "tokens"],
-      "handoffsTo": ["ds-coding", "ds-prototype", "ds-manager"],
+      "handoffsTo": ["ds-critique", "ds-coding", "ds-prototype", "ds-manager"],
       "readonly": false,
       "reviewEngine": null,
       "carinaSkills": ["carina-compose", "carina-extend-ui", "carina-promote-block"]
@@ -72,7 +73,7 @@
       "invokeWhen": ["implement", "refactor", "tests", "wire stories"],
       "mayWrite": ["rationale-named files", "colocated tests", "stories"],
       "mustNotWrite": ["tokens.json policy", "GOVERNANCE", "pack id"],
-      "handoffsTo": ["ds-bugbot", "ds-security", "ds-a11y", "ds-docs", "ds-manager"],
+      "handoffsTo": ["ds-critique", "ds-bugbot", "ds-security", "ds-a11y", "ds-docs", "ds-manager"],
       "readonly": false,
       "reviewEngine": null,
       "carinaSkills": ["carina-extend-ui", "carina-stories", "carina-update-shadcn", "carina-verify"]
@@ -84,7 +85,7 @@
       "invokeWhen": ["USAGE", "rationale prose", "story docs", "onboarding docs"],
       "mayWrite": ["docs paths", "story parameters.docs", ".agents/memory/shared"],
       "mustNotWrite": ["new public APIs", "token values"],
-      "handoffsTo": ["ds-release", "ds-coding", "ds-manager"],
+      "handoffsTo": ["ds-critique", "ds-release", "ds-coding", "ds-manager"],
       "readonly": false,
       "reviewEngine": null,
       "carinaSkills": ["carina-stories"]
@@ -96,7 +97,7 @@
       "invokeWhen": ["tokens", "token change", "preset", "branding", "Figma variables"],
       "mayWrite": ["canonical token source", "generated token outputs via host build"],
       "mustNotWrite": ["stock component restyles"],
-      "handoffsTo": ["ds-a11y", "ds-coding", "ds-manager"],
+      "handoffsTo": ["ds-critique", "ds-a11y", "ds-coding", "ds-manager"],
       "readonly": false,
       "reviewEngine": null,
       "carinaSkills": ["carina-branding", "carina-update-design-language", "carina-figma"]
@@ -108,10 +109,31 @@
       "invokeWhen": ["contrast", "axe", "a11y", "play tests", "a11y allowlist"],
       "mayWrite": [".agents/memory/ds-a11y", "demo-fixture allowlist", "story a11y tags"],
       "mustNotWrite": ["token hex/oklch fixes"],
-      "handoffsTo": ["ds-language", "ds-coding", "ds-release", "ds-manager"],
+      "handoffsTo": ["ds-critique", "ds-language", "ds-coding", "ds-release", "ds-manager"],
       "readonly": false,
       "reviewEngine": null,
       "carinaSkills": ["carina-a11y"]
+    },
+    {
+      "id": "ds-critique",
+      "displayName": "Critique",
+      "description": "Independent decision-quality review. Questions producer choices against role rubrics. Use when the user asks to critique, push back, or question work quality. Does not implement fixes.",
+      "invokeWhen": ["critique", "push back", "question this work", "decision quality"],
+      "mayWrite": [".agents/memory/ds-critique", "handoff"],
+      "mustNotWrite": ["component implementations", "tokens", "primitives", "producer memory namespaces"],
+      "handoffsTo": [
+        "ds-prototype",
+        "ds-architect",
+        "ds-coding",
+        "ds-docs",
+        "ds-language",
+        "ds-a11y",
+        "ds-release",
+        "ds-manager"
+      ],
+      "readonly": true,
+      "reviewEngine": null,
+      "carinaSkills": []
     },
     {
       "id": "ds-bugbot",
@@ -144,7 +166,7 @@
       "invokeWhen": ["bootstrap", "scan this repo", "kit install", "kit upgrade", "upgrade", "release", "incident"],
       "mayWrite": ["pack status", "kit upgrade", "host release artifacts"],
       "mustNotWrite": ["feature implementations in the same turn"],
-      "handoffsTo": ["ds-manager", "ds-prototype", "ds-architect", "ds-security"],
+      "handoffsTo": ["ds-critique", "ds-manager", "ds-prototype", "ds-architect", "ds-security"],
       "readonly": false,
       "reviewEngine": null,
       "carinaSkills": [

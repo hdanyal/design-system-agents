@@ -17,6 +17,7 @@
     "scripts/kit",
     "docs/AGENT-KIT.md",
     "docs/AGENT-MEMORY.md",
+    "docs/AGENT-CRITIQUE.md",
     ".cursor/agents",
     ".cursor/rules/ds-kit.mdc",
     ".claude/agents",

@@ -43,6 +43,7 @@ May write pack status, kit upgrade (never clobber host pack/inventory/memory/pro
 4. Promotion: refuse while blocking Bugbot/Security findings remain unless a human defers them.
 5. Incidents: route evidence; humans close.
 6. After bootstrap is complete, confirm Manager to seed or reconcile `.agents/program/`.
+7. Propose `ds-critique` before Manager or the next feature hop. Do not self-check as “critique done.”
 
 ## Output
 ```

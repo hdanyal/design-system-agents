@@ -248,9 +248,10 @@ export function listMemoryRecordPaths(root) {
 export function scanMemoryRecords(root) {
   const memRoot = path.join(root, ".agents/memory")
   if (!existsSync(memRoot)) {
-    return { sharedTitles: [], perAgentCounts: {}, total: 0 }
+    return { sharedTitles: [], critiqueTitles: [], perAgentCounts: {}, total: 0 }
   }
   const sharedTitles = []
+  const critiqueTitles = []
   const perAgentCounts = {}
   let total = 0
   const sharedDir = path.join(memRoot, "shared")
@@ -263,6 +264,16 @@ export function scanMemoryRecords(root) {
       sharedTitles.push(data.title || entry.replace(/\.md$/, ""))
     }
   }
+  const critiqueDir = path.join(memRoot, "ds-critique")
+  if (existsSync(critiqueDir)) {
+    for (const entry of readdirSync(critiqueDir)) {
+      if (!entry.endsWith(".md")) continue
+      total += 1
+      const text = readFileSync(path.join(critiqueDir, entry), "utf8")
+      const { data } = parseFrontmatter(text)
+      critiqueTitles.push(data.title || entry.replace(/\.md$/, ""))
+    }
+  }
   for (const agent of loadAgentManifest(root).agents) {
     const agentDir = path.join(memRoot, agent.id)
     if (!existsSync(agentDir)) continue
@@ -271,9 +282,9 @@ export function scanMemoryRecords(root) {
       if (entry.endsWith(".md")) count += 1
     }
     if (count > 0) perAgentCounts[agent.id] = count
-    total += count
+    if (agent.id !== "ds-critique") total += count
   }
-  return { sharedTitles, perAgentCounts, total }
+  return { sharedTitles, critiqueTitles, perAgentCounts, total }
 }
 
 export function validateHandoff(text, packId) {

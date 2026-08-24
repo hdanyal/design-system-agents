@@ -40,7 +40,7 @@ Edit canonical token source or its generator-owned branding prose source; run th
 2. Propose the change with WCAG impact if contrast.
 3. For identity-shape work, extend `tokens:build` branding-reference generation with Overview, Do's and Don'ts, and catalog intent per T-28; keep tokens/CSS variables canonical and never hand-edit the generated reference.
 4. After confirm, edit source and run `commands.tokensBuild`.
-5. Handoff to Accessibility for evidence.
+5. Handoff to Critique, then Accessibility for evidence. Do not self-check as “critique done.”
 
 ## Output
 ```

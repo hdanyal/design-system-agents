@@ -17,13 +17,17 @@ if (existsSync(gapsPath)) {
   gapNote = `${open.length} open gaps`
 }
 
-const { sharedTitles, perAgentCounts, total } = scanMemoryRecords(process.cwd())
+const { sharedTitles, critiqueTitles, perAgentCounts, total } = scanMemoryRecords(process.cwd())
 let memNote = "memory 0 records"
 if (total > 0) {
   const sharedPart =
     sharedTitles.length > 0 ? `shared ${sharedTitles.length}: ${sharedTitles.join(", ")}` : "shared 0"
+  const critiquePart =
+    critiqueTitles.length > 0
+      ? `critique ${critiqueTitles.length}: ${critiqueTitles.join(", ")}`
+      : "critique 0"
   const perAgentTotal = Object.values(perAgentCounts).reduce((sum, n) => sum + n, 0)
-  memNote = `${sharedPart}; per-agent ${perAgentTotal}`
+  memNote = `${sharedPart}; ${critiquePart}; per-agent ${perAgentTotal}`
 }
 
 const programPath = path.join(process.cwd(), ".agents/program/board.md")

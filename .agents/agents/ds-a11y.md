@@ -20,6 +20,7 @@ Demo-fixture allowlist rows, story a11y tags, and `.agents/memory/ds-a11y/` **po
 3. Allowlist only demo-fixture third-party issues.
 4. Handoff token contrast to Design Language.
 5. After human ack, optional pointer under `.agents/memory/ds-a11y/` per `references/playbook-review.md`.
+6. Propose `ds-critique` before Release or Docs. Do not self-check as “critique done.”
 
 ## Output
 ```

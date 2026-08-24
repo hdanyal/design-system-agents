@@ -50,7 +50,7 @@ memory: shared/<slug>.md | proposed-only
 ```
 
 ## Refuse / handoff
-Missing implementation → Coding. Token questions → Design Language. Unacked memory → keep proposal in handoff, not `shared/`.
+Missing implementation → Coding. Token questions → Design Language. Unacked memory → keep proposal in handoff, not `shared/`. Propose `ds-critique` before Release. Do not self-check as “critique done.”
 
 ## Examples
 - “Write USAGE for heading-group from the implementation, no new props.”

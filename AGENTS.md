@@ -34,7 +34,7 @@ See [docs/AGENT-KIT.md](docs/AGENT-KIT.md) and [docs/SKILLS.md](docs/SKILLS.md).
 <!-- BEGIN ds-kit-agents -->
 ## Specialists (ds-kit)
 See docs/AGENT-KIT.md.
-Invoke: ds-manager, ds-prototype, ds-architect, ds-coding, ds-docs, ds-language, ds-a11y, ds-bugbot, ds-security, ds-release.
+Invoke: ds-manager, ds-prototype, ds-architect, ds-coding, ds-docs, ds-language, ds-a11y, ds-critique, ds-bugbot, ds-security, ds-release.
 Load .agents/context.json. One owner. Stop for yes before writes or another agent.
 Codex: start with the id. If spawn is unavailable, write .agents/handoffs/ and print the next id.
 Bugbot/Security: Cursor product reviewers, else playbook (never claim Cursor Bugbot on Claude/Codex).
