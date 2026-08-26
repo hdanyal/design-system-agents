@@ -305,6 +305,11 @@ export function memoryAllowedNamespaces(root) {
 /**
  * Path-aware memory check. Two-arg validateMemoryRecord stays frontmatter-only.
  * relPath is posix under repo root, e.g. .agents/memory/shared/heading-group.md
+ * @param {string} text
+ * @param {string} packId
+ * @param {string} [relPath]
+ * @param {string | null} [root] repo root for namespace allowlist; omit to skip
+ * @returns {string | null}
  */
 export function validateMemoryFile(text, packId, relPath, root = null) {
   const base = validateMemoryRecord(text, packId)
