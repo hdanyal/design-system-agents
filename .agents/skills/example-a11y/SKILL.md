@@ -28,8 +28,8 @@ Forbidden: stock restyles, secret commits, main pushes, unreviewed registries, a
 - Incidents: docs/INCIDENTS.md
 
 ## Workflow
-1. Run `pnpm test:a11y` and `pnpm test:stories`.
-2. Add play tests for stateful primitives/blocks.
-3. Collect manual HITL evidence from GOVERNANCE.
+1. Scope `pnpm test:a11y` and `pnpm test:stories` to the story ids listed in the Coding/Language handoff. Do not axe the whole Storybook.
+2. Add play tests for stateful primitives/blocks. Confirm error + keyboard stories exist when the API is interactive, or name the gap.
+3. Collect manual HITL evidence from GOVERNANCE. This hop is not HITL sign-off.
 4. Never waive a violation; allowlist only demo-fixture stock issues.
 See docs/a11y-allowlist.md.

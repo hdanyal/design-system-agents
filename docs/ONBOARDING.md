@@ -93,7 +93,7 @@ New host primitives need design and engineering approval on this pack.
 | Secrets, MCP, dependencies | [SECURITY.md](../SECURITY.md) |
 | Rollback / incidents | [INCIDENTS.md](INCIDENTS.md) |
 | Agent cold start / view pipeline | [AGENTS.md](../AGENTS.md) · [AGENT-KIT.md](AGENT-KIT.md) |
-| Agent catalog memory after HITL | [AGENT-MEMORY.md](AGENT-MEMORY.md) |
+| How agents remember, retrieve, and expire notes | [AGENT-MEMORY.md](AGENT-MEMORY.md) |
 | Generated branding identity | `.agents/skills/example-branding/reference.md` |
 | Architecture decisions | [adr/](adr/) |
 | Full doc map | [README.md](README.md) |

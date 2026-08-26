@@ -1,4 +1,4 @@
-import { existsSync, readFileSync, readdirSync, statSync } from "node:fs"
+import { existsSync, readFileSync, readdirSync } from "node:fs"
 import {
   SCHEMA_VERSION,
   adapterRelPaths,
@@ -13,10 +13,11 @@ import {
   validateDescription,
   validateHandoff,
   validateInventory,
-  validateMemoryRecord,
+  validateMemoryTree,
   validatePack,
   isKitSource,
   validateProgram,
+  validateSharedMemorySlugs,
 } from "./lib.mjs"
 
 const args = process.argv.slice(2)
@@ -73,17 +74,10 @@ if (existsSync(packPath)) {
   }
   const memRoot = path.join(root, ".agents/memory")
   if (existsSync(memRoot)) {
-    const walk = (dir) => {
-      for (const entry of readdirSync(dir)) {
-        const full = path.join(dir, entry)
-        if (statSync(full).isDirectory()) walk(full)
-        else if (entry.endsWith(".md")) {
-          const err = validateMemoryRecord(readFileSync(full, "utf8"), pack.id)
-          if (err) fail(`${full}: ${err}`)
-        }
-      }
-    }
-    walk(memRoot)
+    const memErrors = validateMemoryTree(root, pack.id)
+    for (const err of memErrors) fail(err)
+    const slugErr = validateSharedMemorySlugs(root)
+    if (slugErr) fail(slugErr)
   }
   const programErr = validateProgram(root, pack.id, ids)
   if (programErr.length) fail(`program: ${programErr.join(", ")}`)

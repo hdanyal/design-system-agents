@@ -18,6 +18,8 @@
     "docs/AGENT-KIT.md",
     "docs/AGENT-MEMORY.md",
     "docs/AGENT-CRITIQUE.md",
+    "docs/AGENT-ARCHITECT-CODING.md",
+    ".agents/kit/harvest-eval.json",
     ".cursor/agents",
     ".cursor/rules/ds-kit.mdc",
     ".claude/agents",

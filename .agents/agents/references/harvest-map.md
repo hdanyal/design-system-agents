@@ -33,13 +33,32 @@ Family extract remains OK when justified: a reusable primitive plus a composing 
 | `extract-new block` | New under pack `paths.blocks` with RATIONALE; confirm before Coding |
 | `keep local` | Stays in sandbox; harvest flag cleared or deferred |
 
+## Match confidence
+
+| Value | Meaning |
+| --- | --- |
+| `exact` | Inventory/catalog name or export covers the region as-is |
+| `near` | Same job, different name or partial API — enhance or refuse twin |
+| `none` | No viable match after shortlist source inspect |
+
 ## Harvest table
 
-| region | inventory match | decision | target entity | a11y notes | security notes |
-| --- | --- | --- | --- | --- | --- |
-| | | | | | |
+| region | inventory match | match confidence | decision | target entity | api delta | files Coding may write | a11y notes | security notes |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| | | exact\|near\|none | | | | | | |
 
-Fill one row per flagged region. `inventory match` cites `.agents/inventory/components.json` (and Storybook catalog when relevant). `target entity` is the path or registry name for reuse/enhance/extract, or `local` when kept local.
+Fill one row per flagged region. `inventory match` cites `.agents/inventory/components.json` (and Storybook catalog when relevant). `target entity` is the path or registry name for reuse/enhance/extract, or `local` when kept local. `api delta` is required for `enhance-existing` (props/slots/a11y delta) or `-` otherwise. `files Coding may write` lists rationale-named paths for extract/enhance, or `-` for reuse/keep local.
+
+## Search protocol (Architect)
+
+1. **Index scan** — exact name, then layer+job. Open inventory as names/layers/paths only.
+2. **Near-duplicate check** — same job, different name. Prefer enhance-existing over a twin.
+3. **Source inspect shortlist** — ≤3 candidates: public exports, variants, slots, a11y contract.
+4. **Decide** with cited paths. `extract-new` only after stock **and** enhance-existing fail, with quotes.
+5. **API contract** on extract/enhance — anatomy, props/slots, composition, a11y, files Coding may write — before confirm.
+6. **Propose memory after confirm** — shared catalog fact and/or one Architect lesson; do not write memory in the decision turn.
+
+Open catalog only when it exists and a region has no exact inventory hit. List titles under `shared/` and `.agents/memory/ds-architect/`; open bodies only on slug / `trigger` / entity match. Never load every memory file.
 
 ## Constraints (Architect)
 
@@ -64,3 +83,4 @@ While the sandbox is live, keep harvest flags in the sandbox:
 2. Human confirms any `extract-new *` / `enhance-existing` rows.
 3. Propose Manager reconcile; hand off to **ds-coding** (implement) or **ds-language** (token holes) or **ds-prototype** (more exploration) as needed.
 4. Do not edit `.agents/program/` from Architect.
+5. After confirm: propose (do not write) shared catalog fact / Architect lesson when warranted; write only in a later ack turn.

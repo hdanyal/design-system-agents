@@ -1,4 +1,4 @@
-import { fail, path, scanIdentityPaths } from "./lib.mjs"
+import { path, scanIdentityPaths } from "./lib.mjs"
 
 const args = process.argv.slice(2)
 const dirIdx = args.indexOf("--dir")

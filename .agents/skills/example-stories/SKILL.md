@@ -32,3 +32,7 @@ CSF titles: Foundations / UI / Primitives / Blocks / Prototypes.
 Foundations bind to var(--*).
 Stateful components need play tests (see example-a11y).
 Tag experimental/stable/deprecated from metadata.
+Required state matrix for new/enhanced primitives: default, disabled (when applicable), error, and keyboard/focus-visible where interactive.
+Error story is required for form-like or validated surfaces.
+Play tests assert roles, accessible names, and keyboard paths — not class strings.
+After wiring stories, Coding notes play-test story ids in the present output.

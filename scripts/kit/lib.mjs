@@ -215,6 +215,41 @@ export function validateInventory(inventory, packId) {
   return errors
 }
 
+export const MEMORY_UNUSED_STUBS = new Set([
+  "ds-docs",
+  "ds-prototype",
+  "ds-language",
+  "ds-manager",
+  "ds-release",
+])
+
+export const MEMORY_REVIEW_AGENTS = new Set(["ds-bugbot", "ds-security", "ds-a11y"])
+export const MEMORY_LESSON_AGENTS = new Set(["ds-architect", "ds-coding", "ds-critique"])
+export const MEMORY_BODY_LINE_CAP = 50
+
+const MEMORY_SEVERITIES = new Set(["blocking", "important", "nit"])
+const MEMORY_LESSON_KINDS = {
+  "ds-architect": new Set(["near-miss", "twin-avoided", "job-map", "user-instruction"]),
+  "ds-coding": new Set(["wrap-gotcha", "story-matrix", "test-pattern", "user-instruction"]),
+  "ds-critique": new Set(["pack-lesson", "user-instruction"]),
+}
+
+export function memoryEntitySlug(data, fileBase) {
+  const raw = data.entities ?? data.entity
+  if (Array.isArray(raw)) return String(raw[0] || "").trim() || null
+  if (raw != null && String(raw).trim()) return String(raw).trim().split(/\s*,\s*/)[0]
+  if (fileBase && fileBase !== ".gitkeep") return fileBase.replace(/\.md$/, "")
+  return null
+}
+
+export function isMemoryExpired(expiresAt, now = new Date()) {
+  if (!expiresAt) return false
+  const day = String(expiresAt).trim().slice(0, 10)
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(day)) return false
+  const today = now.toISOString().slice(0, 10)
+  return day < today
+}
+
 export function validateMemoryRecord(text, packId) {
   const { data } = parseFrontmatter(text)
   if (!data.designSystemId) return "memory missing designSystemId"
@@ -222,10 +257,198 @@ export function validateMemoryRecord(text, packId) {
   if (!data.agent || !data.title) return "memory missing agent/title"
   if (!data.owner) return "memory missing owner"
   if (!data.reviewedAt) return "memory missing reviewedAt"
+  if (!data.expiresAt) return "memory missing expiresAt"
+  const day = String(data.expiresAt).trim().slice(0, 10)
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(day)) return "memory expiresAt must be an ISO date"
   if (/sk-[a-zA-Z0-9]{8,}|BEGIN (RSA |OPENSSH )?PRIVATE KEY|password\s*=\s*\S+/i.test(text)) {
     return "memory contains a secret pattern"
   }
   return null
+}
+
+function memoryBodyText(text) {
+  const { body } = parseFrontmatter(text)
+  return body || ""
+}
+
+function bodyHasLabel(body, label) {
+  const re = new RegExp(`(?:^|\\n)\\s*(?:[-*]\\s*)?(?:\\*\\*)?${label}(?:\\*\\*)?\\s*[:—-]`, "i")
+  return re.test(body)
+}
+
+function bodyLineCount(body) {
+  if (!body) return 0
+  return body.replace(/\n$/, "").split("\n").length
+}
+
+function forbiddenMemoryBodyPayload(body) {
+  if (/oklch\s*\(/i.test(body)) return "memory body contains oklch("
+  if (/(^|[^#\w])#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})\b/.test(body)) {
+    return "memory body contains hex color"
+  }
+  if (/```(?:json)?[\s\S]*?(?:axe|violations|nodes)\b/i.test(body)) {
+    return "memory body contains fenced axe dump"
+  }
+  return null
+}
+
+export function memoryAllowedNamespaces(root) {
+  const ids = new Set(["shared"])
+  try {
+    for (const agent of loadAgentManifest(root).agents) ids.add(agent.id)
+  } catch {
+    // empty when no manifest
+  }
+  return ids
+}
+
+/**
+ * Path-aware memory check. Two-arg validateMemoryRecord stays frontmatter-only.
+ * relPath is posix under repo root, e.g. .agents/memory/shared/heading-group.md
+ */
+export function validateMemoryFile(text, packId, relPath, root = null) {
+  const base = validateMemoryRecord(text, packId)
+  if (base) return base
+  if (!relPath) return null
+
+  const normalized = String(relPath).split(path.sep).join("/")
+  const parts = normalized.split("/")
+  if (parts[0] !== ".agents" || parts[1] !== "memory") {
+    return "memory path must be under .agents/memory/"
+  }
+  if (parts.length === 3 && parts[2].endsWith(".md")) {
+    return "memory .md must not sit at .agents/memory/ root"
+  }
+  if (parts.length !== 4 || !parts[3].endsWith(".md")) {
+    return "memory records must be flat under a namespace (no nested dirs)"
+  }
+
+  const namespace = parts[2]
+  const fileName = parts[3]
+  const fileSlug = fileName.replace(/\.md$/, "")
+  const allowed = root ? memoryAllowedNamespaces(root) : null
+  if (allowed && !allowed.has(namespace)) {
+    return `memory unknown namespace "${namespace}"`
+  }
+  if (MEMORY_UNUSED_STUBS.has(namespace)) {
+    return `memory unused stub "${namespace}" must not contain .md records`
+  }
+
+  const { data } = parseFrontmatter(text)
+  const agent = String(data.agent || "").trim()
+  const body = memoryBodyText(text)
+
+  if (!data.evidence) return "memory missing evidence"
+
+  const bodyLines = bodyLineCount(body)
+  if (bodyLines > MEMORY_BODY_LINE_CAP) {
+    return `memory body exceeds ${MEMORY_BODY_LINE_CAP} lines`
+  }
+  const forbidden = forbiddenMemoryBodyPayload(body)
+  if (forbidden) return forbidden
+
+  if (namespace === "shared") {
+    if (agent !== "ds-docs") return "shared memory agent must be ds-docs"
+    const slug = memoryEntitySlug(data, null)
+    if (!slug) return "shared memory missing entities/entity slug"
+    if (slug !== fileSlug) {
+      return `shared entities slug "${slug}" must match filename "${fileSlug}"`
+    }
+    for (const label of ["entity", "layer", "decision", "do-not-clone", "story"]) {
+      if (!bodyHasLabel(body, label)) return `shared memory missing body field ${label}`
+    }
+    return null
+  }
+
+  if (MEMORY_LESSON_AGENTS.has(namespace)) {
+    if (agent !== namespace) return `memory agent must match namespace ${namespace}`
+    if (!data.trigger) return "memory missing trigger"
+    if (namespace === "ds-critique") {
+      if (!data.subjectAgent) return "memory missing subjectAgent"
+      const subject = String(data.subjectAgent).trim()
+      if (subject !== "any" && allowed && !allowed.has(subject)) {
+        return `memory subjectAgent "${subject}" is not a known agent`
+      }
+    }
+    for (const label of ["lessonKind", "lesson", "do-not-repeat"]) {
+      if (!bodyHasLabel(body, label)) return `memory missing body field ${label}`
+    }
+    const kindMatch = body.match(/(?:^|\n)\s*(?:[-*]\s*)?(?:\*\*)?lessonKind(?:\*\*)?\s*[:—-]\s*`?([a-z0-9-]+)`?/i)
+    const kind = kindMatch?.[1]
+    const allowedKinds = MEMORY_LESSON_KINDS[namespace]
+    if (kind && allowedKinds && !allowedKinds.has(kind)) {
+      return `memory lessonKind "${kind}" is not allowed for ${namespace}`
+    }
+    return null
+  }
+
+  if (MEMORY_REVIEW_AGENTS.has(namespace)) {
+    if (agent !== namespace) return `memory agent must match namespace ${namespace}`
+    if (!data.severity) return "memory missing severity"
+    if (!MEMORY_SEVERITIES.has(String(data.severity).trim())) {
+      return "memory severity must be blocking|important|nit"
+    }
+    for (const label of ["path", "summary"]) {
+      if (!bodyHasLabel(body, label)) return `memory missing body field ${label}`
+    }
+    return null
+  }
+
+  return `memory namespace "${namespace}" is not writable`
+}
+
+/**
+ * Structural walk: unknown dirs, nested dirs, unused-stub .md, then per-file validateMemoryFile.
+ * Returns an array of error strings (empty = ok).
+ */
+export function validateMemoryTree(root, packId) {
+  const memRoot = path.join(root, ".agents/memory")
+  if (!existsSync(memRoot)) return []
+  const errors = []
+  const allowed = memoryAllowedNamespaces(root)
+
+  for (const entry of readdirSync(memRoot)) {
+    const full = path.join(memRoot, entry)
+    const st = statSync(full)
+    if (entry === ".gitkeep") continue
+    if (st.isFile()) {
+      if (entry.endsWith(".md")) errors.push(`.agents/memory/${entry}: memory .md must not sit at .agents/memory/ root`)
+      continue
+    }
+    if (!st.isDirectory()) continue
+    if (!allowed.has(entry)) {
+      errors.push(`.agents/memory/${entry}: unknown memory namespace`)
+      continue
+    }
+    for (const child of readdirSync(full)) {
+      const childFull = path.join(full, child)
+      const childSt = statSync(childFull)
+      if (childSt.isDirectory()) {
+        errors.push(`.agents/memory/${entry}/${child}: nested memory directories are not allowed`)
+        continue
+      }
+      if (!child.endsWith(".md")) continue
+      const rel = `.agents/memory/${entry}/${child}`
+      const err = validateMemoryFile(readFileSync(childFull, "utf8"), packId, rel, root)
+      if (err) errors.push(`${rel}: ${err}`)
+    }
+  }
+  return errors
+}
+
+export function matchMemoryRecords(root, match, { namespace = null } = {}) {
+  const needle = String(match || "").trim().toLowerCase()
+  if (!needle) return []
+  const { entries } = scanMemoryRecords(root)
+  return entries.filter((e) => {
+    if (e.expired) return false
+    if (namespace && e.namespace !== namespace) return false
+    const fileStem = path.basename(e.path, ".md").toLowerCase()
+    const keys = [e.entities, e.trigger, e.subjectAgent, fileStem]
+      .filter(Boolean)
+      .map((v) => String(v).trim().toLowerCase())
+    return keys.includes(needle)
+  })
 }
 
 export function seedMemoryLayout(root) {
@@ -252,46 +475,100 @@ export function listMemoryRecordPaths(root) {
   return out.sort()
 }
 
+function readMemoryEntry(full, rel, namespace, entry) {
+  const text = readFileSync(full, "utf8")
+  const { data } = parseFrontmatter(text)
+  const expired = isMemoryExpired(data.expiresAt)
+  return {
+    path: rel.split(path.sep).join("/"),
+    namespace,
+    title: data.title || entry.replace(/\.md$/, ""),
+    entities: memoryEntitySlug(data, entry),
+    trigger: data.trigger ? String(data.trigger).trim() : null,
+    subjectAgent: data.subjectAgent ? String(data.subjectAgent).trim() : null,
+    reviewedAt: data.reviewedAt || null,
+    expiresAt: data.expiresAt || null,
+    expired,
+  }
+}
+
 export function scanMemoryRecords(root) {
   const memRoot = path.join(root, ".agents/memory")
   if (!existsSync(memRoot)) {
-    return { sharedTitles: [], critiqueTitles: [], perAgentCounts: {}, total: 0 }
+    return {
+      sharedTitles: [],
+      critiqueTitles: [],
+      perAgentCounts: {},
+      entries: [],
+      total: 0,
+    }
   }
+  const entries = []
   const sharedTitles = []
   const critiqueTitles = []
   const perAgentCounts = {}
-  let total = 0
+
   const sharedDir = path.join(memRoot, "shared")
   if (existsSync(sharedDir)) {
     for (const entry of readdirSync(sharedDir)) {
       if (!entry.endsWith(".md")) continue
-      total += 1
-      const text = readFileSync(path.join(sharedDir, entry), "utf8")
-      const { data } = parseFrontmatter(text)
-      sharedTitles.push(data.title || entry.replace(/\.md$/, ""))
+      const full = path.join(sharedDir, entry)
+      const rec = readMemoryEntry(full, path.relative(root, full), "shared", entry)
+      entries.push(rec)
+      if (!rec.expired) sharedTitles.push(rec.title)
     }
   }
-  const critiqueDir = path.join(memRoot, "ds-critique")
-  if (existsSync(critiqueDir)) {
-    for (const entry of readdirSync(critiqueDir)) {
-      if (!entry.endsWith(".md")) continue
-      total += 1
-      const text = readFileSync(path.join(critiqueDir, entry), "utf8")
-      const { data } = parseFrontmatter(text)
-      critiqueTitles.push(data.title || entry.replace(/\.md$/, ""))
-    }
-  }
+
   for (const agent of loadAgentManifest(root).agents) {
     const agentDir = path.join(memRoot, agent.id)
     if (!existsSync(agentDir)) continue
     let count = 0
     for (const entry of readdirSync(agentDir)) {
-      if (entry.endsWith(".md")) count += 1
+      if (!entry.endsWith(".md")) continue
+      count += 1
+      const full = path.join(agentDir, entry)
+      const rec = readMemoryEntry(full, path.relative(root, full), agent.id, entry)
+      entries.push(rec)
+      if (agent.id === "ds-critique" && !rec.expired) critiqueTitles.push(rec.title)
     }
     if (count > 0) perAgentCounts[agent.id] = count
-    if (agent.id !== "ds-critique") total += count
   }
-  return { sharedTitles, critiqueTitles, perAgentCounts, total }
+
+  return {
+    sharedTitles,
+    critiqueTitles,
+    perAgentCounts,
+    entries,
+    total: entries.length,
+  }
+}
+
+export function validateSharedMemorySlugs(root) {
+  const sharedDir = path.join(root, ".agents/memory/shared")
+  if (!existsSync(sharedDir)) return null
+  const rows = []
+  for (const entry of readdirSync(sharedDir)) {
+    if (!entry.endsWith(".md")) continue
+    const full = path.join(sharedDir, entry)
+    const { data } = parseFrontmatter(readFileSync(full, "utf8"))
+    // Check path: require frontmatter entities/entity — no filename fallback.
+    const slug = memoryEntitySlug(data, null)
+    if (!slug) return `shared/${entry}: memory missing entities/entity slug`
+    rows.push({ entry, slug, fileSlug: entry.replace(/\.md$/, "") })
+  }
+  const seen = new Map()
+  for (const row of rows) {
+    if (seen.has(row.slug)) {
+      return `shared duplicate entity slug "${row.slug}" (${seen.get(row.slug)} and ${row.entry})`
+    }
+    seen.set(row.slug, row.entry)
+  }
+  for (const row of rows) {
+    if (row.slug !== row.fileSlug) {
+      return `shared/${row.entry}: entities slug "${row.slug}" must match filename "${row.fileSlug}"`
+    }
+  }
+  return null
 }
 
 export function validateHandoff(text, packId) {
@@ -449,6 +726,16 @@ export function scanProgramInputs(root) {
   const primitives = countDirLayer(root, guessed.primitives)
   const blocks = countDirLayer(root, guessed.blocks)
   const prototypes = countDirLayer(root, guessed.prototypes)
+  let memoryExpired = 0
+  let memoryTotal = 0
+  try {
+    const mem = scanMemoryRecords(root)
+    memoryTotal = mem.total
+    memoryExpired = mem.entries.filter((e) => e.expired).length
+  } catch {
+    memoryExpired = 0
+    memoryTotal = 0
+  }
   return {
     pack: pack
       ? {
@@ -476,6 +763,8 @@ export function scanProgramInputs(root) {
       primitives: { rationale: primitives.missingRationale, usage: primitives.missingUsage },
       blocks: { rationale: blocks.missingRationale, usage: blocks.missingUsage },
     },
+    memoryExpired,
+    memoryTotal,
   }
 }
 

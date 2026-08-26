@@ -8,8 +8,12 @@ files were kept.
 
 Open-ended view pipeline (v2) work gaps are **resolved**: harvest-map template,
 playbooks, memory template, identity shape (extend branding `reference.md`), and
-kit tests landed. Remaining work is T-27 (human names first sandbox), not a
-catalog hole.
+kit tests landed. T-27 (human names first sandbox) remains open, not a catalog
+hole.
+
+Architect/Coding next-iteration work gaps are **resolved** (T-29–T-32). Pipeline
+catch-up work gaps are **resolved** (T-33–T-37). Remaining work is T-27 (human
+names first sandbox) plus HITL on the playbook diff.
 
 | source | id | blocking | owner | status |
 | --- | --- | --- | --- | --- |
@@ -23,3 +27,6 @@ catalog hole.
 | work | W-VIEW-PIPELINE | no | ds-release | resolved |
 | work | W-AGENT-IDENTITY | no | ds-architect | resolved |
 | work | W-MEMORY-TEMPLATE | no | ds-release | resolved |
+| work | W-ARCHITECT-CODING-ACI | no | ds-release | resolved |
+| work | W-PRODUCER-MEMORY | no | ds-release | resolved |
+| work | W-PIPELINE-CATCHUP | no | ds-release | resolved |

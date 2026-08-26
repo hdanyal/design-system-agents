@@ -26,8 +26,10 @@ What’s next, task board, organizing gaps, or the first board after setup.
 ## When not
 First install, kit upgrade, incidents, reuse-vs-new decisions, or writing code.
 
-## Must read
-`.agents/agents/manifest.json` every turn. Pack, `.agents/inventory/gaps.json`, inventory, `.agents/handoffs/`, existing `.agents/program/` if present, `docs/AGENT-MEMORY.md`, `references/memory.md`. On the first board after bootstrap, or when the board is missing, inspect the generated branding `reference.md` identity shape and pack `figmaFileKey`. Run `scanProgramInputs` (or quote it) before a board write. `.agents/agents/references/program.md`. `.agents/agents/references/confirm.md` before writes or spawn.
+## Just-in-time context
+Always load: `.agents/agents/manifest.json`, existing `.agents/program/` if present, `references/program.md`, `references/confirm.md` before writes or spawn, `docs/AGENT-MEMORY.md`, `references/memory.md`. Run `scanProgramInputs` (or quote it) before a board write.
+
+Do not dump full inventory every reconcile. Open inventory only when rolling story coverage. On the first board after bootstrap, or when the board is missing, inspect the generated branding `reference.md` identity shape and pack `figmaFileKey`. Use session-start **shared titles + namespace counts** only — open on match only. Never dump Critique/Architect/Coding title strings. Never load every memory file. Do not write `.agents/memory/`.
 
 ## Constraints
 Write only `.agents/program/`. Do not write `.agents/memory/`. Do not implement UI, edit tokens, rewrite `gaps.json`, run bootstrap or `kit:install`, close HITL, run host verify, or spawn without confirm. At most one spawn per turn. Do not hardcode other agent names; owners come from the manifest (`invokeWhen`, `handoffsTo`, `mustNotWrite`). Load this agent's `packSkills` from `.agents/skills/` only when those files exist on this host.
@@ -39,8 +41,20 @@ Write only `.agents/program/`. Do not write `.agents/memory/`. Do not implement 
 4. On that first/missing-board audit, if branding `reference.md` lacks Overview plus Do's and Don'ts, or its generated identity path is missing, add a work gap and task with a roster owner: typically `ds-language` for generator work, `human` or `ds-docs` for approved prose. Never write the identity file.
 5. On that first/missing-board audit, if pack `figmaFileKey` is unset, add a work gap and task unless this host does not need Figma: `human` creates or links the file; a roster owner (typically `ds-prototype` or `ds-language`) maps it into the pack after confirm. Do not write `context.json` or invent a file. If Figma is not needed, leave the inventory gap open and non-blocking.
 6. Roll up catalog holes (one row for `uiStories 0/N`). Pipeline rows only for in-flight work.
-7. Confirm, then write `board.md`, `tasks.md`, `gaps.md`, `connections.md`.
-8. Set `recommendedNext` to a manifest `id` or `human`. Confirm before spawning that id.
+7. If `scanProgramInputs` reports `memoryExpired > 0`, add a non-blocking work gap under `workGaps` (owner = namespace agent: Docs for `shared/`, else the agent id). Do not add a new output section.
+8. Confirm, then write `board.md`, `tasks.md`, `gaps.md`, `connections.md`.
+9. Set `recommendedNext` to a manifest `id` or `human` using hop-state rules. Confirm before spawning that id.
+
+## recommendedNext (hop state)
+
+- Harvest flags exist, no harvest map → Prototype or Architect
+- Harvest map `ready-for-confirm` → human
+- Confirmed extract/enhance → Critique then Coding
+- Coding output missing Critique in `next` → Critique
+- Token-hole rows on the map → Language
+- HITL-acked catalog-fact proposal → Docs
+
+Still one spawn per turn.
 
 ## Output
 ```

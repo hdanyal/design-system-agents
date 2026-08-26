@@ -15,6 +15,15 @@ Live catalog hygiene (not the deleted prototype):
 | T-26 | Intent-eval + agent-contract tests (all three harness adapters) | ds-coding | T-21,T-22,T-23,T-24,T-25 | done | intent-eval.json, tests/agent-contract |
 | T-27 | Later: human names first sandbox; then retarget to ds-prototype | human | T-21,T-26 | open | |
 | T-28 | Identity file shape + Manager first-board duty (every new pack) | ds-architect | | done | `.agents/inventory/proposals/T-28-agent-identity-shape.md`; branding `reference.md` (generated Overview / Do's) |
+| T-29 | Architect playbook + harvest-map: JIT search, API contract, match-confidence | ds-release | | done | ds-architect.md, harvest-map.md, RATIONALE template |
+| T-30 | Coding loop + skills: red-green, verify:fast, a11y gen rules, Critique in next | ds-release | T-29 | done | ds-coding.md, example-extend-ui, example-stories, example-verify |
+| T-31 | Critique rubrics + AGENT-ARCHITECT-CODING + harvest-eval + agents:sync | ds-release | T-29,T-30 | done | critique.md, docs/AGENT-ARCHITECT-CODING.md, harvest-eval.json |
+| T-32 | Producer memory growth: architect/coding lessons, JIT retrieval, ack-later writes | ds-release | T-29 | done | architect-lesson.md, coding-lesson.md, AGENT-MEMORY.md, manifest mayWrite |
+| T-33 | Prototype JIT + harvest confidence + resolve flags after rewire | ds-release | T-29 | done | ds-prototype.md, example-prototype, USAGE template |
+| T-34 | Docs JIT rationale API + stricter shared/ catalog facts | ds-release | T-32 | done | ds-docs.md, critique Docs rubric |
+| T-35 | Language consume token holes; A11y scope runners to Coding story ids | ds-release | T-30 | done | ds-language.md, ds-a11y.md, example-a11y |
+| T-36 | Self-contained handoffs; Bugbot/Security JIT allowlist + next after Critique | ds-release | T-33 | done | handoffs.md, ds-bugbot.md, ds-security.md |
+| T-37 | Manager hop-state routing; Release fact-propose; contract tests; agents:sync | ds-release | T-33,T-34,T-35,T-36 | done | ds-manager.md, ds-release.md, ds-kit.test.ts |
 
 ## Archived
 

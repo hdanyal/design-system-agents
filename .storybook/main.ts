@@ -16,6 +16,17 @@ const config: StorybookConfig = {
   ],
   framework: "@storybook/nextjs-vite",
   staticDirs: ["../public"],
+  // Preview + addon-docs + addon-a11y (axe-core) emit vendor chunks above Vite's
+  // 500 kB app-bundle heuristic. That is Storybook overhead, not host UI.
+  async viteFinal(config) {
+    return {
+      ...config,
+      build: {
+        ...config.build,
+        chunkSizeWarningLimit: 2048,
+      },
+    }
+  },
 }
 
 export default config

@@ -7,7 +7,7 @@ status: draft
 
 # Catalog fact — <entity-slug>
 
-Copy to `.agents/memory/shared/<entity-slug>.md` only after **explicit human acknowledgement** in a turn **after** HITL. Documentation (`ds-docs`) writes the file; the shipper proposes only. Keep frontmatter plus body under ~25 lines. Do not paste USAGE or inventory.
+Copy to `.agents/memory/shared/<entity-slug>.md` only after **explicit human acknowledgement** in a turn **after** HITL. Documentation (`ds-docs`) writes the file; the shipper (Architect after extract/enhance confirm, or Coding after HITL) proposes only. Keep frontmatter plus body under ~25 lines. Do not paste USAGE or inventory. Filename must match the entity slug; never a second file for the same entity.
 
 ## Frontmatter
 
@@ -23,6 +23,7 @@ source: PR
 owner: <ack reviewer>
 reviewedAt: <ISO date>
 expiresAt: <ISO date>
+entities: <entity-slug>
 supersedes:
 ---
 ```
@@ -36,4 +37,4 @@ supersedes:
 - **do-not-clone** — one sentence: what future work must reuse
 - **story** — exact Storybook title or stable story id
 
-Supersede an older fact in place when the entity contract changes; set `supersedes:` to the prior title or path.
+Supersede an older fact in place when the entity contract changes; set `supersedes:` to the prior title or path. Match on frontmatter `entities` (or `entity`).

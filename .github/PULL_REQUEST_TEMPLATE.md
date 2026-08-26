@@ -20,7 +20,7 @@
 - [ ] Changeset included when required
 - [ ] No secrets, PII, or production fixtures
 - [ ] Agent kit: pack isolation respected; no other design system’s chats/memory attached
-- [ ] Experimental only on first promote; no `public/r`; if recording a catalog fact: HITL ack first, then `ds-docs` writes a short `shared/` record (not in the promote turn)
+- [ ] Experimental only on first promote; no `public/r`; if recording a catalog fact: HITL ack first, then `ds-docs` writes a short `shared/` record (not in the promote turn; owner namespace only, template-shaped)
 
 ## Figma
 

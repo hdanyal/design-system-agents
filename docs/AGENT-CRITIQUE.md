@@ -41,4 +41,6 @@ Bugbot, Security, and Accessibility review **evidence** (bugs, secrets, axe). Cr
 
 ## Memory
 
-Critique may store short **lessons** under `.agents/memory/ds-critique/` after human ack (not essays). Pack-agnostic bars live in `critique-standards.md` (kit), not host memory. See [AGENT-MEMORY.md](AGENT-MEMORY.md).
+Critique may store short **lessons** under `.agents/memory/ds-critique/` after human ack (not essays) — those are for the **next Critique hop** only. Producers must not read `ds-critique/`.
+
+When a standing bar is for a producer or the catalog, `proposedLessons` must **route**: `critique-only` | `architect-lesson` | `coding-lesson` | `shared-fact`. The named owner (Architect, Coding, or Docs) writes that namespace after a later human ack. Pack-agnostic bars live in `critique-standards.md` (kit), not host memory. See [AGENT-MEMORY.md](AGENT-MEMORY.md).

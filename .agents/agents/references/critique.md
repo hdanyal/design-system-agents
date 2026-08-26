@@ -18,7 +18,7 @@ Must-read or refuse: pack `paths.prototypes`, named sandbox `USAGE.md` (and `HAR
 
 1. Sandbox lives under `paths.prototypes/<human-name>/` (not chat JSX, not Cursor Canvas as the gallery).
 2. `USAGE.md` exists; living harvest flags are in a Harvest section or a linked `HARVEST.md`.
-3. Every flagged region has a candidate in this order only: reuse → enhance-existing → extract-new primitive|block → keep local (no blank flags).
+3. Every flagged region has a candidate in this order only: reuse → enhance-existing → extract-new primitive|block → keep local (no blank flags). Each row has `match confidence` (`exact` | `near` | `none`).
 4. No region jumps to extract-new without stating why stock **and** existing APIs failed.
 5. After every material sandbox/story write, `present.md` was followed: start command, exact story title/URL, file path, `shown: yes|no`. Claiming chat JSX or Canvas as the live companion → **automatic revise**.
 6. Promote, mark stable, or write registry/`public/r` from Prototype → **automatic revise**.
@@ -26,6 +26,7 @@ Must-read or refuse: pack `paths.prototypes`, named sandbox `USAGE.md` (and `HAR
 8. Local composition twins an inventory/catalog entity without a harvest flag toward enhance-existing or reuse.
 9. Next hop is **one** Architect batch for the whole view, not one handoff per region.
 10. Stock restyle or fork of pack `paths.ui` (except via this host's `upstream-patches.json` when present) → **automatic revise**.
+11. After Architect confirm and Coding rewire, harvest flags are cleared or marked resolved. Stale living flags that contradict the harvest map → **automatic revise**.
 
 Out of scope: implementing the extract, axe, secrets.
 
@@ -38,7 +39,7 @@ Out of scope: implementing the extract, axe, secrets.
 Must-read or refuse: inventory, filled harvest map, prototype USAGE/HARVEST, extract rationale if any `extract-new` row exists.
 
 1. One Architect hop covers **all** flags from one view; harvest-map template used (not per-region spawns).
-2. Inventory search is cited (entity ids/paths). This pack's catalog was searched when `docs/catalog.md` or generated catalog exists.
+2. Inventory search is cited (entity ids/paths). This pack's catalog was searched when `docs/catalog.md` or generated catalog exists **and** a region lacked an exact inventory hit. JIT: inventory as index; source inspect ≤3 shortlist.
 3. Every harvest row uses the decision enum only: `reuse` | `enhance-existing` | `extract-new primitive` | `extract-new block` | `keep local`.
 4. Any `extract-new *` row has a written rationale that stock **and** enhance-existing are not enough.
 5. `enhance-existing` names the **existing** export (path + public API), not a cousin name that would be a twin.
@@ -46,7 +47,9 @@ Must-read or refuse: inventory, filled harvest map, prototype USAGE/HARVEST, ext
 7. Extract/enhance rows are not handed to Coding without recorded human confirm on those decisions.
 8. Architect landed component/token implementation files → **automatic revise**.
 9. Token holes routed to `ds-language` (no invented hex in the map or rationale).
-10. Rationale is sufficient for Coding: named files, no extra public APIs, prototype rewire implied.
+10. Rationale is sufficient for Coding: named files, anatomy/props/slots API contract, no extra public APIs, prototype rewire implied.
+11. Every harvest row has `match confidence` (`exact` | `near` | `none`); enhance rows have `api delta`; extract/enhance rows list `files Coding may write`.
+12. Matching `shared/` and `.agents/memory/ds-architect/` titles were listed and opened only on slug / `trigger` / entity match — open on match only; do not load every memory file. Memory written in the decision turn → **automatic revise**.
 
 Out of scope: writing the component, running Bugbot.
 
@@ -64,10 +67,12 @@ Must-read or refuse: confirmed rationale/handoff, inventory, affected prototype 
 4. Prototype imports the decided entity; USAGE/HARVEST status updated to match.
 5. After every material implementation, prototype, or story write, present.md live companion was shown (`shown: yes|no`).
 6. `tokens.json` policy or pack `id` edited → **automatic revise**.
-7. `.agents/memory/` written in the implementation turn → **automatic revise**.
+7. `.agents/memory/` written in the implementation turn → **automatic revise**. Propose not write in this turn; shared fact / coding lesson only after HITL ack later.
 8. Self-declared Bugbot, Security, or Critique “done” → **automatic revise**.
-9. Colocated tests and stories exist for the changed API.
+9. Colocated tests and stories exist for the changed API. Failing contract tests existed before (or with a stub of) the green implementation; tests assert behavior not class strings.
 10. Stock restyle or fork of pack `paths.ui` without this host's `upstream-patches.json` when that ledger exists → **automatic revise**.
+11. `pnpm verify:fast` (or host `commands.test`) was run and reported with command + pass/fail.
+12. Output `next` includes Critique before Bugbot/Security. Error/play stories present when the API is interactive or validated. Matching shared fact for the named entity was opened on match only.
 
 Out of scope: token policy, GOVERNANCE, closing reviews.
 
@@ -81,10 +86,11 @@ Must-read or refuse: implementation source (not the imagined API), USAGE/rationa
 
 1. Documented props/slots/behavior match the source files (cite paths). Invented APIs → **automatic revise**.
 2. Docs-only new public API → **automatic revise**.
-3. USAGE, rationale prose, and story `parameters.docs` are aligned with the same implementation.
+3. USAGE, rationale prose, and story `parameters.docs` are aligned with the same implementation **and** the rationale API contract (anatomy / props / slots).
 4. Catalog memory under `shared/` written in the ship turn or without explicit human ack → **automatic revise**.
 5. Chat JSX offered as docs-of-record → **automatic revise**.
 6. Token **values** (hex/oklch) prescribed in docs instead of routing to Language.
+7. Written `shared/` fact missing `do-not-clone`, or missing `reuse-of` / `changed-API` / `story` when the template requires them → **automatic revise**. Catalog fact must match the rationale API (no extra public exports in prose).
 
 Out of scope: implementing missing components; token builds.
 
@@ -104,6 +110,7 @@ Must-read or refuse: canonical token path, `commands.tokensBuild`, T-28 identity
 6. Root `DESIGN.md` (or similar) added as a second token source → **automatic revise**.
 7. After source edit, host `tokens:build` was run (or the critic finds generated outputs stale).
 8. Identity prose (Overview, Do's and Don'ts) not conflated with raw token tables as a second palette.
+9. Hop consumed named harvest token-hole rows, or reported `not found` / an explicit gap. Dumping the whole harvest map with no token-hole scope → **automatic revise**.
 
 Out of scope: restyling primitives to “use the new color”; a11y HITL.
 
@@ -118,9 +125,10 @@ Must-read or refuse: host a11y runner / `commands.test`, stories actually in sco
 1. Claim that this hop **is** HITL a11y sign-off → **automatic revise**.
 2. Token hex/oklch or component color edits to “fix” contrast → **automatic revise** (handoff Language/Coding).
 3. No runner: gap reported, not a fake pass.
-4. Evidence cites **story ids/titles actually run**, not “the new stories” with no list.
+4. Evidence cites **story ids/titles actually run**, not “the new stories” with no list. Runners scoped to those listed ids (not the whole Storybook).
 5. Allowlist rows are demo-fixture third-party only (not product defects swept under the rug).
 6. Full axe dump or review essay written to memory this turn without human ack → **automatic revise**.
+7. Interactive or validated APIs: error/play (keyboard) stories present, or an explicit gap is named. Missing both stories and gap → **automatic revise**.
 
 Out of scope: changing tokens; implementing UI; replacing human HITL.
 
@@ -139,5 +147,6 @@ Must-read or refuse: pack, kit manifest, inventory/gaps, host CODEOWNERS/release
 5. Incident closed by the agent instead of a human → **automatic revise**.
 6. Release wrote `.agents/program/` (Manager-only) → **automatic revise**.
 7. Open pack/inventory gaps treated as done with no deferral record.
+8. Shared catalog fact written to `shared/` in the ship/promotion turn (must stay **proposed** until Docs ack) → **automatic revise**.
 
 Out of scope: designing the feature; running product Bugbot (that is a later hop).

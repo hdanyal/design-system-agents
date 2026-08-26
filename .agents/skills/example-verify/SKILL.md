@@ -28,6 +28,8 @@ Forbidden: stock restyles, secret commits, main pushes, unreviewed registries, a
 - Incidents: docs/INCIDENTS.md
 
 ## Workflow
-Use `pnpm verify:fast` for local iteration.
+Use `pnpm verify:fast` for local iteration in every Coding hop after the green pass.
+Use host `commands.test` when scoped unit/story tests are enough for the allowlist.
 Use `pnpm verify` before merge/release.
-Do not skip or weaken a gate. Report failures with owning script.
+Paste command + pass/fail outcome in the Coding output. Do not skip or weaken a gate. Report failures with owning script.
+Not green → keep iterating the implementation; Do not weaken assertions to cheat.

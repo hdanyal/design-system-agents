@@ -6,15 +6,17 @@ Investigation reconstruction remains cancelled: do not restore
 `prototypes/investigation-workspace/`. Remaining sandbox demo:
 `prototypes/invoices-workspace/`.
 
-Catalog files kept (not the prototype): `components/primitives/heading-group/USAGE.md`,
-`registry/blocks/page-header/RATIONALE.md` (T-13, T-14 still done).
+## Complete this slice
 
-Pipeline hops complete this slice: **ds-architect** (T-20 harvest-map template,
-T-28 identity shape), **ds-release** (T-21–T-25 playbooks + memory template),
-**ds-coding** (T-26 intent-eval / agent-contract / kit table parse). Identity
-lives in generated branding `reference.md`, not a root DESIGN.md.
+**ds-release** landed T-33–T-37: Prototype harvest confidence + JIT, Docs
+shared-fact fields, Language token holes, A11y scoped story ids, self-contained
+handoffs, Bugbot/Security allowlist + next after Critique, Manager hop-state
+routing, Release fact-propose. `pnpm agents:sync` + agent-contract + kit-check
+green.
+
+T-29–T-32 remain done (Architect/Coding ACI + memory).
 
 ## Next
 
-**human** names the first sandbox for T-27. After that, confirm spawn
-**ds-prototype**. Do not spawn from this reconcile.
+**human** HITL on the playbook diff, then names the first sandbox for T-27.
+After that, confirm spawn **ds-prototype**. Do not spawn from this reconcile.

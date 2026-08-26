@@ -91,19 +91,19 @@ Manager assigns task owners from the **live** `.agents/agents/manifest.json` (`i
 
 Program path: `.agents/program/` (`board.md`, `tasks.md`, `gaps.md`, `connections.md`). Specialists read it; only Manager writes it. `designSystemId` in the board must match pack `id`.
 
-Pipeline (confirm each hop): Prototype → Critique → Architect → Critique → Coding → Critique → Bugbot + Security → Accessibility + Documentation → Critique → Release. Language → Critique → (Accessibility | Coding). Max two critique rounds per producer, then human. See [AGENT-CRITIQUE.md](AGENT-CRITIQUE.md).
+Pipeline (confirm each hop): Prototype → Critique → Architect → Critique → Coding → Critique → Bugbot + Security → Accessibility + Documentation → Critique → Release. Language → Critique → (Accessibility | Coding). Max two critique rounds per producer, then human. See [AGENT-CRITIQUE.md](AGENT-CRITIQUE.md). Architect/Coding ACI and memory growth: [AGENT-ARCHITECT-CODING.md](AGENT-ARCHITECT-CODING.md).
 
 ## Open-ended view pipeline
 
 Prototype accepts any human-named view; no screen allowlist defines the work. Each prototype keeps `USAGE.md` and a CSF story, reads the generated branding reference when present, and maintains living harvest flags while building. After every material sandbox or story write, it presents the live Storybook companion and keeps the preview available for visual HITL; chat JSX and Cursor Canvas are not the gallery.
 
-Harvest decisions follow one order: reuse → enhance-existing → extract-new primitive/block → keep local. Prototype batches all regions from a view into one Architect hop using `.agents/agents/references/harvest-map.md`. Architect may approve a family extract, but prefers enhancing a named API over a twin. Coding implements the approved new or enhanced entity, rewires prototype imports, and presents the live companion again.
+Harvest decisions follow one order: reuse → enhance-existing → extract-new primitive/block → keep local. Prototype harvest flags include inventory hint and `match confidence`. Prototype batches all regions from a view into one Architect hop using `.agents/agents/references/harvest-map.md`. Architect may approve a family extract, but prefers enhancing a named API over a twin. Architect uses JIT search (index → near-duplicate → shortlist source inspect) and fills match confidence, api delta, and files Coding may write. Coding implements with contract tests first, `pnpm verify:fast`, rewires prototype imports, and presents the live companion again. After rewire, Prototype clears or marks harvest flags resolved. Token holes go to Language; A11y scopes runners to Coding story ids. See [AGENT-ARCHITECT-CODING.md](AGENT-ARCHITECT-CODING.md) pipeline consumers.
 
-Experimental block slices may be harvested from one view over time. Each slice remains experimental, keeps `registryDependencies` aligned with imports, and requires HITL. After HITL, the specialist who shipped it may **propose** a shared catalog-memory fact; **Documentation (`ds-docs`)** writes it under `.agents/memory/shared/` only in a later acknowledged turn. Keep facts short (~25 lines); retrieve by entity match — do not load every memory file. Handoffs are not memory.
+Experimental block slices may be harvested from one view over time. Each slice remains experimental, keeps `registryDependencies` aligned with imports, and requires HITL. After HITL, the specialist who shipped it may **propose** a shared catalog-memory fact; **Documentation (`ds-docs`)** writes it under `.agents/memory/shared/` only in a later acknowledged turn. Architect and Coding may also propose own-namespace lessons after ack (see [AGENT-MEMORY.md](AGENT-MEMORY.md)). Critique routes producer-facing bars to those namespaces — producers never read `ds-critique/`. Keep facts short (~25 lines); retrieve by entity/`trigger` match (exact keys via `memory-index --match`, not embeddings); skip expired; do not load every memory file. Handoffs are not memory.
 
 ## Isolation
 
-One git root = one pack. Do not attach another DS’s chats, catalog, or Figma file. Memory and program records must match pack `id`. v1 refuses importing another DS’s memory.
+One git root = one pack. Do not attach another DS’s chats, catalog, or Figma file. Memory and program records must match pack `id`. v1 refuses importing another DS’s memory. Retrieve memory by exact frontmatter keys only — never embedding search.
 
 ## MCP
 

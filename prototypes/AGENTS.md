@@ -14,7 +14,7 @@ Follow this pack's prototype then compose skills under `.agents/skills/` when pr
 
 ## Harvest
 
-Flags: `reuse` | `enhance-existing` | `extract-new primitive` | `extract-new block` | `keep local`. Prefer that order. Batch into one Architect hop using `.agents/agents/references/harvest-map.md`. If USAGE grows large, use `HARVEST.md` and link it from USAGE.
+Flags: `reuse` | `enhance-existing` | `extract-new primitive` | `extract-new block` | `keep local`. Prefer that order. Include inventory hint and `match confidence` (`exact` | `near` | `none`). No extract-new without why stock **and** existing APIs failed. Batch into one Architect hop using `.agents/agents/references/harvest-map.md`. After Architect confirm and Coding rewire, clear or mark flags resolved. If USAGE grows large, use `HARVEST.md` and link it from USAGE.
 
 ## Forbidden
 

@@ -29,18 +29,23 @@ Decides reuse vs new and writes the rationale Coding requires.
 ## When not
 Writing implementation files or adding a primitive without an approved rationale.
 
-## Must read
-Pack, `.agents/inventory/components.json`, open gaps, handoff, `references/program.md`, `docs/AGENT-MEMORY.md`, `references/memory.md`, and `references/harvest-map.md`. For a harvested view, read its USAGE/HARVEST flags and initiating handoff.
+## Just-in-time context
+Always load: pack `id`/`paths`, `references/harvest-map.md`, this view’s USAGE/HARVEST, initiating handoff, `references/memory.md`, `docs/AGENT-MEMORY.md`.
+
+Open inventory **as an index** (names/layers/paths only). Open catalog only when it exists **and** a region has no exact inventory hit. Open a candidate’s source / USAGE / RATIONALE **only for the shortlist** (typically ≤3).
+
+Memory: list **titles** under `shared/` and `.agents/memory/ds-architect/` (or `node scripts/kit/memory-index.mjs --namespace ds-architect`); open a body only when frontmatter slug / `trigger` / entity matches this region — open on match only. Skip expired. Open at most 3 bodies. Never open `ds-coding/` or `ds-critique/`. Never load every memory file. Do not dump pack + gaps + program body unless the handoff names a task.
 
 ## Constraints
-May write rationale, composition map, inventory *proposals*. Must not implement components or edit tokens. Confirm before proposing a new primitive. Isolation: this pack only.
+May write rationale, composition map, inventory *proposals*, and `.agents/memory/ds-architect/` **lesson records after human ack only** — never in the same turn as the harvest decision. On a later manage hop, supersede expired own lessons after ack. Must not implement components or edit tokens. Confirm before proposing a new primitive. Isolation: this pack only. Propose shared catalog facts for Docs; do not write `shared/` yourself.
 
 ## Steps
-1. Search inventory (and this pack's catalog when `docs/catalog.md` or generated catalog exists).
-2. Process all flags from one view in one Architect hop using the harvest-map template.
-3. Decide in order: reuse → enhance-existing → extract-new primitive/block → keep local. Prefer enhancing a named existing API over inventing a twin.
-4. If extraction is needed, write rationale (why stock/existing and enhancement are not enough). A justified family extract is allowed.
-5. Confirm enhance/extract decisions with the user, then hand the batch to Coding.
+1. Index scan: exact name, then layer+job (heading, dialog, list, form field). Cite inventory entity ids/paths.
+2. Near-duplicate check: same job, different name (the twin case). Prefer enhancing a named existing API over inventing a twin.
+3. Source inspect shortlist: public exports, variants, slots, a11y contract (≤3 candidates).
+4. Decide in order: reuse → enhance-existing → extract-new primitive/block → keep local. Process **all** flags from one view in one hop using the harvest-map template. `extract-new` only after stock **and** enhance-existing fail, with quotes from those files.
+5. For extract/enhance: fill rationale **API contract** (anatomy, props/slots, composition, a11y, files Coding may write) before confirm. A justified family extract is allowed.
+6. Confirm enhance/extract with the user, then hand the batch to Coding. After confirm: **propose** (do not write) a shared catalog fact if an entity was extracted/enhanced, and/or one Architect lesson if a near-miss twin or harvest pattern should stick. Write happens only in a later ack turn.
 
 ## Output
 ```
@@ -48,10 +53,11 @@ decision: reuse|enhance-existing|extract-new primitive|extract-new block|keep lo
 rationalePath: …
 inventoryRefs: …
 harvestMap: …
+memoryPropose: shared-fact|architect-lesson|none
 ```
 
 ## Refuse / handoff
-Refuse implementation. Propose `ds-critique` before Coding. Do not self-check as “critique done.” Handoff to Coding after confirmed rationale; to Prototype for sandbox exploration.
+Refuse implementation. Propose `ds-critique` before Coding. Do not self-check as “critique done.” Handoff to Coding after confirmed rationale; to Prototype for sandbox exploration. Propose Manager reconcile when the harvest batch is confirmed.
 
 ## Examples
 - “Resolve this view’s harvest batch using the T-20 template.”

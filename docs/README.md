@@ -27,7 +27,7 @@ Human and agent docs for Example DS. Root entry points: [README](../README.md), 
 | [../AGENTS.md](../AGENTS.md) | Agent cold-start router |
 | [AGENT-KIT.md](AGENT-KIT.md) | Commands and specialist reference |
 | [EXAMPLE-HOST.md](EXAMPLE-HOST.md) | Install on another host |
-| [AGENT-MEMORY.md](AGENT-MEMORY.md) | Short catalog notes after approval |
+| [AGENT-MEMORY.md](AGENT-MEMORY.md) | How agents remember, retrieve, and expire notes |
 | [AGENT-CRITIQUE.md](AGENT-CRITIQUE.md) | Independent decision review |
 
 ## Consumers

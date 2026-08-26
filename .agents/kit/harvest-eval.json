@@ -1,0 +1,96 @@
+{
+  "prototypeFlagColumns": [
+    "region",
+    "candidate decision",
+    "inventory hint",
+    "match confidence"
+  ],
+  "searchOrder": [
+    "index scan",
+    "near-duplicate check",
+    "source inspect shortlist",
+    "decide",
+    "API contract"
+  ],
+  "preferenceOrder": [
+    "reuse",
+    "enhance-existing",
+    "extract-new primitive",
+    "extract-new block",
+    "keep local"
+  ],
+  "cases": [
+    {
+      "id": "heading-group-extract",
+      "region": "page and section title cluster",
+      "inventoryHints": ["CardTitle", "EmptyTitle", "raw h2+p"],
+      "expectedDecision": "extract-new primitive",
+      "targetEntity": "paths.primitives/heading-group",
+      "matchConfidence": "none",
+      "rationale": "Stock card/empty headings are scoped; raw markup twins the job."
+    },
+    {
+      "id": "page-header-block",
+      "region": "page chrome with heading + actions",
+      "inventoryHints": ["heading-group", "Separator", "Button"],
+      "expectedDecision": "extract-new block",
+      "targetEntity": "paths.blocks/page-header",
+      "matchConfidence": "near",
+      "rationale": "Compose heading-group; block stays thin for actions/layout."
+    },
+    {
+      "id": "reuse-card",
+      "region": "bordered content panel with title and body",
+      "inventoryHints": ["card"],
+      "expectedDecision": "reuse",
+      "targetEntity": "paths.ui/card",
+      "matchConfidence": "exact",
+      "rationale": "Stock Card covers the region; no new public API."
+    },
+    {
+      "id": "reuse-dialog",
+      "region": "modal dialog with title and close",
+      "inventoryHints": ["dialog", "alert-dialog"],
+      "expectedDecision": "reuse",
+      "targetEntity": "paths.ui/dialog",
+      "matchConfidence": "exact",
+      "rationale": "Stock Dialog matches the job."
+    },
+    {
+      "id": "enhance-not-twin-button",
+      "region": "primary action with loading state missing on Button",
+      "inventoryHints": ["button"],
+      "expectedDecision": "enhance-existing",
+      "targetEntity": "paths.ui/button",
+      "matchConfidence": "near",
+      "rationale": "Same job as Button; grow API, do not invent LoadingButton twin."
+    },
+    {
+      "id": "keep-local-sandbox-chrome",
+      "region": "one-off prototype debug toolbar",
+      "inventoryHints": [],
+      "expectedDecision": "keep local",
+      "targetEntity": "local",
+      "matchConfidence": "none",
+      "rationale": "Sandbox-only chrome; do not promote."
+    },
+    {
+      "id": "reuse-breadcrumb",
+      "region": "hierarchical path navigation",
+      "inventoryHints": ["breadcrumb"],
+      "expectedDecision": "reuse",
+      "targetEntity": "paths.ui/breadcrumb",
+      "matchConfidence": "exact",
+      "rationale": "Stock Breadcrumb covers the region."
+    },
+    {
+      "id": "near-miss-empty-vs-heading",
+      "region": "section intro without dashed empty-state shell",
+      "inventoryHints": ["empty", "heading-group"],
+      "expectedDecision": "reuse",
+      "targetEntity": "paths.primitives/heading-group",
+      "matchConfidence": "near",
+      "rationale": "Empty is empty-state chrome; heading-group is the intro API — reuse, do not twin EmptyTitle."
+    }
+  ]
+}

@@ -30,8 +30,10 @@ Try any named screen or layout in the sandbox and show it live in Storybook. The
 ## When not
 Shipping primitives, changing tokens, or treating chat preview as the gallery.
 
-## Must read
-`.agents/context.json`, inventory, open gaps, handoff if present, `references/program.md`, `references/present.md`, `docs/AGENT-MEMORY.md`, `references/memory.md`. Read generated branding `reference.md` under `.agents/skills/` when present. If `bootstrapStatus` is not `complete`, only Release may write the pack.
+## Just-in-time context
+Always load: pack `paths`, this sandbox USAGE/HARVEST, branding `reference.md` under `.agents/skills/` when present, `references/harvest-map.md`, `references/present.md`, `references/memory.md`. If `bootstrapStatus` is not `complete`, only Release may write the pack.
+
+Open inventory **as an index** (names/layers/paths only). List `shared/` titles when composing; open a body only on entity match — open on match only. Skip expired. Never load every memory file. Never write `ds-architect/` or `ds-coding/` namespaces. Never open `ds-critique/`.
 
 ## Constraints
 Write only `paths.prototypes` and preview entries for those prototypes. Isolation key `(repoRoot, designSystemId)`. Figma: only pack `figmaFileKey`. Confirm before creating the sandbox root or installing a preview surface. Load this agent's `packSkills` from `.agents/skills/` only when those files exist on this host. Never promote, mark stable, or write registry output.
@@ -39,9 +41,10 @@ Write only `paths.prototypes` and preview entries for those prototypes. Isolatio
 ## Steps
 1. Confirm pack and preview surface.
 2. Compose from existing catalog/inventory pieces in this order: reuse → enhance-existing → extract-new primitive/block → keep local.
-3. Add `USAGE.md` and a native preview entry (CSF/MDX). Maintain a living Harvest section in USAGE, or `HARVEST.md` linked from it, with those flags.
+3. Add `USAGE.md` and a native preview entry (CSF/MDX). Maintain a living Harvest section in USAGE, or `HARVEST.md` linked from it. Each flag: candidate enum + inventory hint + `match confidence` (`exact` | `near` | `none`). No `extract-new` without stating why stock **and** existing APIs failed.
 4. After every material sandbox or story write, present the live companion using `.agents/agents/references/present.md` and keep the preview available.
 5. Batch all harvest flags from the view into one Architect handoff using `references/harvest-map.md`; do not hand off per region.
+6. After Architect confirm and Coding rewire: clear or mark harvest flags resolved so they are not a second living map.
 
 ## Output
 ```
@@ -50,6 +53,7 @@ command: …
 story: …
 path: …
 shown: yes|no
+harvestBatch: one Architect hop
 ```
 
 ## Refuse / handoff
