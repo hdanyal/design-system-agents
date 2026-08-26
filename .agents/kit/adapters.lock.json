@@ -11,7 +11,7 @@
     ".cursor/agents/ds-critique.md": "9ffbc0101e8c5fdecafffe2aede2f2647a46065c96f74c2367bded2011436396",
     ".cursor/agents/ds-bugbot.md": "e32161a614a6c5f7f92e49f0f0486db5d14d4e99dafdb67fc0ee47f910f1f8ee",
     ".cursor/agents/ds-security.md": "da1cceb53b53d29a22d753815e56a49029ee0c9a6b2643f92a8c56268051fd65",
-    ".cursor/agents/ds-release.md": "85eec1226b6c0171541750237b98444c3aa0e15b62174cacb319e3424ea845a8",
+    ".cursor/agents/ds-release.md": "f9d719ac20f5767c682b359fa7f16158cd1ca929ef60e0f9bf486c95f452b6ab",
     ".cursor/rules/ds-kit.mdc": "5d908661d59ecfcb6828e0b324f1993f23d0ea05e2aa1a7e738a47e0dcac8bad",
     ".claude/agents/ds-manager.md": "e6c8da7533fbeace1211e00d6ca5b1bea9a9a2bd33ce6a48761d6cf31079eca3",
     ".claude/agents/ds-prototype.md": "4ad5d78154a51349a2e8e29e331ffc1a4403a499fe678d70e617348375b9de0e",
@@ -23,7 +23,7 @@
     ".claude/agents/ds-critique.md": "2e773e964ce05e5ec7bc5d4aebafa1f1d10464b1bda620866c89207b013a647e",
     ".claude/agents/ds-bugbot.md": "4e8d80f5e2f4f4b473f538ddf065a7509dfd1de1844d04b8630c092c33c7a313",
     ".claude/agents/ds-security.md": "b558506e7928f87f21f0a005c9023e74744b44a7247f21d11e4bd1119c686e3d",
-    ".claude/agents/ds-release.md": "8281ed1769ab456cefe6c11a81fe1a86cc67c8afdf5c074a6962730f056e4881",
+    ".claude/agents/ds-release.md": "692f87d78f1a4a631d02a146fae77ee5bcf74d7ff21440ba9acb7224a8fc8e1e",
     ".codex/agents/ds-manager.toml": "18504e080689d207cb55254aa80a570407d865845664c3105304f7e4d25f6915",
     ".codex/agents/ds-prototype.toml": "d672793ccc35a501b795d89ebacfcd56323e87cf23be5ba0dba455fe550fe484",
     ".codex/agents/ds-architect.toml": "eecdc1d2e138459d22eb3bb6ced79351a18791fa6f66e5c7eab3c846cb4790ec",
@@ -34,6 +34,6 @@
     ".codex/agents/ds-critique.toml": "26d33e256eecd3b4daaba38bb89c7eee5910482cd10c118002f7a416629651f8",
     ".codex/agents/ds-bugbot.toml": "3d2088b170a98a03f5cf5443735f63eea286e426a5dbb25d396761bcbe26f3a4",
     ".codex/agents/ds-security.toml": "d539c8c3467fadb02e35e28212208cf28c72594fae7e84eb83afb5b6b75fc002",
-    ".codex/agents/ds-release.toml": "7ceedd767ead2bd27340fe2695029f3b3d467f6726c7267fa86c23be98fe891b"
+    ".codex/agents/ds-release.toml": "5372844aeee2be1c32be3a2ada40457cafbdc293409d66d94941b8da8f9efe3d"
   }
 }

@@ -3,7 +3,7 @@
 - Status: accepted
 - Date: 2026-08-24
 
-**In plain words:** This repo uses the neutral name `example` so the kit demo does not look like one product brand.
+**In plain words:** This repo’s product is the **Design System Agents** kit. Pack `id` `example` is reserved for the bundled practice catalog so the kit demo does not look like one product brand.
 
 ## Context
 
@@ -12,7 +12,8 @@ This git root ships the portable **ds-* agent kit** and must demonstrate kit usa
 ## Decision
 
 - Pack `id`: `example` (reserved for this kit source root only; foreign hosts must not reuse it)
-- Display name: **Example Design System**
+- Display name: **Design System Agents** (kit). Pack `id` `example` names the bundled catalog only — not the product.
+- Checkout folder name is independent of pack `id` (this source root: `design-system-agents`). Cursor chat lists are not identity and are not source of truth.
 - Skill prefix: `example-*` (20 pack skills under `.agents/skills/`)
 - Registry namespace: `@example`; consumer install targets under `components/example/`
 - Lockfile / drift: `example.lock.json`, `pnpm example:drift`
@@ -21,7 +22,7 @@ This git root ships the portable **ds-* agent kit** and must demonstrate kit usa
 
 ## Consequences
 
-- README and AGENTS.md lead with this repo as the example of using the agents; humans start at `docs/ONBOARDING.md`.
+- README and AGENTS.md lead with this repo as the agent kit; the bundled catalog is secondary. Humans start at `docs/ONBOARDING.md`.
 - ADR 0001 and 0003 history remain; living contract lines in ADR 0006/0007 reference `@example` and `example.lock.json`.
 - Kit scan may still list `components/carina` as a legacy fallback for foreign hosts (ADR 0007).
 

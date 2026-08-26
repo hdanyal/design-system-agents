@@ -4,7 +4,7 @@
 
 Portable specialists (`ds-*`) for a design-system git root. Cursor, Claude Code, and Codex share the same pack, inventory, memory, and program board. Copy this guide with the kit.
 
-The **kit source** checkout also includes an example host (pack `id: example`) so the specialists can run against a real catalog. `pnpm kit:pack` does **not** include that catalog. On a packed install, bootstrap **your** pack and paths. On the kit source repo, [EXAMPLE-HOST.md](EXAMPLE-HOST.md) covers using or replacing the example.
+The **kit source** checkout also includes a bundled catalog (pack `id: example`) so the specialists can run against a real catalog. `pnpm kit:pack` does **not** include that catalog. On a packed install, bootstrap **your** pack and paths. On this kit source repo, [EXAMPLE-HOST.md](EXAMPLE-HOST.md) covers using or replacing the bundled catalog.
 
 ## Install
 
@@ -104,6 +104,8 @@ Experimental block slices may be harvested from one view over time. Each slice r
 ## Isolation
 
 One git root = one pack. Do not attach another DS’s chats, catalog, or Figma file. Memory and program records must match pack `id`. v1 refuses importing another DS’s memory. Retrieve memory by exact frontmatter keys only — never embedding search.
+
+Pack `id` is not the checkout folder name and not the Cursor window title. Durable context is git on that root: pack, inventory, memory (after ack), program board, and docs. Cursor Agents/chat lists are keyed to a workspace storage id from the folder URI; they do not follow a rename and are not a knowledge store. On a new host, File → Open Folder the directory that contains `.git`. Details: [EXAMPLE-HOST.md](EXAMPLE-HOST.md#names-paths-and-durable-context).
 
 ## MCP
 

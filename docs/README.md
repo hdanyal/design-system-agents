@@ -1,13 +1,13 @@
 # Documentation
 
-Human and agent docs for Example DS. Root entry points: [README](../README.md), [CONTRIBUTING](../CONTRIBUTING.md), [AGENTS](../AGENTS.md), [SECURITY](../SECURITY.md).
+Human and agent docs for **Design System Agents**. Root entry points: [README](../README.md), [CONTRIBUTING](../CONTRIBUTING.md), [AGENTS](../AGENTS.md), [SECURITY](../SECURITY.md).
 
 ## Getting started
 
 | Doc | Purpose |
 | --- | --- |
-| [ONBOARDING.md](ONBOARDING.md) | First day on this example |
-| [EXAMPLE-HOST.md](EXAMPLE-HOST.md) | Use the example vs install agents on your repo |
+| [ONBOARDING.md](ONBOARDING.md) | First day on this kit |
+| [EXAMPLE-HOST.md](EXAMPLE-HOST.md) | Keep the bundled catalog vs install agents on your repo; names vs pack `id` vs folder |
 | [catalog.md](catalog.md) | What components and blocks exist here |
 | [SKILLS.md](SKILLS.md) | What each agent skill is for |
 | [READINESS.md](READINESS.md) | When this repo is ready for wider use |
@@ -16,7 +16,7 @@ Human and agent docs for Example DS. Root entry points: [README](../README.md), 
 
 | Doc | Purpose |
 | --- | --- |
-| [../CONTRIBUTING.md](../CONTRIBUTING.md) | How we change this system |
+| [../CONTRIBUTING.md](../CONTRIBUTING.md) | How we change this kit |
 | [GOVERNANCE.md](GOVERNANCE.md) | Who must approve what |
 | [adr/](adr/) | Architecture decisions |
 
