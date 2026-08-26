@@ -1,10 +1,10 @@
 # Human onboarding
 
-Welcome to the **Example** design system — a working sample in this repo. This guide is for people. Agents start at [AGENTS.md](../AGENTS.md). How to contribute: [CONTRIBUTING.md](../CONTRIBUTING.md).
+Welcome to **Design System Agents** — portable `ds-*` specialists for a design-system git root. This guide is for people. Agents start at [AGENTS.md](../AGENTS.md). How to contribute: [CONTRIBUTING.md](../CONTRIBUTING.md).
 
 This is an **enterprise-contract-ready** scaffold, not enterprise-ready until [READINESS.md](READINESS.md) has evidence.
 
-The agents work on **any** design-system repo. The tokens, UI, and `example-*` skills here are just a sample. Keep them to learn, or [install the agents on your own repo](EXAMPLE-HOST.md).
+The product is the agent kit. The tokens, UI, and `example-*` skills in this checkout are a bundled catalog so the specialists have something real to run against. Keep that catalog to learn, or [install the agents on your own repo](EXAMPLE-HOST.md).
 
 ## What you are joining
 
@@ -18,6 +18,22 @@ Four layers, most important first:
 | Blocks | `registry/blocks` |
 
 Storybook shows what shipped. Figma is optional. Git is the source of truth.
+
+## Where context lives
+
+This repo’s product is the **agent kit**. Pack `id` `example` names the bundled catalog only. The checkout folder (`design-system-agents`) is neither.
+
+When you open this project (or install the kit on another repo), recover work from git, not from the Cursor Agents list:
+
+| Need | Where |
+| --- | --- |
+| Pack id and paths | `.agents/context.json` |
+| What exists | `.agents/inventory/`, Storybook, [catalog.md](catalog.md) |
+| What’s next | `.agents/program/` |
+| Reviewed agent notes | `.agents/memory/` |
+| Identity and install | [EXAMPLE-HOST.md](EXAMPLE-HOST.md#names-paths-and-durable-context) |
+
+Cursor chats do not move when the folder is renamed. Write anything you will need later into the rows above. Same rule on every future host: one git root, one pack, knowledge in that tree.
 
 No Figma file is linked yet. If you need design exploration, ask **Manager** (`ds-manager`) to flag it on the task board.
 
@@ -88,7 +104,7 @@ New host primitives need design and engineering approval on this pack.
 | Branching, commits, PRs | [CONTRIBUTING.md](../CONTRIBUTING.md) |
 | HITL, maturity, semver, Code Connect | [GOVERNANCE.md](GOVERNANCE.md) |
 | Product app install / drift | [ADOPTION.md](ADOPTION.md) |
-| Example host vs kit; replace this catalog | [EXAMPLE-HOST.md](EXAMPLE-HOST.md) |
+| Example catalog vs kit; replace this catalog | [EXAMPLE-HOST.md](EXAMPLE-HOST.md) |
 | Kit install on another git root | [AGENT-KIT.md](AGENT-KIT.md) |
 | Secrets, MCP, dependencies | [SECURITY.md](../SECURITY.md) |
 | Rollback / incidents | [INCIDENTS.md](INCIDENTS.md) |
@@ -114,6 +130,7 @@ You can:
 
 1. Run Storybook and find Foundations, UI, Primitives, Blocks, and Prototypes
 2. Explain the four layers and that another host resolves paths from its pack
-3. Point to EXAMPLE-HOST and AGENT-KIT for using this scaffold vs installing agents on a separate repo
+3. Point to EXAMPLE-HOST and AGENT-KIT for using this kit vs installing agents on a separate repo
 4. Open a correct branch type for a prototype vs a new primitive vs an experimental block
 5. Point to the doc that owns HITL, adoption, security, and agent memory without guessing
+6. Point to EXAMPLE-HOST for product name vs pack `id` vs folder, and that Cursor chats are not durable context

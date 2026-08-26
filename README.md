@@ -1,6 +1,6 @@
 # Design System Agents kit
 
-Portable `ds-*` **specialists** for a design-system git root — Cursor, Claude Code, and Codex share one pack, inventory, memory, and program board. This checkout also includes a **working example catalog** so you can run the agents against real tokens and components.
+Portable `ds-*` **specialists** for a design-system git root — Cursor, Claude Code, and Codex share one pack, inventory, memory, and program board. This kit source also ships a **bundled catalog** (pack `id: example`) so the specialists can run against real tokens and components.
 
 **New here?** [docs/ONBOARDING.md](docs/ONBOARDING.md) · **Your own system?** [docs/EXAMPLE-HOST.md](docs/EXAMPLE-HOST.md) · **Agents:** [AGENTS.md](AGENTS.md)
 
@@ -8,7 +8,7 @@ This is an **enterprise-contract-ready scaffold**. It is not enterprise-ready un
 
 ## Setup
 
-**This checkout** (example host, bootstrap already complete):
+**This checkout** (kit source, bootstrap already complete):
 
 ```bash
 pnpm install
@@ -28,7 +28,7 @@ node scripts/kit/install.mjs --dir /path/to/your-ds
 
 Then in that repo: invoke **Release** (`ds-release`) to scan pack `id` and paths, confirm writes, set `bootstrapStatus: complete`. Invoke **Manager** (`ds-manager`) to seed `.agents/program/` (or defer). Refresh later with `node scripts/kit/upgrade.mjs --dir /path/to/your-ds` — upgrade does not clobber host inventory, memory, or program files.
 
-Do **not** copy this source host’s `.agents/context.json`, `.agents/inventory/`, `.agents/memory/`, `.agents/program/`, `tokens.json`, or `components/`. Details: [docs/EXAMPLE-HOST.md](docs/EXAMPLE-HOST.md) · [docs/AGENT-KIT.md](docs/AGENT-KIT.md#install).
+Do **not** copy this kit source’s `.agents/context.json`, `.agents/inventory/`, `.agents/memory/`, `.agents/program/`, `tokens.json`, or `components/`. Details: [docs/EXAMPLE-HOST.md](docs/EXAMPLE-HOST.md) · [docs/AGENT-KIT.md](docs/AGENT-KIT.md#install).
 
 ## Agents
 
@@ -61,9 +61,9 @@ Short reviewed notes under `.agents/memory/` — not a second catalog. Inventory
 - **Shared facts** (`shared/`) are written by Docs (`ds-docs`). Architect, Coding, Critique, and review agents write only their own namespaces.
 - The program board under `.agents/program/` is **not** memory (Manager only). Handoffs are not memory until reviewed.
 
-Isolation is `(repoRoot, pack id)`. Do not import another design system’s memory. Details: [docs/AGENT-MEMORY.md](docs/AGENT-MEMORY.md).
+Isolation is `(repoRoot, pack id)`. Pack `id` is not the folder name. Cursor chats are not a knowledge store and do not follow a rename. Details: [docs/AGENT-MEMORY.md](docs/AGENT-MEMORY.md) · [docs/EXAMPLE-HOST.md](docs/EXAMPLE-HOST.md#names-paths-and-durable-context).
 
-## What’s in the example
+## What’s in the bundled catalog
 
 Four layers from pack `paths` in `.agents/context.json`:
 

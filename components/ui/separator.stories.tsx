@@ -18,7 +18,7 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = {
   render: () => (
     <div className="w-64">
-      <p className="text-sm text-foreground">Example Design System</p>
+      <p className="text-sm text-foreground">Design System Agents</p>
       <Separator className="my-4" />
       <p className="text-sm text-muted-foreground">Sera / orange preset</p>
     </div>

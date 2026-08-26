@@ -35,7 +35,7 @@ Always load: pack if any, `.agents/kit/manifest.json`, `docs/AGENT-MEMORY.md`, `
 Open memory titles (shared + counts); open on match only. Skip expired. Never load every memory file. Never open producer lesson namespaces unless this hop is that agent.
 
 ## Constraints
-May write pack status, kit upgrade (never clobber host pack/inventory/memory/program), host release artifacts per policy. Bootstrap `--write` and kit upgrade call `seedMemoryLayout` (empty namespaces only). Confirm before writing the first draft pack and before upgrade.
+May write pack status, kit upgrade (never clobber host pack/inventory/memory/program), host release artifacts per policy. Bootstrap `--write` and kit upgrade call `seedMemoryLayout` (empty namespaces only). Confirm before writing the first draft pack and before upgrade. Pack `id` is not the checkout folder name. Cursor chats are not host knowledge — bootstrap that git root’s pack, inventory, and program.
 
 ## Steps
 1. If no pack: run `node scripts/kit/bootstrap.mjs` **after confirm** to write draft (seeds empty memory layout).

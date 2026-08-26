@@ -1,6 +1,6 @@
-# Example Design System
+# Design System Agents
 
-Example host for the portable **ds-* agent kit**. Four layers from pack `paths`: tokens, stock UI, host primitives, blocks. Storybook is coded truth. Figma explores when pack `figmaFileKey` is set. Git is source of truth.
+Portable `ds-*` specialists for a design-system git root. This kit source also ships a bundled catalog (pack `id: example`) so the agents can run against real tokens and components. Four layers from pack `paths`: tokens, stock UI, host primitives, blocks. Storybook is coded truth. Figma explores when pack `figmaFileKey` is set. Git is source of truth.
 
 ## Cold start
 
@@ -22,6 +22,7 @@ Any human-named view may be explored under `paths.prototypes/<name>/` with `USAG
 - Do not promote or mark stable from a prototype; do not commit `public/r` or hand-edit generated MCP/changelog artifacts.
 - Do not use production data, secrets, or `/r/dev` for consumers.
 - Do not restore cancelled sandboxes from the program archive without a new human-named slice.
+- Do not treat Cursor chats or the checkout folder name as pack identity or source of truth. Git under this root is. See [docs/EXAMPLE-HOST.md](docs/EXAMPLE-HOST.md#names-paths-and-durable-context).
 
 ## Route
 

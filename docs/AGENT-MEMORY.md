@@ -2,7 +2,9 @@
 
 **Short notes agents can look up later** — not a second catalog. Open a file only when the entity matches this turn. Write only after a person approves. Memory is **advisory**: inventory, USAGE, RATIONALE, and Storybook remain source of truth for what exists.
 
-Reviewed Git files under `.agents/memory/`. Isolation key: `(repoRoot, designSystemId)`.
+Reviewed Git files under `.agents/memory/`. Isolation key: `(repoRoot, pack id)`. Pack `id` is not the checkout folder name.
+
+Cursor Agents/chat lists are **not** memory and **do not** follow a folder rename (they are keyed to a workspace storage id from the folder URI). Do not copy Cursor databases to preserve context. Put lasting notes in git: this tree after ack, plus inventory, program board, and docs. [EXAMPLE-HOST.md](EXAMPLE-HOST.md#names-paths-and-durable-context).
 
 Bootstrap `--write` and kit upgrade seed **empty** namespaces (`.gitkeep` only). They never copy records from another pack.
 

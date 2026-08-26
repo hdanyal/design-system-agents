@@ -30,9 +30,9 @@ export const Default: Story = {
       </HoverCardTrigger>
       <HoverCardContent>
         <div className="space-y-1">
-          <p className="text-sm font-semibold">Example Design System</p>
+          <p className="text-sm font-semibold">Design System Agents</p>
           <p className="text-sm text-muted-foreground">
-            Internal component library and token pipeline.
+            Portable ds-* specialists plus a bundled practice catalog.
           </p>
           <p className="flex items-center gap-2 text-xs text-muted-foreground">
             <CalendarIcon className="size-3" aria-hidden="true" />
@@ -46,7 +46,7 @@ export const Default: Story = {
     await userEvent.hover(canvas.getByRole("button", { name: "@example" }))
     // The popup mounts before its open animation finishes, so poll for paint.
     await waitFor(() =>
-      expect(screen.getByText("Example Design System")).toBeVisible()
+      expect(screen.getByText("Design System Agents")).toBeVisible()
     )
   },
 }

@@ -1,14 +1,39 @@
-# Example design system host
+# Kit source vs your own design system
 
-**Two things in one repo:** the portable **`ds-*` agent kit** (specialists and scripts), and an **example catalog** so agents can practice on real tokens and components. The example is a demo — you do not have to keep the name. Details: [adr/0008-example-host-identity.md](adr/0008-example-host-identity.md).
+**Two things in one repo:** the portable **`ds-*` agent kit** (the product), and a **bundled catalog** so those specialists can run against real tokens and components. Pack `id` `example` names that catalog only. You do not have to keep it. Details: [adr/0008-example-host-identity.md](adr/0008-example-host-identity.md).
 
-**Agent kit** = works on any design-system repo. **Example host** = this repo’s sample tokens, components, and `example-*` skills. Do not copy the example’s settings or components into another repo — [install the kit](#replace-the-example-with-your-own-system) instead.
+**Agent kit** = works on any design-system repo. **Bundled catalog** = this checkout’s practice tokens, components, and `example-*` skills. Do not copy the catalog’s settings or components into another repo — [install the kit](#replace-the-example-with-your-own-system) instead.
 
-## Use the example as-is
+## Names, paths, and durable context
+
+These are three different things. Do not treat the checkout folder, the Cursor window title, or a chat thread as the pack.
+
+| Axis | This kit source | Any other host |
+| --- | --- | --- |
+| Product / display name | **Design System Agents** | That design system’s name |
+| Pack `id` | `example` (bundled catalog only; reserved) | Anything except `example` |
+| Checkout folder | `design-system-agents` (not pack `id`) | Whatever you named the directory |
+
+**Durable context is git under this root.** Agents and people recover work from these, not from the Cursor Agents list:
+
+- Pack and paths: `.agents/context.json`
+- Cold start: [AGENTS.md](../AGENTS.md) · [AGENT-KIT.md](AGENT-KIT.md)
+- Inventory, gaps, proposals: `.agents/inventory/`
+- Reviewed memory: `.agents/memory/` ([AGENT-MEMORY.md](AGENT-MEMORY.md))
+- Program board: `.agents/program/` (Manager only)
+- Policy and identity: this file, [ONBOARDING.md](ONBOARDING.md), [adr/0008-example-host-identity.md](adr/0008-example-host-identity.md)
+
+**Cursor chats are not portable knowledge.** The Agents/chat sidebar is keyed to Cursor’s workspace storage id, which is derived from the **folder URI**. Renaming or moving the folder starts a new empty list. Do not copy `~/Library/Application Support/Cursor` databases to “keep history.” Write decisions into git (docs, inventory, memory after ack, program board) before you rely on them on another machine or path.
+
+**Open the real path.** File → Open Folder → the directory that contains `.git`. A leftover symlink at an old name (`Carina-DS` → this repo) makes Cursor restore the old explorer label even though the files moved.
+
+Same rules on every future host: install the kit into **that** git root, bootstrap **that** pack `id`, and keep knowledge in **that** tree. Isolation is `(repoRoot, pack id)`, not the folder’s display name.
+
+## Use the bundled catalog as-is
 
 - Run Storybook and the four layers (tokens → stock UI → primitives → blocks).
 - Ask **`ds-*` specialists**; they read this repo’s settings file.
-- Try harvest and promote on sample pieces (`heading-group`, `page-header`, prototypes).
+- Try harvest and promote on catalog pieces (`heading-group`, `page-header`, prototypes).
 - Product apps use `@example` only if they mean **this** catalog — [ADOPTION.md](ADOPTION.md).
 
 First day: [ONBOARDING.md](ONBOARDING.md). Agents: [AGENTS.md](../AGENTS.md).
@@ -47,4 +72,4 @@ If **this** checkout is your real producer (you are not installing elsewhere):
 
 ## Isolation
 
-Do not mix this catalog’s chats, Figma file, or memory with another design system.
+Do not mix this catalog’s chats, Figma file, or memory with another design system. Isolation is `(repoRoot, pack id)`, not the folder display name. Cursor chats do not travel with the kit — see [Names, paths, and durable context](#names-paths-and-durable-context).

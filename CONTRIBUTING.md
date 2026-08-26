@@ -1,6 +1,6 @@
 # Contributing
 
-How we change this design system. First-day setup: [docs/ONBOARDING.md](docs/ONBOARDING.md). Agents follow this via `example-contribute` and the portable `ds-*` specialists in [docs/AGENT-KIT.md](docs/AGENT-KIT.md). Approval rules: [docs/GOVERNANCE.md](docs/GOVERNANCE.md). Doc map: [docs/README.md](docs/README.md).
+How we change this kit and its bundled catalog. First-day setup: [docs/ONBOARDING.md](docs/ONBOARDING.md). Agents follow this via `example-contribute` and the portable `ds-*` specialists in [docs/AGENT-KIT.md](docs/AGENT-KIT.md). Approval rules: [docs/GOVERNANCE.md](docs/GOVERNANCE.md). Doc map: [docs/README.md](docs/README.md).
 
 ## Branching
 
