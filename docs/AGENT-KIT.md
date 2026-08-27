@@ -8,19 +8,11 @@ The **kit source** checkout (this repo) contains playbooks, scripts, and skill *
 
 ## Install
 
-**One repo = one design system.** Do not nest a second system inside another host's tree.
-
-### Install from git URL (recommended)
-
-From the host repo, see [INSTALL.md](../INSTALL.md) or:
-
-```bash
-node scripts/kit/install-from-git.mjs --url <git-url>
-```
-
-Then bootstrap scan → human confirm → `--write --confirm-write` → `node scripts/kit/sync.mjs`.
+**One repo = one design system.** Do not nest a second system inside another host's tree. Humans paste a git URL ([README.md](../README.md)); agents follow [INSTALL.md](../INSTALL.md). Prefer a durable sibling kit clone for later `git pull`; `install-from-git` is an equal fallback (hard copy / snapshot of the current kit — not a live link).
 
 ### Install from a kit checkout
+
+Reuse or clone the kit next to the host (never inside it), then:
 
 ```bash
 node scripts/kit/install.mjs --dir /path/to/your-ds
@@ -29,6 +21,16 @@ node scripts/kit/install.mjs --dir /path/to/your-ds
 `--dir` defaults to cwd when omitted (still refuses kit source).
 
 Optional: `node scripts/kit/init.mjs --dir /path/to/your-ds` (install + scan; write still needs confirm).
+
+### Install from git URL (no kept clone)
+
+Warn the human that this hard-copies the kit at that URL’s current commit into the host. From the host (after kit scripts exist once), or via a temp clone:
+
+```bash
+node scripts/kit/install-from-git.mjs --url <git-url>
+```
+
+Then invoke **Release** (`ds-release`) for bootstrap scan → human confirm → `--write --confirm-write` → `node scripts/kit/sync.mjs`.
 
 ### Pack the kit (optional)
 
@@ -44,23 +46,28 @@ Outputs kit paths from `.agents/kit/manifest.json`. Does **not** include host to
 ### New git root (greenfield)
 
 1. Create or clone a **separate** design-system repository.
-2. Run install (above) from this checkout or from a packed folder.
+2. Run install (above) from a durable kit checkout or via install-from-git.
 3. On the host: invoke **Release** (`ds-release`).
 4. Scan: `node scripts/kit/bootstrap.mjs --dir /path/to/new-ds`. After confirm: `--write --confirm-write`.
 5. Review pack `id` (must not be `example` on foreign hosts), `paths`, Figma key, gaps. Set `bootstrapStatus: complete`.
-6. Invoke **Manager** (`ds-manager`) to seed `.agents/program/` (or defer).
+6. Invoke **Manager** (`ds-manager`) to seed `.agents/program/` (or defer). Only Manager writes the board.
 
 Do **not** copy a host's `.agents/context.json`, inventory, memory, or program from another repo. Kit source has none of those.
 
 ### Existing design system
 
-1. Same `node scripts/kit/install.mjs --dir /path/to/existing-ds` from a packed or source checkout.
+1. Same `node scripts/kit/install.mjs --dir /path/to/existing-ds` from a packed or source checkout (or install-from-git).
 2. Install leaves an existing host pack, inventory, memory, and program **untouched**.
-3. If no pack: bootstrap as above. If pack exists: `node scripts/kit/upgrade.mjs --dir /path/to/existing-ds` to refresh kit playbooks without clobbering host data.
+3. If no pack: bootstrap as above. If pack exists: refresh kit playbooks without clobbering host data (see Upgrade below).
 4. Confirm `paths.ui`, `paths.primitives`, `paths.blocks`, and preview match **that** repo's layout (bootstrap scan output or reviewed pack paths).
 5. Run `node scripts/kit/check.mjs --dir /path/to/existing-ds`, then Manager on the host.
 
-Upgrade later: `node scripts/kit/upgrade.mjs --dir <host-root>`. Kit-minimal check: `node scripts/kit/check.mjs --dir <host-root>`.
+### Upgrade later
+
+- **Durable clone:** `git pull` in the kit checkout, then `node <clone>/scripts/kit/upgrade.mjs --dir <host-root>`.
+- **No kept clone:** warn (another hard copy), then `node scripts/kit/install-from-git.mjs --url <git-url>` from the host, then `node scripts/kit/upgrade.mjs --dir <host-root>`.
+
+Kit-minimal check: `node scripts/kit/check.mjs --dir <host-root>`.
 
 After install on any host: `pnpm agents:sync` (or `node scripts/kit/sync.mjs` from the host if scripts are wired).
 

@@ -9,6 +9,7 @@ import {
   loadKitManifest,
   path,
   printInstallNextSteps,
+  printKitSnapshotWarning,
 } from "./lib.mjs"
 
 const args = process.argv.slice(2)
@@ -37,6 +38,7 @@ try {
 
   const kit = loadKitManifest(tmp)
   const hasExistingPack = existsSync(path.join(host, ".agents/context.json"))
+  printKitSnapshotWarning(kit.kitVersion, gitUrl)
   copyKitPaths(tmp, host)
   const hostFiles = copyHostBootstrapFiles(tmp, host)
   console.log(`kit:install-from-git copied kit ${kit.kitVersion} into ${host}`)

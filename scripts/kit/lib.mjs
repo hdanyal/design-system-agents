@@ -1014,20 +1014,34 @@ export function hashTree(root, rels) {
   return hashes
 }
 
+export function printKitSnapshotWarning(kitVersion, gitUrl) {
+  console.log("")
+  console.log("--- Snapshot warning ---")
+  console.log(
+    `This installs a hard copy of kit ${kitVersion} from ${gitUrl || "the kit source"} into the host.`
+  )
+  console.log("It is not a live link. Later kit ships will not appear until you paste the URL again")
+  console.log("or git pull a kept sibling clone and run upgrade.mjs.")
+  console.log("------------------------")
+}
+
 export function printInstallNextSteps(host, { hasExistingPack = false } = {}) {
   console.log("")
   console.log("--- Next steps ---")
   console.log(`Copied into ${host}.`)
   if (hasExistingPack) {
-    console.log("Your system settings were left as they are. Use upgrade to refresh the agents.")
+    console.log("Your system settings were left as they are.")
+    console.log("Next: run upgrade to refresh kit playbooks without clobbering pack/inventory/memory/program:")
+    console.log(`   node scripts/kit/upgrade.mjs --dir ${host}`)
+    console.log("(From a kept clone after git pull: node <clone>/scripts/kit/upgrade.mjs --dir <host>)")
   } else {
-    console.log("1. Bootstrap scan (no write):")
+    console.log("1. Invoke ds-release for a bootstrap scan (no write):")
     console.log(`   node scripts/kit/bootstrap.mjs --dir ${host}`)
     console.log("2. Confirm pack id (not example) and paths with the human.")
     console.log("3. After yes:")
     console.log(`   node scripts/kit/bootstrap.mjs --dir ${host} --write --confirm-write`)
     console.log(`   node scripts/kit/sync.mjs`)
-    console.log("4. Invoke ds-release if gaps remain, else ds-manager for the task board.")
+    console.log("4. If gaps remain, stay with ds-release. Else invoke ds-manager to seed the program board.")
   }
   console.log("------------------")
 }
