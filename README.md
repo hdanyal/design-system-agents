@@ -2,6 +2,20 @@
 
 Portable `ds-*` specialists for a design-system git root. **This repository is the kit only** — no bundled tokens, components, or Storybook. Install onto your design-system repo to bootstrap specialists there.
 
+## Why use these agents
+
+A generic coding assistant will invent components, dump the whole catalog into context, and call itself done. These specialists are **named owners on your catalog**: reuse or enhance before extract, confirm before protected writes, present live Storybook for visual HITL, and keep pack, inventory, memory, and the program board in **git** — not in chat.
+
+They are playbooks at inference time, not a trained “design-system model.” The hops encode published agent and review research:
+
+- **Separate generate, critique, and revise** ([Constitutional AI](https://www.anthropic.com/research/constitutional-ai-harmlessness-from-ai-feedback); [evaluator-optimizer](https://www.anthropic.com/engineering/building-effective-agents)) — `ds-critique` is an independent hop with a stop cap; the critic does not implement.
+- **Anti-sycophancy** ([Towards Understanding Sycophancy](https://www.anthropic.com/research/towards-understanding-sycophancy-in-language-models)) — claims are checked against inventory and files, not echoed.
+- **Just-in-time context** ([Effective context engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)) — load the smallest high-signal set; memory by exact keys, not embeddings.
+- **Process gates, not vibes** ([Let's Verify Step by Step](https://openai.com/index/improving-mathematical-reasoning-with-process-supervision); SWE-agent-style loops) — Architect owns the harvest decision; Coding must show a red→green verify signal it cannot fake.
+- **Design-system practice** — component API before internals (Nathan Curtis / EightShapes); Testing Library roles/names; axe evidence is not HITL sign-off.
+
+How that is encoded: [docs/AGENT-CRITIQUE.md](docs/AGENT-CRITIQUE.md) · [docs/AGENT-ARCHITECT-CODING.md](docs/AGENT-ARCHITECT-CODING.md) · [docs/AGENT-MEMORY.md](docs/AGENT-MEMORY.md)
+
 ## Install (paste into Cursor or Claude)
 
 Open your design-system repo, then give your agent:
