@@ -1,6 +1,0 @@
----
-description: Code Connect files
-globs: "**/*.figma.ts"
----
-
-Code Connect maps Figma to host primitives. Do not point at one-off prototype markup. Policy lives in docs/GOVERNANCE.md.

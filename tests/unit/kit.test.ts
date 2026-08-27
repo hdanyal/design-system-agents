@@ -16,11 +16,13 @@ import {
   validateMemoryRecord,
   validateMemoryTree,
   validatePack,
+  scanKitSourceForbidden,
   validateProgram,
   validateSharedMemorySlugs,
 } from "../../scripts/kit/lib.mjs"
 
 const root = process.cwd()
+const miniHost = path.join(root, "tests/fixtures/mini-host")
 
 function run(command: string, args: string[], cwd = root) {
   return spawnSync(command, args, { cwd, encoding: "utf8" })
@@ -49,7 +51,7 @@ describe("portable agent kit", () => {
     expect(scan.gaps.some((g: { id: string }) => g.id === "paths.tokens")).toBe(true)
   })
 
-  it("scanProgramInputs includes the live roster and does not trust inventory stories", () => {
+  it("scanProgramInputs reads agent roster from kit checkout", () => {
     const manifest = JSON.parse(readFileSync(".agents/agents/manifest.json", "utf8")) as {
       agents: Array<{ id: string }>
     }
@@ -57,14 +59,16 @@ describe("portable agent kit", () => {
     expect(inputs.agents.map((agent: { id: string }) => agent.id)).toEqual(
       manifest.agents.map((agent) => agent.id)
     )
+  })
+
+  it("scanHost finds layers on mini-host fixture", () => {
+    const inputs = scanProgramInputs(miniHost)
     expect(inputs.layerCounts.ui).toBeGreaterThan(0)
     expect(inputs.layerCounts.primitives).toBeGreaterThan(0)
-    expect(inputs.storyCoverage.ui.N).toBe(inputs.layerCounts.ui)
-    const inventory = JSON.parse(readFileSync(".agents/inventory/components.json", "utf8")) as {
-      entities: Array<{ stories: unknown[] }>
-    }
-    expect(inventory.entities.every((entity) => entity.stories.length === 0)).toBe(true)
-    expect(inputs.storyCoverage.primitives.n).toBeGreaterThanOrEqual(0)
+  })
+
+  it("skips live program board on kit source", () => {
+    expect(existsSync(".agents/program/tasks.md")).toBe(false)
   })
 
   it("reads a second tasks table without treating its header as a task row", () => {
@@ -114,10 +118,9 @@ describe("portable agent kit", () => {
     ).toEqual([])
   })
 
-  it("records Storybook when present", () => {
-    const scan = scanHost(root)
+  it("records Storybook when present on fixture host", () => {
+    const scan = scanHost(miniHost)
     expect(scan.preview.kind).toBe("storybook")
-    expect(scan.preview.port).toBe(6006)
   })
 
   it("install does not copy Example tokens; upgrade does not wipe host memory", () => {
@@ -126,9 +129,7 @@ describe("portable agent kit", () => {
       cpSync(path.join(root, "tests/fixtures/foreign-ds"), tmp, { recursive: true })
       const install = run("node", ["scripts/kit/install.mjs", "--dir", tmp])
       expect(install.status, install.stderr).toBe(0)
-      expect(install.stdout).toContain("ds-release")
-      expect(install.stdout).toContain("ds-manager")
-      expect(install.stdout).toContain("bootstrap.mjs")
+      expect(existsSync(path.join(tmp, "AGENTS.md"))).toBe(true)
       expect(existsSync(path.join(tmp, "tokens.json"))).toBe(false)
       expect(existsSync(path.join(tmp, ".cursor/agents/ds-coding.md"))).toBe(true)
       expect(existsSync(path.join(tmp, ".cursor/agents/ds-manager.md"))).toBe(true)
@@ -168,9 +169,8 @@ describe("portable agent kit", () => {
   })
 
   it("rejects memory from another design system id", () => {
-    const pack = JSON.parse(readFileSync(".agents/context.json", "utf8"))
     const foreign = readFileSync("tests/fixtures/foreign-ds/.agents/memory/shared/note.md", "utf8")
-    expect(validateMemoryRecord(foreign, pack.id)).toContain("mismatch")
+    expect(validateMemoryRecord(foreign, "acme")).toContain("mismatch")
   })
 
   it("rejects memory missing owner or reviewedAt", () => {
@@ -320,8 +320,7 @@ x
 
   it("complete pack requires id and tokens or deferral", () => {
     const errors = validatePack(
-      { $schemaVersion: "1", kitVersion: "0.1.0", bootstrapStatus: "complete", id: "acme" },
-      { allowExampleId: false }
+      { $schemaVersion: "1", kitVersion: "0.1.0", bootstrapStatus: "complete", id: "acme" }
     )
     expect(errors.length).toBeGreaterThan(0)
   })
@@ -365,19 +364,21 @@ x
     }
   })
 
-  it("identity-scan is dry-run only on the kit source", () => {
+  it("identity-scan reports clean kit source", () => {
     const scan = run("node", ["scripts/kit/identity-scan.mjs", "--dir", root])
     expect(scan.status, scan.stderr).toBe(0)
-    expect(scan.stdout).toContain("example")
-    const hits = scanIdentityPaths(root)
-    expect(hits.length).toBeGreaterThan(0)
+    expect(scan.stdout).toContain("Kit source is clean")
+    expect(scanKitSourceForbidden(root)).toEqual([])
   })
 
   it("seedHostSkills writes foreign-ds-* stubs", () => {
     const tmp = mkdtempSync(path.join(os.tmpdir(), "ds-seed-skills-"))
     try {
       cpSync(path.join(root, ".agents/agents"), path.join(tmp, ".agents/agents"), { recursive: true })
-      cpSync(path.join(root, ".agents/kit"), path.join(tmp, ".agents/kit"), { recursive: true })
+      cpSync(path.join(root, ".agents/kit/skill-templates"), path.join(tmp, ".agents/kit/skill-templates"), {
+        recursive: true,
+      })
+      writeFileSync(path.join(tmp, ".agents/kit/manifest.json"), readFileSync(path.join(root, ".agents/kit/manifest.json")))
       const result = seedHostSkills(tmp, "foreign-ds")
       expect(result.ok).toBe(true)
       expect(existsSync(path.join(tmp, ".agents/skills/foreign-ds-onboard/SKILL.md"))).toBe(true)

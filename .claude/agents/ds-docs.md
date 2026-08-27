@@ -55,5 +55,5 @@ memory: shared/<slug>.md | proposed-only
 Missing implementation → Coding. Token questions → Design Language. Unacked memory → keep proposal in handoff, not `shared/`. Propose `ds-critique` before Release. Do not self-check as “critique done.”
 
 ## Examples
-- “Write USAGE for heading-group from the implementation, no new props.”
+- “Write USAGE for the named primitive from the implementation, no new props.”
 - “After HITL ack, record this catalog change in memory from the template.”

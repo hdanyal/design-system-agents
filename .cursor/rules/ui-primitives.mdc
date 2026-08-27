@@ -1,6 +1,0 @@
----
-description: Stock shadcn files
-globs: components/ui/**
----
-
-Stock shadcn. No restyles or extra variants. Correctness/a11y/security edits require `upstream-patches.json`, CODEOWNER review, and `pnpm upstream:check`.

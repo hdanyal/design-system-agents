@@ -2,6 +2,7 @@
   "$schemaVersion": "1",
   "kitVersion": "0.2.0",
   "name": "ds-agent-kit",
+  "role": "kit-source",
   "protectedHostPaths": [
     ".agents/context.json",
     ".agents/inventory",
@@ -10,19 +11,25 @@
     ".agents/program",
     ".agents/handoffs"
   ],
+  "kitSourceOnlyPaths": [
+    ".agents/kit/SOURCE"
+  ],
   "paths": [
     ".agents/kit/manifest.json",
     ".agents/kit/intent-eval.json",
+    ".agents/kit/harvest-eval.json",
+    ".agents/kit/skill-templates",
     ".agents/agents",
     "scripts/kit",
     "docs/AGENT-KIT.md",
     "docs/AGENT-MEMORY.md",
     "docs/AGENT-CRITIQUE.md",
     "docs/AGENT-ARCHITECT-CODING.md",
-    ".agents/kit/harvest-eval.json",
     ".cursor/agents",
     ".cursor/rules/ds-kit.mdc",
     ".claude/agents",
-    ".codex/agents"
+    ".codex/agents",
+    ".agents/skills/shadcn",
+    ".agents/skills/migrate-radix-to-base"
   ]
 }

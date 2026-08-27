@@ -9,69 +9,72 @@ type Skill = {
   invocation: "auto-select" | "contextual" | "explicit-only"
   audience: string
   dependencies: string[]
-  writes?: string[]
 }
 
 const REQUIRED = [
-  "example-onboard",
-  "example-branding",
-  "example-compose",
-  "example-a11y",
-  "example-contribute",
-  "example-prototype",
-  "example-extend-ui",
-  "example-promote-block",
-  "example-update-design-language",
-  "example-update-shadcn",
-  "example-figma",
-  "example-shadcn-mcp",
-  "example-stories",
-  "example-verify",
-  "example-consume",
-  "example-release",
-  "example-lifecycle",
-  "example-incident",
-  "example-dependency-review",
-  "example-agent-tooling",
+  "template-onboard",
+  "template-branding",
+  "template-compose",
+  "template-a11y",
+  "template-contribute",
+  "template-prototype",
+  "template-extend-ui",
+  "template-promote-block",
+  "template-update-design-language",
+  "template-update-shadcn",
+  "template-figma",
+  "template-shadcn-mcp",
+  "template-stories",
+  "template-verify",
+  "template-consume",
+  "template-release",
+  "template-lifecycle",
+  "template-incident",
+  "template-dependency-review",
+  "template-agent-tooling",
 ]
 
 const THIN = new Set([
-  "example-onboard",
-  "example-branding",
-  "example-prototype",
-  "example-shadcn-mcp",
-  "example-verify",
-  "example-dependency-review",
+  "template-onboard",
+  "template-branding",
+  "template-prototype",
+  "template-shadcn-mcp",
+  "template-verify",
+  "template-dependency-review",
 ])
 
 const AUTO = new Set([
-  "example-branding",
-  "example-compose",
-  "example-a11y",
-  "example-contribute",
+  "template-branding",
+  "template-compose",
+  "template-a11y",
+  "template-contribute",
 ])
 
 const EXPLICIT = new Set([
-  "example-release",
-  "example-lifecycle",
-  "example-incident",
-  "example-dependency-review",
-  "example-agent-tooling",
+  "template-release",
+  "template-lifecycle",
+  "template-incident",
+  "template-dependency-review",
+  "template-agent-tooling",
 ])
 
-const manifest = readJson<{ skills: Skill[] }>(paths.skillManifest)
-const names = manifest.skills.map((skill) => skill.name)
+const manifestPath = paths.skillTemplatesManifest
+if (!existsSync(manifestPath)) fail(`Missing ${manifestPath}`)
 
-if (names.length !== REQUIRED.length) fail(`Expected ${REQUIRED.length} skills, found ${names.length}`)
+const manifest = readJson<{ skills: Skill[] }>(manifestPath)
+const names = manifest.skills.map((skill) => skill.name)
+const templatesDir = path.join(paths.root, ".agents/kit/skill-templates")
+
+if (names.length !== REQUIRED.length) fail(`Expected ${REQUIRED.length} templates, found ${names.length}`)
 for (const name of REQUIRED) {
-  if (!names.includes(name)) fail(`Missing skill ${name}`)
+  if (!names.includes(name)) fail(`Missing template ${name}`)
 }
 
 const seen = new Set<string>()
 for (const skill of manifest.skills) {
-  if (seen.has(skill.name)) fail(`Duplicate skill ${skill.name}`)
+  if (seen.has(skill.name)) fail(`Duplicate template ${skill.name}`)
   seen.add(skill.name)
-  const skillFile = path.join(paths.skillsDir, skill.name, "SKILL.md")
+  const skillFile = path.join(templatesDir, skill.name, "SKILL.md")
   if (!existsSync(skillFile)) fail(`Missing ${skillFile}`)
   const body = readFileSync(skillFile, "utf8")
   const lines = body.split("\n").length
@@ -83,7 +86,7 @@ for (const skill of manifest.skills) {
     fail(`${skill.name} invocation mismatch`)
   }
   for (const dep of skill.dependencies) {
-    if (dep.startsWith("example-") && !REQUIRED.includes(dep)) fail(`${skill.name} depends on unknown ${dep}`)
+    if (dep.startsWith("template-") && !REQUIRED.includes(dep)) fail(`${skill.name} depends on unknown ${dep}`)
     if (dep === skill.name) fail(`${skill.name} cannot depend on itself`)
   }
 }

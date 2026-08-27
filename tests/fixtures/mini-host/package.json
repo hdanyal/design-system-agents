@@ -1,0 +1,12 @@
+{
+  "name": "mini-host",
+  "private": true,
+  "scripts": {
+    "storybook": "echo storybook-stub",
+    "test:unit": "vitest run",
+    "tokens:build": "echo tokens-stub"
+  },
+  "devDependencies": {
+    "storybook": "10.5.8"
+  }
+}

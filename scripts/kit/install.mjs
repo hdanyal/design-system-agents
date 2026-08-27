@@ -1,7 +1,9 @@
 import { existsSync } from "node:fs"
 import {
+  copyHostBootstrapFiles,
   copyKitPaths,
   fail,
+  isKitSource,
   kitRootFromScripts,
   loadKitManifest,
   path,
@@ -10,10 +12,9 @@ import {
 
 const args = process.argv.slice(2)
 const dirIdx = args.indexOf("--dir")
-if (dirIdx < 0 || !args[dirIdx + 1]) fail("Usage: node scripts/kit/install.mjs --dir <host-root>")
-const host = path.resolve(args[dirIdx + 1])
+const host = path.resolve(dirIdx >= 0 ? args[dirIdx + 1] : process.cwd())
 const source = kitRootFromScripts()
-if (host === source) fail("kit:install refuses the kit source root; use kit:upgrade")
+if (host === source || isKitSource(host)) fail("kit:install refuses the kit source root; use kit:upgrade")
 
 const kit = loadKitManifest(source)
 if (kit.paths.includes("tokens.json") || kit.paths.includes("components")) {
@@ -24,5 +25,7 @@ if (hasExistingPack) {
   console.log("host pack present; leaving context/inventory/memory untouched")
 }
 copyKitPaths(source, host)
+const hostFiles = copyHostBootstrapFiles(source, host)
 console.log(`kit:install copied kit ${kit.kitVersion} into ${host}`)
+if (hostFiles.length) console.log(`host bootstrap files: ${hostFiles.join(", ")}`)
 printInstallNextSteps(host, { hasExistingPack })

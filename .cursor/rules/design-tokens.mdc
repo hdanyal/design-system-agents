@@ -1,6 +1,0 @@
----
-description: Canonical tokens
-globs: tokens.json,app/tokens.generated.css,design-language.json
----
-
-`tokens.json` is canonical. After edits run `pnpm tokens:build`. Do not hand-edit generated CSS or branding reference.

@@ -18,6 +18,11 @@ const args = process.argv.slice(2)
 const dirIdx = args.indexOf("--dir")
 const root = path.resolve(dirIdx >= 0 ? args[dirIdx + 1] : process.cwd())
 const write = args.includes("--write")
+
+if (isKitSource(root)) {
+  fail("bootstrap refuses the kit source root; install the kit onto a design-system host first")
+}
+
 const kit = loadKitManifest(existsSync(path.join(root, ".agents/kit/manifest.json")) ? root : kitRootFromScripts())
 const scan = scanHost(root)
 const packPath = path.join(root, ".agents/context.json")
@@ -29,13 +34,11 @@ function mergePath(key, guessed) {
   return guessed
 }
 
-const kitSource = isKitSource(root)
-
 const pack = {
   $schemaVersion: SCHEMA_VERSION,
   kitVersion: kit.kitVersion,
   bootstrapStatus: existing?.bootstrapStatus || "draft",
-  id: existing?.id || (kitSource ? "example" : null),
+  id: existing?.id || null,
   paths: {
     tokens: mergePath("tokens", scan.guessed.tokens),
     ui: mergePath("ui", scan.guessed.ui),
@@ -54,12 +57,8 @@ const pack = {
   reviewedBy: existing?.reviewedBy || null,
 }
 
-if (kitSource && !existing) {
-  pack.bootstrapStatus = "complete"
-  pack.id = "example"
-  pack.reviewedAt = new Date().toISOString().slice(0, 10)
-  pack.reviewedBy = "example-ds-eng"
-  pack.reviewedFields = ["id", "paths.tokens", "paths.ui", "preview"]
+if (pack.id === "example") {
+  fail('pack id "example" is reserved; choose another short name')
 }
 
 const inventory = {
@@ -91,8 +90,9 @@ writeJson(packPath, pack)
 writeJson(path.join(root, ".agents/inventory/components.json"), inventory)
 writeJson(path.join(root, ".agents/inventory/gaps.json"), gaps)
 seedMemoryLayout(root)
-if (pack.id && pack.id !== "example") {
+if (pack.id) {
   const seeded = seedHostSkills(root, pack.id)
   if (seeded.ok) console.log(`seedHostSkills wrote ${seeded.count} ${pack.id}-* skills`)
+  else console.log(`seedHostSkills skipped: ${seeded.reason}`)
 }
 console.log(`bootstrap wrote pack status=${pack.bootstrapStatus} id=${pack.id || "(unset)"}`)

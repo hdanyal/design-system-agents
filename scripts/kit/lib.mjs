@@ -182,10 +182,13 @@ function hasDeferred(pack, field) {
 }
 
 export function isKitSource(root) {
-  return (
-    existsSync(path.join(root, "scripts/kit/lib.mjs")) &&
-    existsSync(path.join(root, ".agents/kit/manifest.json"))
-  )
+  return existsSync(path.join(root, ".agents/kit/SOURCE"))
+}
+
+export function resolveSkillTemplateRoot(fromRoot) {
+  const local = path.join(fromRoot, ".agents/kit/skill-templates/manifest.json")
+  if (existsSync(local)) return fromRoot
+  return kitRootFromScripts()
 }
 
 export function validatePack(pack, { allowExampleId = false } = {}) {
@@ -197,7 +200,7 @@ export function validatePack(pack, { allowExampleId = false } = {}) {
   if (!["missing", "draft", "blocked", "complete"].includes(status)) errors.push("pack bootstrapStatus")
   if (status === "complete") {
     if (!ID_RE.test(pack.id || "")) errors.push("pack id")
-    if (pack.id === "example" && !allowExampleId) errors.push("pack id must not be example on a foreign host")
+    if (pack.id === "example") errors.push("pack id must not be example")
     if (!pack.paths?.tokens && !hasDeferred(pack, "paths.tokens")) errors.push("paths.tokens")
     if (!pack.paths?.ui && !hasDeferred(pack, "paths.ui")) errors.push("paths.ui")
     if (!pack.reviewedAt || !pack.reviewedBy) errors.push("pack review")
@@ -775,15 +778,45 @@ export function scanProgramInputs(root) {
 
 export function copyKitPaths(fromRoot, toRoot) {
   const kit = loadKitManifest(fromRoot)
+  const kitSourceOnly = new Set(kit.kitSourceOnlyPaths || [".agents/kit/SOURCE"])
   const copied = []
   for (const rel of kit.paths) {
     const src = path.join(fromRoot, rel)
     if (!existsSync(src)) continue
     if (isProtectedRel(rel)) continue
+    if (kitSourceOnly.has(rel)) continue
     const dest = path.join(toRoot, rel)
     mkdirSync(path.dirname(dest), { recursive: true })
     cpSync(src, dest, { recursive: true, force: true })
     copied.push(rel)
+  }
+  return copied
+}
+
+export function copyHostBootstrapFiles(fromRoot, toRoot) {
+  const hostDir = path.join(fromRoot, ".agents/kit/host")
+  const policyDir = path.join(fromRoot, ".agents/kit/host-policy")
+  const copied = []
+  if (existsSync(hostDir)) {
+    for (const name of ["AGENTS.md", "CLAUDE.md"]) {
+      const src = path.join(hostDir, name)
+      const dest = path.join(toRoot, name)
+      if (existsSync(src) && !existsSync(dest)) {
+        cpSync(src, dest)
+        copied.push(name)
+      }
+    }
+  }
+  if (existsSync(policyDir)) {
+    for (const rel of walkFiles(policyDir)) {
+      const relFromPolicy = rel.slice(policyDir.length + 1)
+      const dest = path.join(toRoot, relFromPolicy)
+      if (!existsSync(dest)) {
+        mkdirSync(path.dirname(dest), { recursive: true })
+        cpSync(rel, dest)
+        copied.push(relFromPolicy)
+      }
+    }
   }
   return copied
 }
@@ -820,7 +853,7 @@ export function guessPaths(root, componentsJson) {
     }
   }
 
-  const primitiveCandidates = ["components/primitives", "components/carina", "src/components/primitives"]
+  const primitiveCandidates = ["components/primitives", "src/components/primitives"]
   let primitives = null
   for (const candidate of primitiveCandidates) {
     if (existsSync(path.join(root, candidate))) {
@@ -988,10 +1021,14 @@ export function printInstallNextSteps(host, { hasExistingPack = false } = {}) {
   if (hasExistingPack) {
     console.log("Your system settings were left as they are. Use upgrade to refresh the agents.")
   } else {
-    console.log("Open that folder in Cursor.")
-    console.log("Ask Release (ds-release) to set it up, then Manager (ds-manager) for the task board.")
+    console.log("1. Bootstrap scan (no write):")
+    console.log(`   node scripts/kit/bootstrap.mjs --dir ${host}`)
+    console.log("2. Confirm pack id (not example) and paths with the human.")
+    console.log("3. After yes:")
+    console.log(`   node scripts/kit/bootstrap.mjs --dir ${host} --write --confirm-write`)
+    console.log(`   node scripts/kit/sync.mjs`)
+    console.log("4. Invoke ds-release if gaps remain, else ds-manager for the task board.")
   }
-  console.log(`Optional scan: node scripts/kit/bootstrap.mjs --dir ${host}`)
   console.log("------------------")
 }
 
@@ -1028,6 +1065,39 @@ const IDENTITY_SCAN_PATTERNS = [
   { label: "example.lock.json reference", glob: "docs/ADOPTION.md", test: (t) => t.includes("example.lock.json") },
 ]
 
+const KIT_SOURCE_FORBIDDEN = [
+  { label: "pack context on kit source", glob: ".agents/context.json", test: () => true },
+  { label: "tokens.json", glob: "tokens.json", test: () => true },
+  { label: "components/ui catalog", glob: "components/ui", test: () => true },
+  { label: "example-* skills on kit source", glob: ".agents/skills/manifest.json", test: (t) => /"example-/.test(t) },
+  { label: "example-ds package name", glob: "package.json", test: (t) => /"name"\s*:\s*"example-ds"/.test(t) },
+  { label: "EXAMPLE_REGISTRY env", glob: ".env.example", test: (t) => t.includes("EXAMPLE_REGISTRY") },
+  { label: "example:drift script", glob: "package.json", test: (t) => t.includes("example:drift") },
+]
+
+export function scanKitSourceForbidden(root) {
+  const hits = []
+  for (const row of KIT_SOURCE_FORBIDDEN) {
+    const full = path.join(root, row.glob)
+    if (!existsSync(full)) continue
+    if (statSync(full).isDirectory()) {
+      hits.push({ path: row.glob, label: row.label })
+      continue
+    }
+    const text = readFileSync(full, "utf8")
+    if (row.test(text)) hits.push({ path: row.glob, label: row.label })
+  }
+  const skillsDir = path.join(root, ".agents/skills")
+  if (existsSync(skillsDir)) {
+    for (const entry of readdirSync(skillsDir)) {
+      if (entry.startsWith("example-") && statSync(path.join(skillsDir, entry)).isDirectory()) {
+        hits.push({ path: `.agents/skills/${entry}`, label: "example-* skill folder" })
+      }
+    }
+  }
+  return hits
+}
+
 export function scanIdentityPaths(root) {
   const hits = []
   for (const row of IDENTITY_SCAN_PATTERNS) {
@@ -1047,53 +1117,27 @@ export function scanIdentityPaths(root) {
   return hits
 }
 
-function skillWorkflowExtra(prefix, suffix) {
-  const p = prefix
-  const workflows = {
-    onboard: `## Workflow
-Cold start is pack bootstrap (\`ds-release\` / \`node scripts/kit/bootstrap.mjs\`), not a second auto-select skill.
-1. Read \`.agents/context.json\`. If missing or not \`complete\`, stop and invoke \`ds-release\`.
-2. If bootstrap is \`complete\`, invoke \`ds-manager\` for \`.agents/program/\` (not auto-select).
-3. Then load exactly one owning \`ds-*\` agent from docs/AGENT-KIT.md.
-Do not write files until routing is done.`,
-    branding: `## Workflow
-1. Read generated \`.agents/skills/${p}-branding/reference.md\` when present before view, component, story, or token work.
-2. Follow its Overview and Do's and Don'ts; use CSS variables only.
-3. Token edits route to \`${p}-update-design-language\`.
-Never copy oklch/hex into JSX or stories.`,
-    compose: `## Workflow
-1. Harvest while building: inventory stock UI, host primitives, blocks, and Storybook for reusable regions.
-2. Decide in order: reuse → enhance-existing → extract → keep local.
-3. Prefer enhancing a named existing API over creating a twin.`,
-    verify: `## Workflow
-Use \`pnpm verify:fast\` for local iteration.
-Use \`pnpm verify\` before merge/release.`,
-  }
-  return (
-    workflows[suffix] ||
-    `## Workflow
-Follow host policy in CONTRIBUTING.md and docs/GOVERNANCE.md for ${p}-${suffix}.`
-  )
+function substitutePackId(text, packId) {
+  return text.replaceAll("template-ds", `${packId}-ds`).replaceAll("template-", `${packId}-`)
 }
 
 export function seedHostSkills(root, packId) {
   if (!packId || !ID_RE.test(packId)) return { ok: false, reason: "invalid pack id" }
-  if (packId === "example" && !isKitSource(root)) return { ok: false, reason: "example reserved on foreign hosts" }
-  if (packId === "example" && isKitSource(root)) return { ok: false, reason: "kit source keeps example-* skills" }
+  if (packId === "example") return { ok: false, reason: "example is reserved" }
 
-  const templateRoot = isKitSource(root) ? root : kitRootFromScripts()
-  const templateManifest = readJson(path.join(templateRoot, ".agents/skills/manifest.json"))
+  const templateRoot = resolveSkillTemplateRoot(root)
+  const templateManifest = readJson(path.join(templateRoot, ".agents/kit/skill-templates/manifest.json"))
   const skillsDir = path.join(root, ".agents/skills")
   mkdirSync(skillsDir, { recursive: true })
 
   const skills = templateManifest.skills.map((skill) => {
-    const suffix = skill.name.replace(/^example-/, "")
+    const suffix = skill.name.replace(/^template-/, "")
     const name = `${packId}-${suffix}`
     return {
       ...skill,
       name,
-      owner: skill.owner.replace(/^example-/, `${packId}-`),
-      dependencies: (skill.dependencies || []).map((d) => d.replace(/^example-/, `${packId}-`)),
+      owner: skill.owner.replace(/^template-/, `${packId}-`),
+      dependencies: (skill.dependencies || []).map((d) => d.replace(/^template-/, `${packId}-`)),
     }
   })
 
@@ -1103,43 +1147,30 @@ export function seedHostSkills(root, packId) {
     skills,
   })
 
-  const policy = {
-    contribute: "CONTRIBUTING.md",
-    governance: "docs/GOVERNANCE.md",
-    adoption: "docs/ADOPTION.md",
-    security: "SECURITY.md",
-    incidents: "docs/INCIDENTS.md",
-  }
-
   for (const skill of skills) {
-    const suffix = skill.name.replace(`${packId}-`, "")
+    const templateSuffix = skill.name.replace(`${packId}-`, "")
+    const templateDir = path.join(templateRoot, ".agents/kit/skill-templates", `template-${templateSuffix}`)
+    const templateSkill = path.join(templateDir, "SKILL.md")
     const dir = path.join(skillsDir, skill.name)
     mkdirSync(dir, { recursive: true })
-    const body = `---
+    if (existsSync(templateSkill)) {
+      let body = substitutePackId(readFileSync(templateSkill, "utf8"), packId)
+      body = body.replace(/^name: template-/m, `name: ${skill.name}`)
+      writeText(path.join(dir, "SKILL.md"), body)
+    } else {
+      writeText(
+        path.join(dir, "SKILL.md"),
+        `---
 name: ${skill.name}
 description: ${skill.boundary}
 ---
 
 # ${skill.name}
 
-- Form: ${skill.form}
-- Invocation: ${skill.invocation}
-- Audience: ${skill.audience}
-- Depends on: ${skill.dependencies.join(", ") || "none"}
-
-## Triggers
-Use this skill for work that matches its boundary.
-
-## Policy links
-- Process: ${policy.contribute}
-- Governance: ${policy.governance}
-- Adoption: ${policy.adoption}
-- Security: ${policy.security}
-- Incidents: ${policy.incidents}
-
-${skillWorkflowExtra(packId, suffix)}
+Follow host policy in CONTRIBUTING.md and docs/GOVERNANCE.md.
 `
-    writeText(path.join(dir, "SKILL.md"), body)
+      )
+    }
   }
 
   return { ok: true, count: skills.length }

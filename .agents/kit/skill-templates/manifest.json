@@ -1,0 +1,273 @@
+{
+  "version": "0.1.0",
+  "lastReviewed": "2026-08-17",
+  "skills": [
+    {
+      "name": "template-onboard",
+      "form": "thin",
+      "invocation": "contextual",
+      "audience": "contributor",
+      "owner": "template-ds-eng",
+      "maturity": "experimental",
+      "boundary": "Pointer to pack bootstrap (ds-release) then Manager for the board; not a second cold start",
+      "dependencies": [],
+      "approvals": []
+    },
+    {
+      "name": "template-branding",
+      "form": "thin",
+      "invocation": "auto-select",
+      "audience": "contributor",
+      "owner": "template-ds-design",
+      "maturity": "experimental",
+      "boundary": "Generated branding identity (Overview, CSS vars, Do's and Don'ts); no hex in JSX; no token policy duplication",
+      "dependencies": [],
+      "approvals": []
+    },
+    {
+      "name": "template-compose",
+      "form": "full",
+      "invocation": "auto-select",
+      "audience": "contributor",
+      "owner": "template-ds-eng",
+      "maturity": "experimental",
+      "boundary": "Inventory, harvest-while-building, enhance-existing over twins, composition map, extraction routing",
+      "dependencies": [
+        "template-branding"
+      ],
+      "approvals": []
+    },
+    {
+      "name": "template-a11y",
+      "form": "full",
+      "invocation": "auto-select",
+      "audience": "contributor",
+      "owner": "template-ds-eng",
+      "maturity": "experimental",
+      "boundary": "Automated/manual accessibility workflow and evidence",
+      "dependencies": [],
+      "approvals": [
+        "a11y"
+      ]
+    },
+    {
+      "name": "template-contribute",
+      "form": "full",
+      "invocation": "auto-select",
+      "audience": "contributor",
+      "owner": "template-ds-eng",
+      "maturity": "experimental",
+      "boundary": "Execute CONTRIBUTING process without restating it",
+      "dependencies": [],
+      "approvals": []
+    },
+    {
+      "name": "template-prototype",
+      "form": "thin",
+      "invocation": "contextual",
+      "audience": "contributor",
+      "owner": "template-ds-eng",
+      "maturity": "experimental",
+      "boundary": "Any human-named view in prototypes with live Storybook present and harvest flags; never promote",
+      "dependencies": [
+        "template-compose"
+      ],
+      "approvals": []
+    },
+    {
+      "name": "template-extend-ui",
+      "form": "full",
+      "invocation": "contextual",
+      "audience": "maintainer",
+      "owner": "template-ds-eng",
+      "maturity": "experimental",
+      "boundary": "Propose/build new or enhance named host primitives; rewire sandboxes after extract",
+      "dependencies": [
+        "template-compose",
+        "template-a11y",
+        "template-stories"
+      ],
+      "approvals": [
+        "design",
+        "engineering"
+      ]
+    },
+    {
+      "name": "template-promote-block",
+      "form": "full",
+      "invocation": "contextual",
+      "audience": "maintainer",
+      "owner": "template-ds-eng",
+      "maturity": "experimental",
+      "boundary": "Experimental multi-slice block promotion with HITL; propose memory after ack, not same turn",
+      "dependencies": [
+        "template-compose",
+        "template-a11y",
+        "template-stories"
+      ],
+      "approvals": [
+        "engineering",
+        "a11y"
+      ]
+    },
+    {
+      "name": "template-update-design-language",
+      "form": "full",
+      "invocation": "contextual",
+      "audience": "maintainer",
+      "owner": "template-ds-design",
+      "maturity": "experimental",
+      "boundary": "Preset candidate or canonical token change workflow",
+      "dependencies": [
+        "template-branding"
+      ],
+      "approvals": [
+        "design",
+        "engineering"
+      ]
+    },
+    {
+      "name": "template-update-shadcn",
+      "form": "full",
+      "invocation": "contextual",
+      "audience": "maintainer",
+      "owner": "template-ds-eng",
+      "maturity": "experimental",
+      "boundary": "Pinned upstream refresh and patch-ledger rebase",
+      "dependencies": [],
+      "approvals": [
+        "engineering"
+      ]
+    },
+    {
+      "name": "template-figma",
+      "form": "full",
+      "invocation": "contextual",
+      "audience": "contributor",
+      "owner": "template-ds-design",
+      "maturity": "experimental",
+      "boundary": "Bridge official Figma workflows to Example policy",
+      "dependencies": [
+        "template-compose"
+      ],
+      "approvals": []
+    },
+    {
+      "name": "template-shadcn-mcp",
+      "form": "thin",
+      "invocation": "contextual",
+      "audience": "contributor",
+      "owner": "template-ds-eng",
+      "maturity": "experimental",
+      "boundary": "Browse/view/install routing and registry-origin checks",
+      "dependencies": [],
+      "approvals": []
+    },
+    {
+      "name": "template-stories",
+      "form": "full",
+      "invocation": "contextual",
+      "audience": "contributor",
+      "owner": "template-ds-eng",
+      "maturity": "experimental",
+      "boundary": "Story coverage, interaction tests, tags, and docs",
+      "dependencies": [
+        "template-a11y"
+      ],
+      "approvals": []
+    },
+    {
+      "name": "template-verify",
+      "form": "thin",
+      "invocation": "contextual",
+      "audience": "contributor",
+      "owner": "template-ds-eng",
+      "maturity": "experimental",
+      "boundary": "Select and report deterministic checks",
+      "dependencies": [],
+      "approvals": []
+    },
+    {
+      "name": "template-consume",
+      "form": "full",
+      "invocation": "contextual",
+      "audience": "consumer",
+      "owner": "template-ds-eng",
+      "maturity": "experimental",
+      "boundary": "Immutable install/update/drift flow under ADOPTION",
+      "dependencies": [],
+      "approvals": []
+    },
+    {
+      "name": "template-release",
+      "form": "full",
+      "invocation": "explicit-only",
+      "audience": "maintainer",
+      "owner": "template-ds-eng",
+      "maturity": "experimental",
+      "boundary": "Version PR, immutable release, attestations, and HITL",
+      "dependencies": [
+        "template-verify"
+      ],
+      "approvals": [
+        "release"
+      ]
+    },
+    {
+      "name": "template-lifecycle",
+      "form": "full",
+      "invocation": "explicit-only",
+      "audience": "maintainer",
+      "owner": "template-ds-eng",
+      "maturity": "experimental",
+      "boundary": "Stable/deprecate/replace/remove entity lifecycle",
+      "dependencies": [
+        "template-release"
+      ],
+      "approvals": [
+        "engineering"
+      ]
+    },
+    {
+      "name": "template-incident",
+      "form": "full",
+      "invocation": "explicit-only",
+      "audience": "maintainer",
+      "owner": "template-ds-eng",
+      "maturity": "experimental",
+      "boundary": "INCIDENTS rollback/revocation workflow",
+      "dependencies": [],
+      "approvals": [
+        "incident-owner"
+      ]
+    },
+    {
+      "name": "template-dependency-review",
+      "form": "thin",
+      "invocation": "explicit-only",
+      "audience": "maintainer",
+      "owner": "template-ds-eng",
+      "maturity": "experimental",
+      "boundary": "SECURITY intake evidence and approval routing",
+      "dependencies": [],
+      "approvals": [
+        "engineering"
+      ]
+    },
+    {
+      "name": "template-agent-tooling",
+      "form": "full",
+      "invocation": "explicit-only",
+      "audience": "maintainer",
+      "owner": "template-ds-eng",
+      "maturity": "experimental",
+      "boundary": "Skills, rules, hooks, MCP, adapters, and vendor locks",
+      "dependencies": [
+        "template-verify"
+      ],
+      "approvals": [
+        "engineering"
+      ]
+    }
+  ]
+}

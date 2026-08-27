@@ -1,22 +1,11 @@
-# Fallback maintainer until GitHub org teams exist.
-# Replace with named humans or @org teams when they exist.
-
 * @hdanyal
 
-/components/primitives/ @hdanyal
-/registry/ @hdanyal
-/registry.json @hdanyal
-/tokens.json @hdanyal
-/app/tokens.generated.css @hdanyal
-/design-language.json @hdanyal
-/upstream-patches.json @hdanyal
-/components/ui/ @hdanyal
-/agent-tooling.json @hdanyal
-/agent-tooling.lock.json @hdanyal
 /.agents/ @hdanyal
+/scripts/kit/ @hdanyal
 /.cursor/ @hdanyal
 /CONTRIBUTING.md @hdanyal
 /AGENTS.md @hdanyal
+/INSTALL.md @hdanyal
 /SECURITY.md @hdanyal
 /docs/ @hdanyal
 /.github/ @hdanyal

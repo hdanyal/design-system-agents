@@ -1,6 +1,0 @@
----
-description: Registry source
-globs: registry/**,registry.json
----
-
-HITL required. Blocks are compositions. `USAGE.md` and `registryDependencies` must match imports. Do not commit `public/r`. Follow this pack's promote-block skill under `.agents/skills/` when present.

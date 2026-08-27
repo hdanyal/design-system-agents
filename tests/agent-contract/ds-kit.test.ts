@@ -48,12 +48,11 @@ describe("ds-kit agents", () => {
   })
 
   it("forbidden: example-onboard as a second auto-select cold start", () => {
-    const manifest = JSON.parse(readFileSync(".agents/skills/manifest.json", "utf8"))
-    const onboard = manifest.skills.find((s: { name: string }) => s.name === "example-onboard")
+    const manifest = JSON.parse(readFileSync(".agents/kit/skill-templates/manifest.json", "utf8"))
+    const onboard = manifest.skills.find((s: { name: string }) => s.name === "template-onboard")
     expect(onboard.invocation).not.toBe("auto-select")
     const agents = readFileSync("AGENTS.md", "utf8")
     expect(agents).toContain("ds-release")
-    expect(agents).not.toContain("Load `example-onboard`, then exactly one owning skill.")
   })
 
   it("expected: present contract names Storybook command", () => {
@@ -66,10 +65,8 @@ describe("ds-kit agents", () => {
 
   it("forbidden: mixing another pack's memory into this host", () => {
     const rule = readFileSync(".cursor/rules/ds-kit.mdc", "utf8")
-    expect(rule).toContain("Never mix another design system's chats")
-    expect(rule).toContain("Do not copy hex/oklch")
-    expect(rule).toContain("Do not duplicate primitives or public APIs")
-    expect(rule).toContain("upstream-patches.json")
+    expect(rule).toContain("Do not mix another design system's chats")
+    expect(rule).toContain("kit source")
     expect(existsSync(".cursor/rules/carina-ds.mdc")).toBe(false)
     const generated = readdirSync(".cursor/agents")
     expect(generated.filter((name) => name.startsWith("ds-") && name.endsWith(".md")).length).toBeGreaterThanOrEqual(
@@ -128,14 +125,14 @@ describe("ds-kit agents", () => {
       "**Verify:** run host `commands.test` / `pnpm verify:fast`",
       "propose not write",
     ])
-    const extend = readFileSync(".agents/skills/example-extend-ui/SKILL.md", "utf8")
+    const extend = readFileSync(".agents/kit/skill-templates/template-extend-ui/SKILL.md", "utf8")
     expect(extend).toContain("API before internals")
     expect(extend).toContain("Error story")
     expect(extend).toContain("Contract-first")
-    const stories = readFileSync(".agents/skills/example-stories/SKILL.md", "utf8")
+    const stories = readFileSync(".agents/kit/skill-templates/template-stories/SKILL.md", "utf8")
     expect(stories).toContain("Error story is required")
     expect(stories).toContain("not class strings")
-    const verify = readFileSync(".agents/skills/example-verify/SKILL.md", "utf8")
+    const verify = readFileSync(".agents/kit/skill-templates/template-verify/SKILL.md", "utf8")
     expect(verify).toContain("pnpm verify:fast")
     expect(verify).toContain("Do not weaken assertions")
   })
@@ -149,9 +146,9 @@ describe("ds-kit agents", () => {
       "figmaFileKey",
       "Do not write `context.json` or invent a file",
     ])
-    const reference = readFileSync(".agents/skills/example-branding/reference.md", "utf8")
-    expect(reference).toContain("## Overview")
-    expect(reference).toContain("## Do's and Don'ts")
+    const branding = readFileSync(".agents/kit/skill-templates/template-branding/SKILL.md", "utf8")
+    expect(branding).toContain("reference.md")
+    expect(branding).toContain("Overview")
   })
 
   it("expected: harvest-while-building keeps enhance-existing ahead of a twin", () => {
@@ -166,14 +163,14 @@ describe("ds-kit agents", () => {
       "open on match only",
       "propose** (do not write)",
     ])
-    const compose = readFileSync(".agents/skills/example-compose/SKILL.md", "utf8")
+    const compose = readFileSync(".agents/kit/skill-templates/template-compose/SKILL.md", "utf8")
     expect(compose).toContain("Harvest while building")
     expect(compose).toContain("Prefer enhancing a named existing API over creating a twin")
     expect(compose).toContain("match confidence")
-    const prototype = readFileSync(".agents/skills/example-prototype/SKILL.md", "utf8")
+    const prototype = readFileSync(".agents/kit/skill-templates/template-prototype/SKILL.md", "utf8")
     expect(prototype).toContain("there is no view-name or view-type allowlist")
     expect(prototype).toContain("reuse, enhance-existing, extract-new primitive/block, keep local")
-    const extend = readFileSync(".agents/skills/example-extend-ui/SKILL.md", "utf8")
+    const extend = readFileSync(".agents/kit/skill-templates/template-extend-ui/SKILL.md", "utf8")
     expect(extend).toContain("enhance a named existing API")
     expect(extend).toContain("Coding rewires sandbox imports to the decided entity")
     const harvest = readFileSync(".agents/agents/references/harvest-map.md", "utf8")
@@ -299,7 +296,10 @@ describe("ds-kit agents", () => {
   })
 
   it("expected: rationale template requires API anatomy before internals", () => {
-    const template = readFileSync("components/primitives/_template/RATIONALE.md", "utf8")
+    const template = readFileSync(
+      "tests/fixtures/mini-host/components/primitives/_template/RATIONALE.md",
+      "utf8"
+    )
     expect(template).toContain("### Anatomy")
     expect(template).toContain("### Props")
     expect(template).toContain("### Slots / composition")
@@ -370,11 +370,11 @@ describe("ds-kit agents", () => {
     expect(handoffs).toContain("files Coding may write")
     expect(handoffs).toContain("verify:")
     expect(handoffs).toContain("AGENT-ARCHITECT-CODING.md")
-    const usage = readFileSync("prototypes/_template/USAGE.md", "utf8")
+    const usage = readFileSync("tests/fixtures/mini-host/prototypes/_template/USAGE.md", "utf8")
     expect(usage).toContain("match confidence")
-    const a11ySkill = readFileSync(".agents/skills/example-a11y/SKILL.md", "utf8")
+    const a11ySkill = readFileSync(".agents/kit/skill-templates/template-a11y/SKILL.md", "utf8")
     expect(a11ySkill).toContain("Do not axe the whole Storybook")
-    const protoSkill = readFileSync(".agents/skills/example-prototype/SKILL.md", "utf8")
+    const protoSkill = readFileSync(".agents/kit/skill-templates/template-prototype/SKILL.md", "utf8")
     expect(protoSkill).toContain("match confidence")
     const kit = readFileSync("docs/AGENT-KIT.md", "utf8")
     expect(kit).toContain("pipeline consumers")
@@ -490,12 +490,10 @@ describe("ds-kit agents", () => {
     for (const rel of files) {
       const body = readFileSync(rel, "utf8")
       if (rel.endsWith("scripts/kit/lib.mjs")) {
-        expect(body).toContain("components/carina")
         expect(body).toContain("components/primitives")
       } else if (!isolationScripts.test(rel)) {
         expect(body, rel).not.toMatch(/components\/carina(?![\w-])/)
-        expect(body, rel).not.toMatch(/components\/ui(?![\w-])/)
-        expect(body, rel).not.toMatch(/Load `example-\*`/)
+        expect(body, rel).not.toMatch(/Load `template-\*`/)
         expect(body, rel).not.toMatch(/id === ["']example["']/)
         expect(body, rel).not.toMatch(/\bexampleSkills\b/)
       }

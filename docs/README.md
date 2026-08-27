@@ -1,52 +1,9 @@
-# Documentation
+# Docs map
 
-Human and agent docs for **Design System Agents**. Root entry points: [README](../README.md), [CONTRIBUTING](../CONTRIBUTING.md), [AGENTS](../AGENTS.md), [SECURITY](../SECURITY.md).
-
-## Getting started
-
-| Doc | Purpose |
+| Doc | For |
 | --- | --- |
-| [ONBOARDING.md](ONBOARDING.md) | First day on this kit |
-| [EXAMPLE-HOST.md](EXAMPLE-HOST.md) | Keep the bundled catalog vs install agents on your repo; names vs pack `id` vs folder |
-| [catalog.md](catalog.md) | What components and blocks exist here |
-| [SKILLS.md](SKILLS.md) | What each agent skill is for |
-| [READINESS.md](READINESS.md) | When this repo is ready for wider use |
-
-## Contributing & governance
-
-| Doc | Purpose |
-| --- | --- |
-| [../CONTRIBUTING.md](../CONTRIBUTING.md) | How we change this kit |
-| [GOVERNANCE.md](GOVERNANCE.md) | Who must approve what |
-| [adr/](adr/) | Architecture decisions |
-
-## Agents
-
-| Doc | Purpose |
-| --- | --- |
-| [../AGENTS.md](../AGENTS.md) | Agent cold-start router |
+| [INSTALL.md](../INSTALL.md) | Agents installing the kit onto a host |
+| [ONBOARDING.md](ONBOARDING.md) | Humans — first hour on a host |
 | [AGENT-KIT.md](AGENT-KIT.md) | Commands and specialist reference |
-| [EXAMPLE-HOST.md](EXAMPLE-HOST.md) | Install on another host |
-| [AGENT-MEMORY.md](AGENT-MEMORY.md) | How agents remember, retrieve, and expire notes |
-| [AGENT-CRITIQUE.md](AGENT-CRITIQUE.md) | Independent decision review |
-
-## Consumers
-
-| Doc | Purpose |
-| --- | --- |
-| [ADOPTION.md](ADOPTION.md) | Install this catalog in product apps |
-| [CONSUMER-PROOF.md](CONSUMER-PROOF.md) | Consumer contract checks |
-
-## Operations
-
-| Doc | Purpose |
-| --- | --- |
-| [../SECURITY.md](../SECURITY.md) | Secrets, dependencies, disclosure |
-| [INCIDENTS.md](INCIDENTS.md) | Incidents and rollback routing |
-| [ROLLBACK.md](ROLLBACK.md) | Rollback procedures |
-
-## Reference
-
-| Doc | Purpose |
-| --- | --- |
-| [a11y-allowlist.md](a11y-allowlist.md) | Accessibility demo fixture allowlist |
+| [AGENT-MEMORY.md](AGENT-MEMORY.md) | Reviewed agent memory |
+| [CONTRIBUTING.md](../CONTRIBUTING.md) | Kit contributors |

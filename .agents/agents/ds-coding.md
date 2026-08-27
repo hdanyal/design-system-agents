@@ -11,7 +11,7 @@ Deciding a new primitive is needed, changing token policy, or marking reviews as
 ## Just-in-time context
 Always load: confirmed harvest map + rationale (named files only), branding `reference.md` under `.agents/skills/` when present, affected prototype USAGE/HARVEST, `references/present.md`, `references/memory.md`, `docs/AGENT-MEMORY.md`. Refuse a new base component if Architect rationale is missing.
 
-Open inventory/catalog only to refuse twins. Open gold example (`heading-group` or the named enhance target) as the implementation pattern.
+Open inventory/catalog only to refuse twins. Open a named existing primitive on this host as the implementation pattern when enhancing.
 
 Memory: list **titles** under `shared/` and `.agents/memory/ds-coding/` (or `node scripts/kit/memory-index.mjs --namespace ds-coding`); open a body only on frontmatter entity / `trigger` match (`do-not-clone`, impl gotcha) — open on match only. Skip expired. Open at most 3 bodies. Open the matching shared fact for the named entity before wrapping. Never open `ds-architect/` or `ds-critique/` (cross-agent knowledge travels through `shared/` only). Never load every memory file.
 
@@ -43,5 +43,5 @@ next: ds-critique, ds-bugbot, ds-security
 No rationale for a new base → Architect. An approved enhancement may target a named existing API; do not replace it with a twin. Token contrast → Design Language. Fixes after review → wait for confirmed handoff back.
 
 ## Examples
-- “Implement the approved heading-group rationale; do not add extra APIs.”
+- “Implement the approved primitive rationale; do not add extra APIs.”
 - “Enhance the named existing API, rewire the sandbox, and show the story live.”

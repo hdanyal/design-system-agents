@@ -3,6 +3,7 @@ import {
   GENERATED_HEADER,
   adapterRelPaths,
   hashTree,
+  isKitSource,
   kitRootFromScripts,
   loadAgentManifest,
   loadKitManifest,
@@ -105,7 +106,7 @@ ${tomlEscape(body)}
 `
 }
 
-const dsKitRule = `---
+const dsKitRuleHost = `---
 description: Portable design-system kit isolation
 alwaysApply: true
 ---
@@ -123,7 +124,19 @@ Load skills from \`.agents/skills/\` on this host only; do not load another pack
 See docs/AGENT-KIT.md.
 `
 
-const agentsMarker = `## Specialists (ds-kit)
+const dsKitRuleKitSource = `---
+description: Design System Agents kit source
+alwaysApply: true
+---
+
+This checkout is the **agent kit**, not a design-system host. There is no pack \`context.json\` here.
+Work on kit scripts, playbooks, templates, and docs. Do not route to Release/Manager for a program board on this root.
+To try specialists against tokens and components, install the kit onto another repo (\`INSTALL.md\`).
+Do not mix another design system's chats, memory, or catalog.
+See docs/AGENT-KIT.md and CONTRIBUTING.md.
+`
+
+const agentsMarkerHost = `## Specialists (ds-kit)
 See docs/AGENT-KIT.md.
 Invoke: ${ids.join(", ")}.
 Load .agents/context.json. One owner. Stop for yes before writes or another agent.
@@ -131,10 +144,22 @@ Codex: start with the id. If spawn is unavailable, write .agents/handoffs/ and p
 Bugbot/Security: Cursor product reviewers, else playbook (never claim Cursor Bugbot on Claude/Codex).
 `
 
-const claudeMarker = `# Design-system kit
+const agentsMarkerKitSource = `## Specialists (ds-kit)
+See docs/AGENT-KIT.md.
+Invoke: ${ids.join(", ")}.
+This checkout is kit source — no host pack. Install onto a design-system repo before bootstrap work.
+Contributors: confirm before writes. See CONTRIBUTING.md.
+`
+
+const claudeMarkerHost = `# Design-system kit
 Read AGENTS.md, .agents/context.json, and docs/AGENT-KIT.md.
 Invoke via /agents or @ds-*. One owner. Stop and wait for yes before writes or spawn.
 Claude Code: playbook review for Bugbot/Security (not Cursor product reviewers).
+`
+
+const claudeMarkerKitSource = `# Design System Agents kit
+Read AGENTS.md and docs/AGENT-KIT.md. This checkout is kit source, not a design-system host.
+Invoke via /agents or @ds-*. Confirm before writes.
 `
 
 for (const agent of manifest.agents) {
@@ -143,15 +168,15 @@ for (const agent of manifest.agents) {
   writeText(path.join(root, ".codex/agents", `${agent.id}.toml`), codexAdapter(agent))
 }
 
-writeText(path.join(root, ".cursor/rules/ds-kit.mdc"), dsKitRule)
+writeText(path.join(root, ".cursor/rules/ds-kit.mdc"), isKitSource(root) ? dsKitRuleKitSource : dsKitRuleHost)
 
 const agentsMdPath = path.join(root, "AGENTS.md")
 const agentsMd = existsSync(agentsMdPath) ? readFileSync(agentsMdPath, "utf8") : ""
-writeText(agentsMdPath, upsertMarker(agentsMd, agentsMarker))
+writeText(agentsMdPath, upsertMarker(agentsMd, isKitSource(root) ? agentsMarkerKitSource : agentsMarkerHost))
 
 const claudeMdPath = path.join(root, "CLAUDE.md")
 const claudeMd = existsSync(claudeMdPath) ? readFileSync(claudeMdPath, "utf8") : ""
-writeText(claudeMdPath, upsertMarker(claudeMd, claudeMarker))
+writeText(claudeMdPath, upsertMarker(claudeMd, isKitSource(root) ? claudeMarkerKitSource : claudeMarkerHost))
 
 const toolingPath = path.join(root, "agent-tooling.json")
 if (existsSync(toolingPath)) {
@@ -170,12 +195,14 @@ if (existsSync(toolingPath)) {
   )
 }
 
-const skillsPath = path.join(root, ".agents/skills/manifest.json")
-if (existsSync(skillsPath)) {
-  const skills = readJson(skillsPath)
+const skillsPath = path.join(root, ".agents/kit/skill-templates/manifest.json")
+const hostSkillsPath = path.join(root, ".agents/skills/manifest.json")
+const manifestPath = existsSync(hostSkillsPath) ? hostSkillsPath : skillsPath
+if (existsSync(manifestPath)) {
+  const skills = readJson(manifestPath)
   const skillsDoc = `# Skills
 
-GENERATED from \`.agents/skills/manifest.json\`. Canonical instructions live in each \`SKILL.md\`.
+GENERATED from skill templates or host \`.agents/skills/manifest.json\`. Canonical instructions live in each \`SKILL.md\`.
 
 What each agent skill is for on this host.
 

@@ -1,6 +1,0 @@
----
-description: Prototype sandbox
-globs: prototypes/**,app/playground/**
----
-
-Compose stock UI (pack `paths.ui`) and host primitives. Require `USAGE.md`. Extract catalog gaps to pack `paths.primitives` with rationale. Follow this pack's prototype then compose skills under `.agents/skills/` when present.

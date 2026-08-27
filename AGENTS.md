@@ -1,42 +1,19 @@
-# Design System Agents
+# Design System Agents (kit source)
 
-Portable `ds-*` specialists for a design-system git root. This kit source also ships a bundled catalog (pack `id: example`) so the agents can run against real tokens and components. Four layers from pack `paths`: tokens, stock UI, host primitives, blocks. Storybook is coded truth. Figma explores when pack `figmaFileKey` is set. Git is source of truth.
+This checkout is the **portable agent kit**, not a design-system host. There is no pack `context.json` here.
 
-## Cold start
+## Cold start (kit contributors)
 
-1. Read `.agents/context.json` and `.agents/skills/manifest.json`.
-2. Run `pnpm catalog` when the repo is installed.
-3. If bootstrap is not `complete`, invoke `ds-release` (not auto-select onboard).
-4. If bootstrap is `complete`, invoke `ds-manager` for the program board, then exactly one `ds-*` owner. Do not write until routed. On the first board after bootstrap, Manager tasks generated branding identity (Overview + Do's and Don'ts) if missing — Manager never writes the identity file.
+1. Read [docs/AGENT-KIT.md](docs/AGENT-KIT.md) and [CONTRIBUTING.md](CONTRIBUTING.md).
+2. Run `pnpm install`, `pnpm agents:sync`, `pnpm verify`.
+3. To try specialists against tokens and components, [install the kit onto another repo](INSTALL.md).
 
-## Open-ended views
-
-Any human-named view may be explored under `paths.prototypes/<name>/` with `USAGE.md`, a Storybook CSF story, and a **live** Storybook companion after every material write. Chat JSX and Cursor Canvas are not the gallery. While building, keep harvest flags (`reuse` → `enhance-existing` → `extract-new` → `keep local`), batch them to Architect, prefer enhancing existing APIs over twins, then clean/register via Coding and promote-block. Full pipeline: [docs/AGENT-KIT.md](docs/AGENT-KIT.md#open-ended-view-pipeline). Identity guidance: generated branding `reference.md` under `.agents/skills/` when present. Catalog facts after HITL: [docs/AGENT-MEMORY.md](docs/AGENT-MEMORY.md).
-
-## Hard don'ts
-
-- Do not restyle or fork pack `paths.ui` except via this host's `upstream-patches.json` when present.
-- Do not duplicate primitives or public APIs.
-- Do not edit `tokens.json` outputs by hand; run `pnpm tokens:build`.
-- Do not copy hex/oklch into JSX or stories; use CSS variables from the branding reference.
-- Do not promote or mark stable from a prototype; do not commit `public/r` or hand-edit generated MCP/changelog artifacts.
-- Do not use production data, secrets, or `/r/dev` for consumers.
-- Do not restore cancelled sandboxes from the program archive without a new human-named slice.
-- Do not treat Cursor chats or the checkout folder name as pack identity or source of truth. Git under this root is. See [docs/EXAMPLE-HOST.md](docs/EXAMPLE-HOST.md#names-paths-and-durable-context).
-
-## Route
-
-See [docs/AGENT-KIT.md](docs/AGENT-KIT.md) and [docs/SKILLS.md](docs/SKILLS.md). Policy: [CONTRIBUTING.md](CONTRIBUTING.md), [docs/GOVERNANCE.md](docs/GOVERNANCE.md), [docs/ADOPTION.md](docs/ADOPTION.md), [SECURITY.md](SECURITY.md), [docs/INCIDENTS.md](docs/INCIDENTS.md).
-
-## Commands
-
-`pnpm verify:fast` · `pnpm verify` · `pnpm tokens:build` · `pnpm catalog` · `pnpm registry:build` · `pnpm agents:sync`
+Do not route to Release/Manager for a program board on this root.
 
 <!-- BEGIN ds-kit-agents -->
 ## Specialists (ds-kit)
 See docs/AGENT-KIT.md.
 Invoke: ds-manager, ds-prototype, ds-architect, ds-coding, ds-docs, ds-language, ds-a11y, ds-critique, ds-bugbot, ds-security, ds-release.
-Load .agents/context.json. One owner. Stop for yes before writes or another agent.
-Codex: start with the id. If spawn is unavailable, write .agents/handoffs/ and print the next id.
-Bugbot/Security: Cursor product reviewers, else playbook (never claim Cursor Bugbot on Claude/Codex).
+This checkout is kit source — no host pack. Install onto a design-system repo before bootstrap work.
+Contributors: confirm before writes. See CONTRIBUTING.md.
 <!-- END ds-kit-agents -->

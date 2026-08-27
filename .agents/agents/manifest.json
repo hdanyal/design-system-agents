@@ -52,7 +52,7 @@
       "handoffsTo": ["ds-critique", "ds-architect", "ds-docs", "ds-manager"],
       "readonly": false,
       "reviewEngine": null,
-      "packSkills": ["example-prototype", "example-compose", "example-figma"]
+      "packSkills": ["template-prototype", "template-compose", "template-figma"]
     },
     {
       "id": "ds-architect",
@@ -64,7 +64,7 @@
       "handoffsTo": ["ds-critique", "ds-coding", "ds-prototype", "ds-manager"],
       "readonly": false,
       "reviewEngine": null,
-      "packSkills": ["example-compose", "example-extend-ui", "example-promote-block"]
+      "packSkills": ["template-compose", "template-extend-ui", "template-promote-block"]
     },
     {
       "id": "ds-coding",
@@ -76,7 +76,7 @@
       "handoffsTo": ["ds-critique", "ds-bugbot", "ds-security", "ds-a11y", "ds-docs", "ds-manager"],
       "readonly": false,
       "reviewEngine": null,
-      "packSkills": ["example-extend-ui", "example-stories", "example-update-shadcn", "example-verify"]
+      "packSkills": ["template-extend-ui", "template-stories", "template-update-shadcn", "template-verify"]
     },
     {
       "id": "ds-docs",
@@ -88,7 +88,7 @@
       "handoffsTo": ["ds-critique", "ds-release", "ds-coding", "ds-manager"],
       "readonly": false,
       "reviewEngine": null,
-      "packSkills": ["example-stories"]
+      "packSkills": ["template-stories"]
     },
     {
       "id": "ds-language",
@@ -100,7 +100,7 @@
       "handoffsTo": ["ds-critique", "ds-a11y", "ds-coding", "ds-manager"],
       "readonly": false,
       "reviewEngine": null,
-      "packSkills": ["example-branding", "example-update-design-language", "example-figma"]
+      "packSkills": ["template-branding", "template-update-design-language", "template-figma"]
     },
     {
       "id": "ds-a11y",
@@ -112,7 +112,7 @@
       "handoffsTo": ["ds-critique", "ds-language", "ds-coding", "ds-release", "ds-manager"],
       "readonly": false,
       "reviewEngine": null,
-      "packSkills": ["example-a11y"]
+      "packSkills": ["template-a11y"]
     },
     {
       "id": "ds-critique",
@@ -170,15 +170,15 @@
       "readonly": false,
       "reviewEngine": null,
       "packSkills": [
-        "example-onboard",
-        "example-contribute",
-        "example-release",
-        "example-lifecycle",
-        "example-incident",
-        "example-consume",
-        "example-agent-tooling",
-        "example-dependency-review",
-        "example-shadcn-mcp"
+        "template-onboard",
+        "template-contribute",
+        "template-release",
+        "template-lifecycle",
+        "template-incident",
+        "template-consume",
+        "template-agent-tooling",
+        "template-dependency-review",
+        "template-shadcn-mcp"
       ]
     }
   ]

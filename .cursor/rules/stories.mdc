@@ -1,6 +1,0 @@
----
-description: Storybook stories
-globs: "**/*.stories.tsx"
----
-
-Follow this pack's stories skill under `.agents/skills/` when present. Foundations must use `var(--*)`.

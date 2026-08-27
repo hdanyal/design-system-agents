@@ -16,6 +16,7 @@ import {
   validateMemoryTree,
   validatePack,
   isKitSource,
+  scanKitSourceForbidden,
   validateProgram,
   validateSharedMemorySlugs,
 } from "./lib.mjs"
@@ -24,6 +25,15 @@ const args = process.argv.slice(2)
 const dirIdx = args.indexOf("--dir")
 const root = path.resolve(dirIdx >= 0 ? args[dirIdx + 1] : kitRootFromScripts())
 const kitSource = isKitSource(root)
+
+if (kitSource) {
+  const forbidden = scanKitSourceForbidden(root)
+  if (forbidden.length) {
+    fail(`kit source must not contain catalog artifacts: ${forbidden.map((h) => h.path).join(", ")}`)
+  }
+  const templates = path.join(root, ".agents/kit/skill-templates/manifest.json")
+  if (!existsSync(templates)) fail("missing .agents/kit/skill-templates/manifest.json")
+}
 
 const kit = loadKitManifest(root)
 const agents = loadAgentManifest(root)
@@ -64,7 +74,7 @@ for (const rel of rels) {
 const packPath = path.join(root, ".agents/context.json")
 if (existsSync(packPath)) {
   const pack = readJson(packPath)
-  const errors = validatePack(pack, { allowExampleId: kitSource || pack.id === "example" })
+  const errors = validatePack(pack)
   if (errors.length) fail(`pack invalid: ${errors.join(", ")}`)
   const invPath = path.join(root, ".agents/inventory/components.json")
   if (existsSync(invPath)) {
